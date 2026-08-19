@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import bgImage from '../assets/home-bg-1.jpg';
+import { Button } from '../components/ui';
 
 function Home() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-psu-blue">
-      {/* 1. Static Background Layer - Outside PageTransition to avoid the 'y' slide */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -19,11 +19,8 @@ function Home() {
           backgroundPosition: 'center',
         }}
       />
-
-      {/* 2. Fixed Overlay - Stays put with the background */}
       <div className="fixed inset-0 bg-black/40 z-10" />
 
-      {/* 3. Animated Content Layer - This handles the sliding effect */}
       <PageTransition>
         <div className="relative z-20 min-h-screen flex items-center justify-center text-center text-white px-4">
           <div className="max-w-5xl">
@@ -33,11 +30,10 @@ function Home() {
             <p className="text-md md:text-xl mb-10 text-white/90 drop-shadow-md">
               A hub for part-time jobs and social activities for all PSU Phuket students
             </p>
-            <Link
-              to="/jobs"
-              className="bg-psu-accent hover:bg-psu-blue-light text-white text-lg md:text-xl font-semibold px-12 py-4 rounded-xl transition shadow-xl inline-block"
-            >
-              Search Part-time Jobs
+            <Link to="/jobs">
+              <Button variant="primary" size="lg" className="px-12 py-4 text-lg md:text-xl font-semibold shadow-xl">
+                Search Part-time Jobs
+              </Button>
             </Link>
           </div>
         </div>
