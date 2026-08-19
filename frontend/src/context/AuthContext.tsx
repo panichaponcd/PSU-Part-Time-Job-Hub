@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, StudentProfile, UserRole } from '../types/user';
 
+import { api } from '../utils/api';
+
 interface AuthContextType {
   user: User | null;
   role: UserRole | null;
@@ -44,11 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (identifier: string, password: string): Promise<UserRole> => {
-    const response = await fetch('http://127.0.0.1:8000/api/auth/login/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ identifier, password }),
-    });
+    const response = await api.post('/auth/login/', { identifier, password });
 
     if (!response.ok) {
       const data = await response.json();
@@ -88,11 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!refreshToken) return null;
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/auth/refresh/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refresh: refreshToken }),
-      });
+      const response = await api.post('/auth/refresh/', { refresh: refreshToken });
 
       if (response.ok) {
         const data = await response.json();

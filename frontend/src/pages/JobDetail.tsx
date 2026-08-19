@@ -10,10 +10,12 @@ import JobScheduleTable from '../components/jobs/JobScheduleTable';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 
+import { api } from '../utils/api';
+
 function JobDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { isLoggedIn, getToken, isStudent, isAdmin } = useAuth();
+  const { isLoggedIn, isStudent, isAdmin } = useAuth();
 
   const [job, setJob] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -26,7 +28,7 @@ function JobDetail() {
   useEffect(() => {
     const fetchJobDetail = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/jobs/${id}/`);
+        const response = await api.get(`/jobs/${id}/`);
         const data = await response.json();
 
         setJob({
@@ -41,9 +43,7 @@ function JobDetail() {
         });
 
         if (isLoggedIn()) {
-          const appRes = await fetch('http://127.0.0.1:8000/api/applications/', {
-            headers: { Authorization: `Bearer ${getToken()}` },
-          });
+          const appRes = await api.get('/applications/');
           const apps = await appRes.json();
           const appsList = Array.isArray(apps) ? apps : apps.results || [];
 
@@ -61,7 +61,7 @@ function JobDetail() {
       }
     };
     fetchJobDetail();
-  }, [id, isLoggedIn, getToken]);
+  }, [id, isLoggedIn]);
 
   const canSeePrivateDetails = isAdmin() || applicationStatus === 'APPROVED';
 
@@ -73,14 +73,7 @@ function JobDetail() {
     setApplying(true);
     setApplyError(null);
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/applications/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${getToken()}`,
-        },
-        body: JSON.stringify({ job: id }),
-      });
+      const response = await api.post('/applications/', { job: id });
       if (!response.ok) {
         const data = await response.json();
         throw new Error(JSON.stringify(data) || 'Failed to apply.');
@@ -102,10 +95,7 @@ function JobDetail() {
 
     setApplying(true);
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/applications/${myAppId}/`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${getToken()}` },
-      });
+      const response = await api.delete(`/applications/${myAppId}/`);
 
       if (response.ok) {
         setApplied(false);

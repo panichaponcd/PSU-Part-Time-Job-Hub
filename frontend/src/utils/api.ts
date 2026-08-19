@@ -1,5 +1,5 @@
 // src/utils/api.ts
-const BASE_URL = 'http://127.0.0.1:8000/api';
+export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000/api';
 
 export const apiRequest = async (
   endpoint: string,
@@ -7,28 +7,50 @@ export const apiRequest = async (
 ): Promise<Response> => {
   const token = localStorage.getItem('access_token');
 
-  // Merge headers
+  const isFormData = options.body instanceof FormData;
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
+    ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
     ...(options.headers as Record<string, string>),
   };
 
-  // Automatically inject JWT if available
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
+  const url = endpoint.startsWith('http') ? endpoint : `${API_BASE_URL}${endpoint}`;
+
+  const response = await fetch(url, {
     ...options,
     headers,
   });
 
-  // If the backend returns 401, token is likely expired
   if (response.status === 401) {
-    console.warn('Session expired. Handle refresh logic or redirect to login.');
+    console.warn('Session expired or unauthorized.');
   }
 
   return response;
+};
+
+export const api = {
+  get: (endpoint: string, options: RequestInit = {}) =>
+    apiRequest(endpoint, { ...options, method: 'GET' }),
+
+  post: (endpoint: string, body?: any, options: RequestInit = {}) =>
+    apiRequest(endpoint, {
+      ...options,
+      method: 'POST',
+      body: body instanceof FormData ? body : JSON.stringify(body),
+    }),
+
+  patch: (endpoint: string, body?: any, options: RequestInit = {}) =>
+    apiRequest(endpoint, {
+      ...options,
+      method: 'PATCH',
+      body: body instanceof FormData ? body : JSON.stringify(body),
+    }),
+
+  delete: (endpoint: string, options: RequestInit = {}) =>
+    apiRequest(endpoint, { ...options, method: 'DELETE' }),
 };
 
 export default apiRequest;

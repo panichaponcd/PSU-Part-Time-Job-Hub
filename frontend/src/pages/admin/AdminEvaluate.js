@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../../context/AuthContext';
+import { api } from '../../utils/api';
 
 const itemVariants = {
     hidden: { y: 10, opacity: 0 },
@@ -69,13 +70,13 @@ function AdminEvaluate() {
             const headers = { 'Authorization': `Bearer ${token}` };
 
             // 2. Fetch details for this specific application
-            const appRes = await fetch(`http://127.0.0.1:8000/api/applications/${applicationId}/`, { headers });
+            const appRes = await api.get(`/applications/${applicationId}/`);
             if (!appRes.ok) throw new Error("Application not found.");
             const appData = await appRes.json();
             setApplication(appData);
 
             // 3. Check if an evaluation ALREADY exists for THIS application only
-            const evalRes = await fetch(`http://127.0.0.1:8000/api/evaluations/?application=${applicationId}`, { headers });
+            const evalRes = await api.get(`/evaluations/?application=${applicationId}`);
             const evalData = await evalRes.json();
             
             // Only set form data if the backend returned a match for THIS specific ID
@@ -108,18 +109,21 @@ function AdminEvaluate() {
     const handleSubmit = async () => {
         setSaving(true);
         const isEditing = !!form.id;
-        const url = isEditing ? `http://127.0.0.1:8000/api/evaluations/${form.id}/` : 'http://127.0.0.1:8000/api/evaluations/';
 
         try {
-            const response = await fetch(url, {
-                method: isEditing ? 'PATCH' : 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getToken()}`
-                },
-                // IMPORTANT: Always bind it to the current applicationId
-                body: JSON.stringify({ ...form, application: applicationId }),
-            });
+            const endpoint = isEditing ? `/evaluations/${form.id}/` : '/evaluations/';
+            const payload = {
+                application: applicationId,
+                punctuality_rating: form.punctuality_rating,
+                responsibility_rating: form.responsibility_rating,
+                grooming_rating: form.grooming_rating,
+                quality_rating: form.quality_rating,
+                comment: form.comment,
+                result_status: form.result_status,
+            };
+            const response = isEditing
+                ? await api.patch(endpoint, payload)
+                : await api.post(endpoint, payload);
 
             if (!response.ok) throw new Error('Submission failed.');
             setSuccess(true);

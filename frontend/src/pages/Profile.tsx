@@ -9,9 +9,11 @@ import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 
+import { api } from '../utils/api';
+
 function Profile() {
   const navigate = useNavigate();
-  const { student, user, getToken } = useAuth();
+  const { student, user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState<any>(null);
   const [activeAssignments, setActiveAssignments] = useState<any[]>([]);
@@ -30,21 +32,15 @@ function Profile() {
 
   const fetchProfile = async () => {
     try {
-      const token = getToken();
-      const headers = { Authorization: `Bearer ${token}` };
-
       // 1. Fetch Student Profile
-      const res = await fetch(
-        `http://127.0.0.1:8000/api/students/?student_id=${student?.student_id}`,
-        { headers }
-      );
+      const res = await api.get(`/students/?student_id=${student?.student_id}`);
       const data = await res.json();
       const profile = Array.isArray(data) ? data[0] : data;
       setProfileData(profile);
       setFormData(profile);
 
       // 2. Fetch Applications
-      const appRes = await fetch('http://127.0.0.1:8000/api/applications/', { headers });
+      const appRes = await api.get('/applications/');
       const apps = await appRes.json();
       const appsList = Array.isArray(apps) ? apps : apps.results || [];
 
@@ -52,7 +48,7 @@ function Profile() {
       const activeList = appsList.filter((a: any) => (a.status === 'APPROVED' || a.status === 'PENDING') && !a.evaluation);
       const activeJobsData = await Promise.all(
         activeList.map(async (app: any) => {
-          const jobRes = await fetch(`http://127.0.0.1:8000/api/jobs/${app.job}/`, { headers });
+          const jobRes = await api.get(`/jobs/${app.job}/`);
           const jobData = await jobRes.json();
           return { ...jobData, status: app.status, applicationId: app.id };
         })
@@ -65,7 +61,7 @@ function Profile() {
       const historyList = appsList.filter((a: any) => Boolean(a.evaluation));
       const historyJobsData = await Promise.all(
         historyList.map(async (app: any) => {
-          const jobRes = await fetch(`http://127.0.0.1:8000/api/jobs/${app.job}/`, { headers });
+          const jobRes = await api.get(`/jobs/${app.job}/`);
           const jobData = await jobRes.json();
           return { ...app, job_poster_url: jobData.poster_image_url, created_at: jobData.created_at };
         })
@@ -85,7 +81,6 @@ function Profile() {
     setSaving(true);
     setError(null);
     try {
-      const token = getToken();
       const bodyData = new FormData();
       bodyData.append('first_name', formData.first_name || '');
       bodyData.append('last_name', formData.last_name || '');
@@ -98,11 +93,7 @@ function Profile() {
         bodyData.append('student_card_image', formData.student_card_file);
       }
 
-      const res = await fetch(`http://127.0.0.1:8000/api/students/${profileData.id}/`, {
-        method: 'PATCH',
-        headers: { Authorization: `Bearer ${token}` },
-        body: bodyData,
-      });
+      const res = await api.patch(`/students/${profileData.id}/`, bodyData);
 
       if (res.ok) {
         const updated = await res.json();

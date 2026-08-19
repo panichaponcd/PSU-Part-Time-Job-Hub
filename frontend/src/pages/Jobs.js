@@ -4,6 +4,7 @@ import PageTransition from '../components/PageTransition';
 import JobCard from '../components/JobCard';
 import bgImage from '../assets/home-bg-1.jpg';
 import Placeholder from '../assets/placeholder-image.jpg'
+import { api } from '../utils/api';
 
 function Jobs() {
     const [jobs, setJobs] = useState([]);
@@ -14,7 +15,7 @@ function Jobs() {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/jobs/');
+                const response = await api.get('/jobs/');
                 const data = await response.json();
 
                 const formattedJobs = data.map(job => {
