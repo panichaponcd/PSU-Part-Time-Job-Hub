@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { api } from '../../utils/api';
 import { Button } from '../../components/ui';
-
-const itemVariants = {
-  hidden: { y: 10, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-};
 
 const DEFAULT_FORM = {
   punctuality_rating: 5,

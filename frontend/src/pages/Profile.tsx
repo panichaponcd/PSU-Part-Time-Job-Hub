@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect, SyntheticEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import PageTransition from '../components/PageTransition';
@@ -135,6 +135,11 @@ function Profile() {
 
       <PageTransition>
         <div className="relative z-20 pt-24 pb-16 px-4 md:px-8 max-w-6xl mx-auto space-y-8">
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-2xl text-sm font-bold text-center">
+              {error}
+            </div>
+          )}
           {/* Header Card */}
           <div className="bg-white/70 backdrop-blur-lg rounded-3xl p-6 md:p-8 shadow-xl border border-white/60 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-6">

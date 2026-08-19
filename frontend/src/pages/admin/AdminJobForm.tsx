@@ -2,7 +2,6 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import apiRequest from '../../utils/api';
-import placeholder from '../../assets/placeholder-image.jpg';
 import { Button, Input } from '../../components/ui';
 
 interface ScheduleItem {
