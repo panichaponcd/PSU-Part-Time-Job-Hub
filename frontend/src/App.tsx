@@ -28,7 +28,6 @@ import { RedirectIfLoggedIn, RequireAuth, RequireAdmin } from './components/Prot
 import SignIn from './pages/SignIn';
 import Register from './pages/Register';
 
-// This component handles the animation logic
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -41,14 +40,12 @@ function AnimatedRoutes() {
     }
   }, [location.pathname]);
 
-  const routeKey = location.pathname.startsWith('/admin')
-    ? 'admin-root'
-    : location.pathname;
+  const routeKey = location.pathname.startsWith('/admin') ? 'admin-root' : location.pathname;
 
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={routeKey} >
-        {/* User routes */}
+      <Routes location={location} key={routeKey}>
+        {/* Public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:id" element={<JobDetail />} />
@@ -59,31 +56,43 @@ function AnimatedRoutes() {
         <Route path="/other/articles" element={<Articles />} />
         <Route path="/other/hall-of-fame" element={<HallOfFame />} />
 
-        {/* Authorized Routes */}
-        <Route path="/register" element={
-          <RedirectIfLoggedIn>
-            <Register />
-          </RedirectIfLoggedIn>
-        } />
+        {/* Auth routes */}
+        <Route
+          path="/register"
+          element={
+            <RedirectIfLoggedIn>
+              <Register />
+            </RedirectIfLoggedIn>
+          }
+        />
 
-        <Route path="/signin" element={
-          <RedirectIfLoggedIn>
-            <SignIn />
-          </RedirectIfLoggedIn>
-        } />
+        <Route
+          path="/signin"
+          element={
+            <RedirectIfLoggedIn>
+              <SignIn />
+            </RedirectIfLoggedIn>
+          }
+        />
 
-        <Route path="/profile" element={
-          <RequireAuth>
-            <Profile />
-          </RequireAuth>
-        } />
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
 
         {/* Admin routes */}
-        <Route path="/admin" element={
-          <RequireAdmin>
-            <AdminLayout />
-          </RequireAdmin>
-        }>
+        <Route
+          path="/admin"
+          element={
+            <RequireAdmin>
+              <AdminLayout />
+            </RequireAdmin>
+          }
+        >
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="jobs" element={<AdminJobs />} />
           <Route path="jobs/new" element={<AdminJobForm />} />

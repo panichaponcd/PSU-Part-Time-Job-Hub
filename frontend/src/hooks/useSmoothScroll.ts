@@ -1,20 +1,18 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 
-export default function useSmoothScroll() {
+export default function useSmoothScroll(): void {
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.1, 
+      lerp: 0.1,
       wheelMultiplier: 1,
       gestureOrientation: 'vertical',
-      normalizeWheel: true, // Helps with Windows mouse-notches
-      smoothWheel: true,
     });
 
     window.lenis = lenis;
 
-    let rafId;
-    function raf(time) {
+    let rafId: number;
+    function raf(time: number) {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     }
