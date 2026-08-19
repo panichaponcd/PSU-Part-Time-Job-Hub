@@ -1,123 +1,18 @@
-from rest_framework import viewsets, filters, status
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
+from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from .models import Job, Student, Application, Evaluation
-from .serializers import (
-    JobSerializer, StudentSerializer,
-    ApplicationSerializer, EvaluationSerializer
-)
-
-class JobViewSet(viewsets.ModelViewSet):
-    queryset = Job.objects.all().order_by('-created_at')
-    serializer_class = JobSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'organization_name']
-
-    def get_permissions(self):
-        # Anyone can read jobs, only admins can create/edit/delete
-        if self.action in ['list', 'retrieve']:
-            return [AllowAny()]
-        return [IsAdminUser()]
-    
-    def get_queryset(self):
-        # 1. Detail View (Retrieve): Allow fetching the record even if inactive.
-        # This fixes the 404 error in AdminJobForm and broken thumbnails in Profile.
-        if self.action == 'retrieve':
-            return Job.objects.all()
-
-        # 2. List View: Filter out soft-deleted jobs for everyone.
-        # This prevents jobs from "reappearing" in the Management list after a refresh.
-        return Job.objects.filter(is_active=True).order_by('-created_at')
-
-
-class StudentViewSet(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
-    permission_classes = [IsAuthenticated]
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['student_id']
-
-    def get_queryset(self):
-        queryset = Student.objects.all()
-        student_id = self.request.query_params.get('student_id')
-        if student_id:
-            queryset = queryset.filter(student_id=student_id)
-        # Students can only see their own profile
-        if not self.request.user.is_staff:
-            try:
-                student = self.request.user.student_profile
-                queryset = queryset.filter(id=student.id)
-            except Student.DoesNotExist:
-                queryset = queryset.none()
-        return queryset
-
-
-class ApplicationViewSet(viewsets.ModelViewSet):
-    queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
-    permission_classes = [IsAdminUser]
-
-    def get_permissions(self):
-        """
-        - Anyone logged in can 'create' (Apply), 'list'/'retrieve' (View status),
-          or 'destroy' (Cancel) their own application.
-        - Only staff can 'update' or 'partial_update' (Approve/Reject).
-        """
-        if self.action in ['create', 'list', 'retrieve', 'destroy']:
-            permission_classes = [IsAuthenticated]
-        else:
-            permission_classes = [IsAdminUser]
-        return [permission() for permission in permission_classes]
-
-    def get_queryset(self):
-        queryset = Application.objects.all()
-        job_id = self.request.query_params.get('job')
-        if job_id:
-            queryset = queryset.filter(job_id=job_id)
-            
-        # Layer 2 Security: The Queryset Filter
-        # Because we used IsAuthenticated above, we MUST filter here 
-        # so students don't see other people's applications.
-        if not self.request.user.is_staff:
-            try:
-                student = self.request.user.student_profile
-                queryset = queryset.filter(student=student)
-            except Student.DoesNotExist:
-                queryset = queryset.none()
-        return queryset
-    
-    def perform_create(self, serializer):
-        # This automatically links the application to the logged-in student
-        serializer.save(student=self.request.user.student_profile)
-
-
-class EvaluationViewSet(viewsets.ModelViewSet):
-    serializer_class = EvaluationSerializer
-    queryset = Evaluation.objects.all()
-
-    def get_queryset(self):
-        """
-        Optionally restricts the returned evaluations to a given application,
-        by filtering against an `application` query parameter in the URL.
-        """
-        queryset = Evaluation.objects.all()
-        application_id = self.request.query_params.get('application')
-        if application_id is not None:
-            # This ensures ?application=1 only returns evaluation for App 1
-            queryset = queryset.filter(application_id=application_id)
-        return queryset
-
+from jobs.models import Student
 
 class AuthViewSet(viewsets.ViewSet):
     permission_classes = [AllowAny]
 
     @action(detail=False, methods=['post'], url_path='login')
     def login(self, request):
-        identifier = request.data.get('identifier')  # student ID or email
+        identifier = request.data.get('identifier')
         password = request.data.get('password')
 
         if not identifier or not password:
@@ -126,7 +21,6 @@ class AuthViewSet(viewsets.ViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Try finding user by email or username (student ID)
         user = None
         if '@' in identifier:
             try:
@@ -143,10 +37,8 @@ class AuthViewSet(viewsets.ViewSet):
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
-        # Generate JWT tokens
         refresh = RefreshToken.for_user(user)
 
-        # Get role and student info
         is_admin = user.is_staff or user.is_superuser
         student_data = None
         if not is_admin:
@@ -224,7 +116,6 @@ class AuthViewSet(viewsets.ViewSet):
     def register(self, request):
         data = request.data
 
-        # Required fields
         required = ['student_id', 'first_name', 'last_name',
                     'email', 'password', 'faculty', 'major']
         for field in required:
@@ -234,7 +125,6 @@ class AuthViewSet(viewsets.ViewSet):
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
-        # Validate PSU email
         email = data.get('email', '').lower()
         if not (email.endswith('@phuket.psu.ac.th') or email.endswith('@psu.ac.th')):
             return Response(
@@ -242,7 +132,6 @@ class AuthViewSet(viewsets.ViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Check if student ID or email already exists
         if User.objects.filter(username=data['student_id']).exists():
             return Response(
                 {'error': 'Student ID already registered.'},
@@ -255,7 +144,6 @@ class AuthViewSet(viewsets.ViewSet):
             )
 
         try:
-            # Create Django User — username is student ID
             user = User.objects.create_user(
                 username=data['student_id'],
                 email=email,
@@ -264,7 +152,6 @@ class AuthViewSet(viewsets.ViewSet):
                 last_name=data['last_name'],
             )
 
-            # Create linked Student profile
             Student.objects.create(
                 user=user,
                 student_id=data['student_id'],
