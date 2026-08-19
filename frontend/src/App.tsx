@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { useEffect } from 'react';
-import useSmoothScroll from './hooks/useSmoothScroll';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -30,15 +28,6 @@ import Register from './pages/Register';
 
 function AnimatedRoutes() {
   const location = useLocation();
-
-  useEffect(() => {
-    if (window.lenis?.scrollTo) {
-      window.lenis.scrollTo(0, { immediate: true });
-      requestAnimationFrame(() => {
-        window.lenis?.resize();
-      });
-    }
-  }, [location.pathname]);
 
   const routeKey = location.pathname.startsWith('/admin') ? 'admin-root' : location.pathname;
 
@@ -106,8 +95,6 @@ function AnimatedRoutes() {
 }
 
 function App() {
-  useSmoothScroll();
-
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
