@@ -39,6 +39,18 @@ function Navbar() {
     setDropdownOpen(false);
   }, [location.pathname]);
 
+  // Lock body scroll when mobile menu overlay is active
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     const handleClickOutside = () => {
       setAboutOpen(false);
@@ -70,10 +82,10 @@ function Navbar() {
         {/* Left: Brand Logo & Title */}
         <Link
           to="/"
-          className="flex items-center gap-3.5 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-psu-blue rounded-lg pr-2 shrink-0"
+          className="flex items-center gap-2.5 sm:gap-3.5 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-psu-blue rounded-lg pr-2 min-w-0"
         >
-          <PsuLogo className="h-9 w-auto" />
-          <span className="text-xl font-bold tracking-tight text-slate-800 dark:text-slate-100 whitespace-nowrap group-hover:text-psu-navy dark:group-hover:text-psu-light transition-colors">
+          <PsuLogo className="h-8 sm:h-9 w-auto shrink-0" />
+          <span className="text-base sm:text-xl font-bold tracking-tight text-slate-800 dark:text-slate-100 whitespace-nowrap truncate group-hover:text-psu-navy dark:group-hover:text-psu-light transition-colors">
             Part-time Job Hub
           </span>
         </Link>
@@ -237,7 +249,7 @@ function Navbar() {
         </div>
 
         {/* Mobile Right Controls: ThemeToggle + Hamburger Button */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
           <ThemeToggle />
           <button
             type="button"
@@ -251,133 +263,147 @@ function Navbar() {
 
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Navigation Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#0b132b]/95 backdrop-blur-md px-4 py-4"
-          >
-            <div className="flex flex-col gap-1.5">
-              {isLoggedIn() && (
-                <div className="px-4 py-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-100 dark:border-slate-800 mb-2">
-                  <p className="text-[10px] font-bold text-psu-blue dark:text-psu-light uppercase tracking-wider">
-                    {isAdmin() ? 'Staff Account' : 'Student Account'}
-                  </p>
-                  <p className="text-base font-bold text-slate-800 dark:text-slate-100">
-                    {student ? `${student.first_name} ${student.last_name}` : user?.username}
-                  </p>
-                  {student?.student_id && (
-                    <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">{student.student_id}</p>
-                  )}
-                </div>
-              )}
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 top-[72px] bg-slate-950/40 dark:bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              aria-hidden="true"
+            />
 
-              <Link
-                to="/"
-                className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
-                  location.pathname === '/'
-                    ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
-                    : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
-                }`}
-              >
-                <Home className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                <span>Home</span>
-              </Link>
-              <Link
-                to="/jobs"
-                className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
-                  location.pathname.startsWith('/jobs')
-                    ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
-                    : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
-                }`}
-              >
-                <Briefcase className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                <span>Browse Jobs</span>
-              </Link>
+            {/* Floating Menu Panel */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="fixed inset-x-0 top-[72px] z-50 md:hidden overflow-y-auto max-h-[calc(100vh-72px)] border-b border-slate-200 dark:border-slate-800 bg-white/98 dark:bg-[#0b132b]/98 backdrop-blur-md shadow-2xl px-4 py-4"
+            >
+              <div className="flex flex-col gap-1.5 pb-6">
+                {isLoggedIn() && (
+                  <div className="px-4 py-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-100 dark:border-slate-800 mb-2">
+                    <p className="text-[10px] font-bold text-psu-blue dark:text-psu-light uppercase tracking-wider">
+                      {isAdmin() ? 'Staff Account' : 'Student Account'}
+                    </p>
+                    <p className="text-base font-bold text-slate-800 dark:text-slate-100">
+                      {student ? `${student.first_name} ${student.last_name}` : user?.username}
+                    </p>
+                    {student?.student_id && (
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">{student.student_id}</p>
+                    )}
+                  </div>
+                )}
 
-              {isLoggedIn() && isAdmin() && (
                 <Link
-                  to="/admin/dashboard"
+                  to="/"
                   className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
-                    location.pathname.startsWith('/admin')
+                    location.pathname === '/'
                       ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
                       : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
-                  <LayoutDashboard className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                  <span>Admin Dashboard</span>
+                  <Home className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                  <span>Home</span>
                 </Link>
-              )}
+                <Link
+                  to="/jobs"
+                  className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
+                    location.pathname.startsWith('/jobs')
+                      ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
+                      : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
+                >
+                  <Briefcase className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                  <span>Browse Jobs</span>
+                </Link>
 
-              {/* Mobile About Accordion */}
-              <div className="pt-2 pb-1 border-t border-slate-100 dark:border-slate-800">
-                <p className="px-4 py-1 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  About PSU Phuket
-                </p>
-                <Link
-                  to="/about"
-                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                >
-                  <Info className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                  <span>About This Project</span>
-                </Link>
-                <Link
-                  to="/about/personnel"
-                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                >
-                  <Users className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                  <span>Project Personnel</span>
-                </Link>
-                <Link
-                  to="/about/student-organization"
-                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                >
-                  <Building2 className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                  <span>Student Organization</span>
-                </Link>
-              </div>
+                {isLoggedIn() && isAdmin() && (
+                  <Link
+                    to="/admin/dashboard"
+                    className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
+                      location.pathname.startsWith('/admin')
+                        ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
+                        : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    }`}
+                  >
+                    <LayoutDashboard className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                    <span>Admin Dashboard</span>
+                  </Link>
+                )}
 
-              {/* Mobile Auth Actions */}
-              <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                {isLoggedIn() ? (
-                  <>
-                    <Link
-                      to={isAdmin() ? '/admin/dashboard' : '/profile'}
-                      className="flex items-center gap-2.5 px-4 py-3 text-slate-800 dark:text-slate-100 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
-                    >
-                      {isAdmin() ? (
-                        <LayoutDashboard className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                      ) : (
-                        <UserIcon className="w-4 h-4 text-psu-blue dark:text-psu-light" />
-                      )}
-                      <span>{isAdmin() ? 'Dashboard' : 'My Profile'}</span>
-                    </Link>
+                {/* Mobile About Accordion */}
+                <div className="pt-2 pb-1 border-t border-slate-100 dark:border-slate-800">
+                  <p className="px-4 py-1 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    About PSU Phuket
+                  </p>
+                  <Link
+                    to="/about"
+                    className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                  >
+                    <Info className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                    <span>About This Project</span>
+                  </Link>
+                  <Link
+                    to="/about/personnel"
+                    className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                  >
+                    <Users className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                    <span>Project Personnel</span>
+                  </Link>
+                  <Link
+                    to="/about/student-organization"
+                    className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                  >
+                    <Building2 className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                    <span>Student Organization</span>
+                  </Link>
+                </div>
+
+                {/* Mobile Auth Actions */}
+                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                  {isLoggedIn() ? (
+                    <>
+                      <Link
+                        to={isAdmin() ? '/admin/dashboard' : '/profile'}
+                        className="flex items-center gap-2.5 px-4 py-3 text-slate-800 dark:text-slate-100 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
+                      >
+                        {isAdmin() ? (
+                          <LayoutDashboard className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                        ) : (
+                          <UserIcon className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                        )}
+                        <span>{isAdmin() ? 'Dashboard' : 'My Profile'}</span>
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2.5 px-4 py-3 text-rose-600 dark:text-rose-400 font-bold hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition-colors text-left"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Sign Out</span>
+                      </button>
+                    </>
+                  ) : (
                     <button
                       type="button"
-                      onClick={handleLogout}
-                      className="w-full flex items-center gap-2.5 px-4 py-3 text-rose-600 dark:text-rose-400 font-bold hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition-colors text-left"
+                      onClick={() => navigate('/signin')}
+                      className="w-full mt-2 px-5 py-3 rounded-xl font-bold text-white bg-psu-navy hover:bg-[#003c71] dark:bg-psu-blue active:scale-[0.98] transition-all shadow-sm"
                     >
-                      <LogOut className="w-4 h-4" />
-                      <span>Sign Out</span>
+                      Sign In
                     </button>
-                  </>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => navigate('/signin')}
-                    className="w-full mt-2 px-5 py-3 rounded-xl font-bold text-white bg-psu-navy hover:bg-[#003c71] dark:bg-psu-blue active:scale-[0.98] transition-all shadow-sm"
-                  >
-                    Sign In
-                  </button>
-                )}
-              </div>
+                  )}
+                </div>
 
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
