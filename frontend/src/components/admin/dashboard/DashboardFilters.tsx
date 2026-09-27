@@ -43,7 +43,7 @@ export function DashboardFilters({
   isFiltered,
 }: DashboardFiltersProps) {
   return (
-    <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 sm:p-5 shadow-lg border border-white/60 dark:border-slate-800 flex flex-wrap items-center gap-3">
+    <div className="relative z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 sm:p-5 shadow-lg border border-white/60 dark:border-slate-800 flex flex-wrap items-center gap-3">
       <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 mr-1 select-none">
         <Filter className="w-3.5 h-3.5" />
         <span>Filters:</span>
