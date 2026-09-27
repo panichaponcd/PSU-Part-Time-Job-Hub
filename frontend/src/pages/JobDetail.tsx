@@ -82,6 +82,7 @@ export function JobDetail() {
   }, [id, isLoggedIn]);
 
   const canSeePrivateDetails = isAdmin() || applicationStatus === 'APPROVED' || applied;
+  const canSeeSchedule = isAdmin() || applied || job?.status === 'IN_PROGRESS' || job?.status === 'COMPLETED';
 
   const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     (e.target as HTMLImageElement).src = placeholder;
@@ -344,24 +345,26 @@ export function JobDetail() {
                   </div>
                 </div>
 
-                {/* Work Schedule Timeline Section */}
-                <div className="bg-slate-50/80 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/80 dark:border-slate-700/80 space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200/70 dark:border-slate-700/70">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-psu-navy dark:text-psu-blue" />
-                      <h2 className="text-base font-bold text-slate-900 dark:text-white">
-                        Work Schedule
-                      </h2>
+                {/* Work Schedule Timeline Section (Visible to Applicants, Admin, or In-Progress/Completed) */}
+                {canSeeSchedule && (
+                  <div className="bg-slate-50/80 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200/80 dark:border-slate-700/80 space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-200/70 dark:border-slate-700/70">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-5 h-5 text-psu-navy dark:text-psu-blue" />
+                        <h2 className="text-base font-bold text-slate-900 dark:text-white">
+                          Work Schedule
+                        </h2>
+                      </div>
+                      {applied && (
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-psu-navy text-white">
+                          Applicant Roster
+                        </span>
+                      )}
                     </div>
-                    {applied && (
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-psu-navy text-white">
-                        Applicant
-                      </span>
-                    )}
-                  </div>
 
-                  <JobScheduleTable schedules={job.schedules} />
-                </div>
+                    <JobScheduleTable schedules={job.schedules} jobStatus={job.status} />
+                  </div>
+                )}
 
                 {/* Official LINE Group Chat Card (Unlocked when applied or admin) */}
                 {canSeePrivateDetails && job.line_group_url && (
