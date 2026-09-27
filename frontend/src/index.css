@@ -4,29 +4,49 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
   body {
-    @apply bg-psu-blue;
+    @apply bg-slate-50 text-slate-800 antialiased selection:bg-psu-blue selection:text-white;
+    font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
-  html.lenis,
-  html.lenis body {
-    height: auto;
+  html.dark body {
+    @apply bg-[#0b132b] text-slate-100;
   }
 
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
+}
 
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-  .lenis.lenis-scrolling iframe {
-    pointer-events: none;
-  }
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
 
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
 }
