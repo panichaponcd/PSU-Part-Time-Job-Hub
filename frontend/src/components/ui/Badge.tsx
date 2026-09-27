@@ -12,6 +12,8 @@ const statusStyles: Record<string, string> = {
   PENDING: 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800/50',
   APPROVED: 'bg-emerald-50 text-emerald-700 border border-emerald-300 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-700/60 font-bold',
   REJECTED: 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-800/50',
+  IN_PROGRESS: 'bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/50',
+  COMPLETED: 'bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/50 font-bold',
   PASS: 'bg-emerald-600 text-white font-bold shadow-sm',
   FAIL: 'bg-rose-600 text-white font-bold shadow-sm',
 };
