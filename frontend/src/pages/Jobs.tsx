@@ -1,15 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Search, X, Briefcase, RefreshCw } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import JobCard from '../components/JobCard';
 import bgImage from '../assets/home-bg-1.jpg';
 import Placeholder from '../assets/placeholder-image.jpg';
 import { api } from '../utils/api';
-import { Button, Input } from '../components/ui';
 
 function Jobs() {
   const [jobs, setJobs] = useState<any[]>([]);
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState<'all' | 'internal' | 'external'>('all');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -52,7 +52,7 @@ function Jobs() {
               location: job.location_type,
               image: job.poster_image_url || Placeholder,
               isOpen: job.status === 'OPEN',
-              type: job.job_type.toLowerCase(),
+              type: job.job_type ? job.job_type.toLowerCase() : 'internal',
               date: displayDate,
               applicants: job.applicants_count || 0,
               postedBy: job.organization_name,
@@ -74,105 +74,167 @@ function Jobs() {
   const filteredJobs = jobs.filter((job) => {
     const isPublic = job.status === 'OPEN' || job.status === 'CLOSED';
     const matchesType = filter === 'all' || job.type === filter;
-    const matchesSearch = job.title.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch =
+      job.title.toLowerCase().includes(search.toLowerCase()) ||
+      (job.location && job.location.toLowerCase().includes(search.toLowerCase())) ||
+      (job.postedBy && job.postedBy.toLowerCase().includes(search.toLowerCase()));
 
     return isPublic && matchesType && matchesSearch;
   });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 },
+  const resetFilters = () => {
+    setSearch('');
+    setFilter('all');
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-[calc(100vh-72px)] w-full overflow-hidden flex flex-col justify-start">
+      {/* Background Campus Scenery with Blur */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-0 blur-lg scale-105"
+        transition={{ duration: 0.5 }}
+        className="fixed inset-0 z-0 blur-[3px] scale-105 pointer-events-none"
         style={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `radial-gradient(ellipse at 50% 30%, rgba(20, 35, 60, 0.4) 0%, rgba(10, 24, 45, 0.75) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.7) 100%), url(${bgImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center 40%',
         }}
       />
-      <div className="fixed inset-0 bg-black/30 z-10" />
+      {/* Ambient Dark Overlay */}
+      <div className="fixed inset-0 bg-slate-950/50 dark:bg-slate-950/75 z-0 pointer-events-none" />
 
       <PageTransition>
-        <div className="relative z-20 pt-24 pb-16 px-4 md:px-8 max-w-6xl mx-auto">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="bg-white/60 backdrop-blur-md rounded-2xl shadow-sm p-6 md:p-8"
-          >
-            <motion.h2 variants={itemVariants} className="text-xl font-bold text-gray-800 mb-4 tracking-tight">
-              Search Jobs
-            </motion.h2>
+        <div className="relative z-10 py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+          {/* Central Glassmorphic Workspace Container */}
+          <div className="w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl border border-white/60 dark:border-slate-800">
+            
+            {/* Section Header */}
+            <div className="mb-6 sm:mb-8">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
+                Search Jobs
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Browse verified part-time shifts and campus gigs for PSU Phuket students
+              </p>
+            </div>
 
-            <motion.div variants={itemVariants} className="mb-6">
-              <Input
-                placeholder="Search job title..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </motion.div>
+            {/* Single Horizontal Search & Filter Toolbar */}
+            <div className="mb-8 flex flex-col md:flex-row items-stretch md:items-center gap-3">
+              {/* Search Input Field */}
+              <div className="relative flex-1">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                  <Search className="w-5 h-5" />
+                </div>
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search by job title, location, or department..."
+                  aria-label="Search job title or keyword"
+                  className="w-full pl-11 pr-10 py-3 bg-white dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-psu-blue dark:focus:ring-psu-light focus:border-transparent text-sm sm:text-base shadow-sm transition"
+                />
+                {search && (
+                  <button
+                    type="button"
+                    onClick={() => setSearch('')}
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none"
+                    aria-label="Clear search input"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-8">
-              {['all', 'internal', 'external'].map((type) => (
-                <Button
-                  key={type}
-                  variant={filter === type ? 'primary' : 'secondary'}
-                  size="sm"
-                  onClick={() => setFilter(type)}
-                  className="uppercase tracking-wider text-xs font-bold"
-                >
-                  {type}
-                </Button>
-              ))}
-            </motion.div>
+              {/* Filter Pills Group */}
+              <div className="flex items-center gap-1.5 p-1 bg-slate-100/90 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 rounded-2xl shrink-0 self-start md:self-auto">
+                {(['all', 'internal', 'external'] as const).map((type) => {
+                  const isActive = filter === type;
+                  return (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setFilter(type)}
+                      className={`px-4 sm:px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                        isActive
+                          ? 'bg-psu-navy dark:bg-psu-blue text-white shadow-sm'
+                          : 'bg-transparent text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-700/50'
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
+            {/* Content Area: Loading / Grid / Empty State */}
             {loading ? (
-              <div className="text-center py-20 text-gray-500 font-medium">Loading jobs...</div>
-            ) : (
-              <AnimatePresence mode="popLayout">
-                <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {filteredJobs.length > 0 ? (
-                    filteredJobs.map((job) => (
-                      <motion.div
-                        layout
-                        key={job.id}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
-                      >
-                        <JobCard job={job} />
-                      </motion.div>
-                    ))
-                  ) : (
+              /* Loading Skeletons */
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+                {[1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className="rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/60 overflow-hidden shadow-sm animate-pulse flex flex-col h-[340px]"
+                  >
+                    <div className="h-44 bg-slate-200 dark:bg-slate-800" />
+                    <div className="p-4 space-y-3 flex-1">
+                      <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded w-3/4" />
+                      <div className="h-3 bg-slate-200 dark:bg-slate-800 rounded w-1/2" />
+                      <div className="h-3 bg-slate-200 dark:bg-slate-800 rounded w-2/3" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : filteredJobs.length > 0 ? (
+              /* Job Directory Grid */
+              <motion.div
+                layout
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
+              >
+                <AnimatePresence mode="popLayout">
+                  {filteredJobs.map((job) => (
                     <motion.div
                       layout
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="col-span-full text-center text-gray-400 py-20 bg-white/20 rounded-xl font-medium"
+                      key={job.id}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="h-full"
                     >
-                      No results found for your search.
+                      <JobCard job={job} />
                     </motion.div>
-                  )}
-                </motion.div>
-              </AnimatePresence>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            ) : (
+              /* Empty Search Results State */
+              <div className="text-center py-16 px-4 bg-slate-50/60 dark:bg-slate-800/40 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 mb-3">
+                  <Briefcase className="w-6 h-6" />
+                </div>
+                <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">
+                  No jobs found
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm mb-5">
+                  No campus shifts matched your search query or filter criteria.
+                </p>
+                {(search || filter !== 'all') && (
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-psu-blue dark:text-psu-light bg-psu-blue/10 dark:bg-psu-light/10 hover:bg-psu-blue/20 transition-colors cursor-pointer"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    <span>Reset Filters</span>
+                  </button>
+                )}
+              </div>
             )}
-          </motion.div>
+
+          </div>
         </div>
       </PageTransition>
     </div>
