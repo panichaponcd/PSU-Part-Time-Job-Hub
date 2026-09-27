@@ -41,7 +41,7 @@ export function ApplicantsFilters({
   ];
 
   return (
-    <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/60 dark:border-slate-800 p-4 sm:p-5 rounded-3xl shadow-xl space-y-3">
+    <div className="relative z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/60 dark:border-slate-800 p-4 sm:p-5 rounded-3xl shadow-xl space-y-3">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
         {/* Search Input */}
         <div className="md:col-span-6 relative">

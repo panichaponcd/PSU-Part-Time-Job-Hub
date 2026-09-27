@@ -277,7 +277,7 @@ export function AdminApplicants() {
           )}
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-4 relative z-10">
           {/* Desktop Table View */}
           <ApplicantsTable
             applications={paginatedApplications}
