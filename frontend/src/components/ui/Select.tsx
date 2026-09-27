@@ -16,6 +16,7 @@ export interface SelectProps {
   className?: string;
   disabled?: boolean;
   ariaLabel?: string;
+  placement?: 'bottom' | 'top';
 }
 
 export function Select({
@@ -26,6 +27,7 @@ export function Select({
   className = '',
   disabled = false,
   ariaLabel,
+  placement = 'bottom',
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -103,12 +105,14 @@ export function Select({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -3, scale: 0.98 }}
+            initial={{ opacity: 0, y: placement === 'top' ? 3 : -3, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -3, scale: 0.98 }}
+            exit={{ opacity: 0, y: placement === 'top' ? 3 : -3, scale: 0.98 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
             role="listbox"
-            className="absolute left-0 right-0 top-full mt-1 z-50 min-w-[200px] max-h-60 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl p-1.5 space-y-0.5 focus:outline-none"
+            className={`absolute left-0 right-0 ${
+              placement === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'
+            } z-50 min-w-[130px] max-h-60 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl p-1.5 space-y-0.5 focus:outline-none`}
           >
             {options.map((opt) => {
               const isSelected = opt.value === value;

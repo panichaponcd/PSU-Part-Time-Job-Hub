@@ -27,7 +27,7 @@ export function JobsPagination({
   const endIndex = Math.min(totalItems, currentPage * pageSize);
 
   return (
-    <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-white/60 dark:border-slate-800 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="relative z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-white/60 dark:border-slate-800 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
       {/* Left: Summary text & Rows per page */}
       <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-600 dark:text-slate-300">
         <div>
@@ -39,11 +39,12 @@ export function JobsPagination({
 
         <div className="flex items-center gap-2">
           <span className="text-slate-400">Rows:</span>
-          <div className="w-28">
+          <div className="w-36 min-w-[136px]">
             <Select
               value={String(pageSize)}
               onChange={(val) => onPageSizeChange(Number(val))}
               options={PAGE_SIZE_OPTIONS}
+              placement="top"
               ariaLabel="Rows per page selector"
             />
           </div>
