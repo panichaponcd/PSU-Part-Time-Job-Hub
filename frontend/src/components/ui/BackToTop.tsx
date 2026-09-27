@@ -42,7 +42,7 @@ export default function BackToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 12 }}
           transition={{ duration: 0.2 }}
-          className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md text-psu-navy dark:text-white border border-slate-200/90 dark:border-slate-700/80 shadow-xl shadow-slate-900/10 dark:shadow-black/50 hover:bg-psu-blue hover:text-white hover:border-psu-blue dark:hover:bg-psu-blue dark:hover:text-white dark:hover:border-psu-blue hover:-translate-y-1 active:scale-95 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-psu-blue cursor-pointer"
+          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md text-psu-navy dark:text-white border border-slate-200/90 dark:border-slate-700/80 shadow-xl shadow-slate-900/10 dark:shadow-black/50 hover:bg-psu-blue hover:text-white hover:border-psu-blue dark:hover:bg-psu-blue dark:hover:text-white dark:hover:border-psu-blue hover:-translate-y-1 active:scale-95 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-psu-blue cursor-pointer"
           aria-label="Back to top"
           title="Back to top"
         >
