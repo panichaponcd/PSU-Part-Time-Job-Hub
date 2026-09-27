@@ -29,14 +29,14 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-md' 
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', duration: 0.3 }}
-            className={`relative w-full ${maxWidth} bg-white rounded-2xl shadow-2xl overflow-hidden z-10`}
+            className={`relative w-full ${maxWidth} bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden z-10`}
           >
             {title && (
-              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-                <h3 className="text-lg font-bold text-gray-800">{title}</h3>
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-slate-800">
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white">{title}</h3>
                 <button
                   onClick={onClose}
-                  className="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
                 >
                   ✕
                 </button>
