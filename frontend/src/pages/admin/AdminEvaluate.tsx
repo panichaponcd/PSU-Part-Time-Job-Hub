@@ -54,6 +54,7 @@ export function AdminEvaluate() {
 
   useEffect(() => {
     fetchEvaluationData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [applicationId]);
 
   const fetchEvaluationData = async () => {

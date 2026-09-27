@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, HTMLAttributes } from 'react';
+import { FC, ReactNode, HTMLAttributes } from 'react';
 
 export interface GlassCardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
