@@ -30,13 +30,13 @@ export function EvaluateBreadcrumb({ job, application }: EvaluateBreadcrumbProps
           <span>Job Management</span>
         </button>
         <span className="text-slate-300 dark:text-slate-600">/</span>
-        <span className="text-slate-600 dark:text-slate-300 truncate max-w-[160px]">
+        <span className="text-slate-600 dark:text-slate-300 truncate max-w-[110px] sm:max-w-[180px]">
           {job?.title || 'Job'}
         </span>
         <span className="text-slate-300 dark:text-slate-600">/</span>
         <span className="text-slate-600 dark:text-slate-300">Applicants</span>
         <span className="text-slate-300 dark:text-slate-600">/</span>
-        <span className="font-bold text-slate-800 dark:text-white truncate max-w-[180px]">
+        <span className="font-bold text-slate-800 dark:text-white truncate max-w-[120px] sm:max-w-[200px]">
           {application?.student_name || 'Applicant'}
         </span>
       </nav>

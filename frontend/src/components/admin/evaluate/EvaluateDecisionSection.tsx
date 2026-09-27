@@ -10,8 +10,8 @@ export function EvaluateDecisionSection({
   onChange,
 }: EvaluateDecisionSectionProps) {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80">
-      <div>
+    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 overflow-hidden">
+      <div className="min-w-0 flex-1">
         <h3 className="text-base font-bold text-slate-900 dark:text-white">
           Final Employment Decision
         </h3>
@@ -20,7 +20,7 @@ export function EvaluateDecisionSection({
         </p>
       </div>
 
-      <div className="flex items-center gap-3 w-full sm:w-auto">
+      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full md:w-auto shrink-0">
         {/* Pass Button */}
         <button
           type="button"
