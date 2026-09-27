@@ -79,7 +79,12 @@ export function AdminJobForm() {
             required_amount: data.required_amount ?? '',
             academic_term: data.academic_term ?? 2,
             academic_year: data.academic_year ?? 2569,
-            schedules: data.schedules || [],
+            schedules: (data.schedules || []).map((s: any) => ({
+              id: s.id,
+              date: s.date || '',
+              start_time: s.start_time ? s.start_time.slice(0, 5) : '09:00',
+              end_time: s.end_time ? s.end_time.slice(0, 5) : '12:00',
+            })),
           });
           setLoading(false);
         })
