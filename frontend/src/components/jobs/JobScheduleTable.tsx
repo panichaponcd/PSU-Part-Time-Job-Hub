@@ -41,19 +41,8 @@ export function JobScheduleTable({ schedules, jobStatus }: JobScheduleTableProps
     return timeStr;
   };
 
-  // Determine shift timeline status based on Job Lifecycle & Date
+  // Determine shift timeline status based on real-time date
   const getShiftStatus = (dateStr: string) => {
-    // 1. If overall job is COMPLETED, all shifts are completed
-    if (jobStatus === 'COMPLETED') {
-      return 'completed';
-    }
-
-    // 2. If overall job is OPEN (registration phase), all shifts are scheduled for future participation
-    if (jobStatus === 'OPEN') {
-      return 'scheduled';
-    }
-
-    // 3. If IN_PROGRESS or other active states, perform real-time date evaluation
     try {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -67,7 +56,7 @@ export function JobScheduleTable({ schedules, jobStatus }: JobScheduleTableProps
       }
       return 'upcoming';
     } catch {
-      return 'scheduled';
+      return 'upcoming';
     }
   };
 
@@ -135,11 +124,6 @@ export function JobScheduleTable({ schedules, jobStatus }: JobScheduleTableProps
               {status === 'upcoming' && (
                 <span className="px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 dark:bg-slate-700/60 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-600">
                   Upcoming
-                </span>
-              )}
-              {status === 'scheduled' && (
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">
-                  Scheduled
                 </span>
               )}
             </div>
