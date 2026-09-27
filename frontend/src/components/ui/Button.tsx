@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'outline';
+export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'outline' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onAnimationStart' | 'onDragStart' | 'onDragEnd' | 'onDrag'> {
@@ -13,15 +13,16 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-psu-blue text-white hover:bg-blue-900 shadow-md',
-  secondary: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
-  danger: 'bg-red-500 text-white hover:bg-red-600 shadow-md',
-  outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50',
+  primary: 'bg-psu-navy hover:bg-[#003c71] text-white shadow-sm dark:bg-psu-blue dark:hover:bg-psu-navy font-heading',
+  secondary: 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 font-heading',
+  danger: 'bg-rose-600 text-white hover:bg-rose-700 shadow-sm font-heading',
+  outline: 'border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-heading',
+  ghost: 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-heading',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: 'px-3 py-1.5 text-xs font-semibold rounded-lg',
-  md: 'px-4 py-2 text-sm font-bold rounded-xl',
+  md: 'px-4 py-2.5 text-sm font-bold rounded-xl',
   lg: 'px-6 py-3 text-base font-bold rounded-xl',
 };
 
@@ -35,7 +36,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    'inline-flex items-center justify-center gap-2 transition-all cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+    'inline-flex items-center justify-center gap-2 transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-psu-blue/50 disabled:opacity-50 disabled:cursor-not-allowed';
 
   return (
     <motion.button

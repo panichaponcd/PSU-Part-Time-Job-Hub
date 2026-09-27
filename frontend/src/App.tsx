@@ -8,6 +8,7 @@ import JobDetail from './pages/JobDetail';
 import Profile from './pages/Profile';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import { BackToTop } from './components/ui';
 
 import AboutUs from './pages/AboutUs';
 import Personnel from './pages/Personnel';
@@ -97,13 +98,14 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#0b132b] text-slate-800 dark:text-slate-100">
         <ScrollToTop />
         <Navbar />
         <main className="flex-1">
           <AnimatedRoutes />
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </Router>
   );

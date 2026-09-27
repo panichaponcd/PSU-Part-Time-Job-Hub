@@ -3,6 +3,7 @@ node_modules/
 __pycache__/
 *.pyc
 .DS_Store
-venv/
+.venv/
 backend/venv/
 *.sqlite3
+psu-part-time-rules.md
