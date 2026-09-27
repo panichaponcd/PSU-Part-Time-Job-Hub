@@ -1,9 +1,22 @@
 import { useState, useEffect, MouseEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/psu-logo.svg';
+import {
+  ChevronDown,
+  Menu,
+  X,
+  Home,
+  Briefcase,
+  LayoutDashboard,
+  Info,
+  Users,
+  Building2,
+  User as UserIcon,
+  LogOut,
+} from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ui/ThemeToggle';
+import PsuLogo from './ui/PsuLogo';
 
 function Navbar() {
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
@@ -42,7 +55,7 @@ function Navbar() {
 
   const getLinkClasses = (path: string) =>
     isActive(path)
-      ? 'text-psu-blue dark:text-psu-light font-semibold border-b-2 border-psu-blue dark:border-psu-light pb-1 pt-1 transition-all'
+      ? 'text-psu-blue dark:text-psu-light font-bold border-b-2 border-psu-blue dark:border-psu-light pb-1 pt-1 transition-all'
       : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white pb-1 pt-1 transition-colors';
 
   const userInitial =
@@ -59,8 +72,8 @@ function Navbar() {
           to="/"
           className="flex items-center gap-3.5 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-psu-blue rounded-lg pr-2 shrink-0"
         >
-          <img src={logo} alt="PSU Logo" className="h-9 w-auto object-contain" />
-          <span className="text-xl font-heading font-bold tracking-tight text-slate-800 dark:text-slate-100 whitespace-nowrap group-hover:text-psu-navy dark:group-hover:text-psu-light transition-colors">
+          <PsuLogo className="h-9 w-auto" />
+          <span className="text-xl font-bold tracking-tight text-slate-800 dark:text-slate-100 whitespace-nowrap group-hover:text-psu-navy dark:group-hover:text-psu-light transition-colors">
             Part-time Job Hub
           </span>
         </Link>
@@ -91,22 +104,16 @@ function Navbar() {
                 }}
                 className={`flex items-center gap-1.5 focus:outline-none transition-colors ${
                   location.pathname.startsWith('/about')
-                    ? 'text-psu-blue dark:text-psu-light font-semibold border-b-2 border-psu-blue dark:border-psu-light pb-1 pt-1'
+                    ? 'text-psu-blue dark:text-psu-light font-bold border-b-2 border-psu-blue dark:border-psu-light pb-1 pt-1'
                     : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white pb-1 pt-1'
                 }`}
               >
                 <span>About Us</span>
-                <svg
+                <ChevronDown
                   className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                    aboutOpen ? 'rotate-180 text-psu-blue' : 'group-hover:text-slate-700 dark:group-hover:text-slate-200'
+                    aboutOpen ? 'rotate-180 text-psu-blue dark:text-psu-light' : 'group-hover:text-slate-700 dark:group-hover:text-slate-200'
                   }`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                />
               </button>
 
               <AnimatePresence>
@@ -120,21 +127,24 @@ function Navbar() {
                   >
                     <Link
                       to="/about"
-                      className="block px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors"
                     >
-                      📋 About This Project
+                      <Info className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                      <span>About This Project</span>
                     </Link>
                     <Link
                       to="/about/personnel"
-                      className="block px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors"
                     >
-                      👥 Personnel
+                      <Users className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                      <span>Personnel</span>
                     </Link>
                     <Link
                       to="/about/student-organization"
-                      className="block px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors"
                     >
-                      🏫 Student Organization
+                      <Building2 className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                      <span>Student Organization</span>
                     </Link>
                   </motion.div>
                 )}
@@ -176,7 +186,7 @@ function Navbar() {
                     className="absolute right-0 mt-3 w-60 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 py-2 z-50"
                   >
                     <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800 mb-1 select-none">
-                      <p className="text-[10px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest font-heading">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                         {isAdmin() ? 'Staff Account' : 'Student Account'}
                       </p>
                       <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">
@@ -193,7 +203,11 @@ function Navbar() {
                       to={isAdmin() ? '/admin/dashboard' : '/profile'}
                       className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 font-semibold transition-colors"
                     >
-                      <span>{isAdmin() ? '📊' : '👤'}</span>
+                      {isAdmin() ? (
+                        <LayoutDashboard className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                      ) : (
+                        <UserIcon className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                      )}
                       <span>{isAdmin() ? 'Dashboard' : 'My Profile'}</span>
                     </Link>
 
@@ -204,7 +218,7 @@ function Navbar() {
                       onClick={handleLogout}
                       className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 font-semibold transition-colors text-left"
                     >
-                      <span>🚪</span>
+                      <LogOut className="w-4 h-4" />
                       <span>Sign Out</span>
                     </button>
                   </motion.div>
@@ -215,7 +229,7 @@ function Navbar() {
             <button
               type="button"
               onClick={() => navigate('/signin')}
-              className="px-5 py-2.5 rounded-xl font-heading font-medium text-sm text-white bg-psu-navy hover:bg-[#003c71] dark:bg-psu-blue dark:hover:bg-psu-navy active:scale-[0.98] transition-all shadow-sm"
+              className="px-5 py-2.5 rounded-xl font-medium text-sm text-white bg-psu-navy hover:bg-[#003c71] dark:bg-psu-blue dark:hover:bg-psu-navy active:scale-[0.98] transition-all shadow-sm"
             >
               Sign In
             </button>
@@ -231,13 +245,7 @@ function Navbar() {
             className="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors focus:outline-none"
             aria-label="Toggle navigation menu"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -256,7 +264,7 @@ function Navbar() {
             <div className="flex flex-col gap-1.5">
               {isLoggedIn() && (
                 <div className="px-4 py-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-100 dark:border-slate-800 mb-2">
-                  <p className="text-[10px] font-bold text-psu-blue dark:text-psu-light uppercase tracking-wider font-heading">
+                  <p className="text-[10px] font-bold text-psu-blue dark:text-psu-light uppercase tracking-wider">
                     {isAdmin() ? 'Staff Account' : 'Student Account'}
                   </p>
                   <p className="text-base font-bold text-slate-800 dark:text-slate-100">
@@ -270,60 +278,66 @@ function Navbar() {
 
               <Link
                 to="/"
-                className={`px-4 py-3 rounded-xl font-medium transition-colors ${
+                className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
                   location.pathname === '/'
                     ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
                     : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
-                🏠 Home
+                <Home className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                <span>Home</span>
               </Link>
               <Link
                 to="/jobs"
-                className={`px-4 py-3 rounded-xl font-medium transition-colors ${
+                className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
                   location.pathname.startsWith('/jobs')
                     ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
                     : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
-                💼 Browse Jobs
+                <Briefcase className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                <span>Browse Jobs</span>
               </Link>
 
               {isLoggedIn() && isAdmin() && (
                 <Link
                   to="/admin/dashboard"
-                  className={`px-4 py-3 rounded-xl font-medium transition-colors ${
+                  className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
                     location.pathname.startsWith('/admin')
                       ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
                       : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
-                  📊 Admin Dashboard
+                  <LayoutDashboard className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                  <span>Admin Dashboard</span>
                 </Link>
               )}
 
               {/* Mobile About Accordion */}
               <div className="pt-2 pb-1 border-t border-slate-100 dark:border-slate-800">
-                <p className="px-4 py-1 text-xs font-bold text-slate-400 uppercase tracking-wider font-heading">
+                <p className="px-4 py-1 text-xs font-bold text-slate-400 uppercase tracking-wider">
                   About PSU Phuket
                 </p>
                 <Link
                   to="/about"
-                  className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
                 >
-                  📋 About This Project
+                  <Info className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                  <span>About This Project</span>
                 </Link>
                 <Link
                   to="/about/personnel"
-                  className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
                 >
-                  👥 Project Personnel
+                  <Users className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                  <span>Project Personnel</span>
                 </Link>
                 <Link
                   to="/about/student-organization"
-                  className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                  className="flex items-center gap-2.5 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
                 >
-                  🏫 Student Organization
+                  <Building2 className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                  <span>Student Organization</span>
                 </Link>
               </div>
 
@@ -333,23 +347,29 @@ function Navbar() {
                   <>
                     <Link
                       to={isAdmin() ? '/admin/dashboard' : '/profile'}
-                      className="block px-4 py-3 text-slate-800 dark:text-slate-100 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
+                      className="flex items-center gap-2.5 px-4 py-3 text-slate-800 dark:text-slate-100 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl"
                     >
-                      {isAdmin() ? '📊 Dashboard' : '👤 My Profile'}
+                      {isAdmin() ? (
+                        <LayoutDashboard className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                      ) : (
+                        <UserIcon className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                      )}
+                      <span>{isAdmin() ? 'Dashboard' : 'My Profile'}</span>
                     </Link>
                     <button
                       type="button"
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-3 text-rose-600 dark:text-rose-400 font-bold hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition-colors"
+                      className="w-full flex items-center gap-2.5 px-4 py-3 text-rose-600 dark:text-rose-400 font-bold hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition-colors text-left"
                     >
-                      🚪 Sign Out
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign Out</span>
                     </button>
                   </>
                 ) : (
                   <button
                     type="button"
                     onClick={() => navigate('/signin')}
-                    className="w-full mt-2 px-5 py-3 rounded-xl font-heading font-bold text-white bg-psu-navy hover:bg-[#003c71] dark:bg-psu-blue active:scale-[0.98] transition-all shadow-sm"
+                    className="w-full mt-2 px-5 py-3 rounded-xl font-bold text-white bg-psu-navy hover:bg-[#003c71] dark:bg-psu-blue active:scale-[0.98] transition-all shadow-sm"
                   >
                     Sign In
                   </button>

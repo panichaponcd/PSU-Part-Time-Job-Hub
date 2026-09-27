@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['Prompt', 'sans-serif'],
-        sans: ['Sarabun', 'Prompt', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['Sarabun', 'sans-serif'],
+        sans: ['Sarabun', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
         // Legacy compatibility
