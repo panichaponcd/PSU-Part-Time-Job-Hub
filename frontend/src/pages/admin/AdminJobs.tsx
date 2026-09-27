@@ -1,18 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiRequest from '../../utils/api';
-import { Button, Badge, Modal } from '../../components/ui';
+import {
+  JobManagementHeader,
+  JobManagementFilters,
+  JobsTable,
+  JobCardList,
+  JobsPagination,
+  JobDeleteModal,
+} from '../../components/admin/jobs';
 
 function AdminJobs() {
   const navigate = useNavigate();
   const [jobs, setJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Filters & Search
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
   const [yearFilter, setYearFilter] = useState('all');
   const [termFilter, setTermFilter] = useState('all');
-  const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  // Deletion Modal
+  const [deleteConfirmId, setDeleteConfirmId] = useState<number | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     fetchJobs();
@@ -25,12 +41,12 @@ function AdminJobs() {
 
       const sortedData = data.sort((a: any, b: any) => {
         if (b.academic_year !== a.academic_year) {
-          return b.academic_year - a.academic_year;
+          return (b.academic_year || 0) - (a.academic_year || 0);
         }
         if (b.academic_term !== a.academic_term) {
-          return b.academic_term - a.academic_term;
+          return (b.academic_term || 0) - (a.academic_term || 0);
         }
-        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        return new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime();
       });
 
       setJobs(sortedData);
@@ -41,196 +57,153 @@ function AdminJobs() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async () => {
+    if (!deleteConfirmId) return;
+    setIsDeleting(true);
     try {
-      const response = await apiRequest(`/jobs/${id}/`, {
+      const response = await apiRequest(`/jobs/${deleteConfirmId}/`, {
         method: 'PATCH',
         body: JSON.stringify({ is_active: false }),
       });
 
       if (response.ok) {
-        setJobs(jobs.filter((j) => j.id !== id));
-        setDeleteConfirm(null);
+        setJobs((prev) => prev.filter((j) => j.id !== deleteConfirmId));
+        setDeleteConfirmId(null);
       }
     } catch (error) {
       console.error('Error in soft-delete:', error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
-  const uniqueYears = [...new Set(jobs.map((job) => job.academic_year))].sort((a, b) => b - a);
+  // Unique Years for dropdown
+  const uniqueYears = useMemo(() => {
+    const years = jobs
+      .map((job) => Number(job.academic_year))
+      .filter((y) => Boolean(y) && !isNaN(y));
+    return [...new Set(years)].sort((a, b) => b - a);
+  }, [jobs]);
 
-  const filteredJobs = jobs.filter((job) => {
-    const matchesSearch = job.title?.toLowerCase().includes(search.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || job.status === statusFilter.toUpperCase();
-    const matchesType = typeFilter === 'all' || job.job_type === typeFilter.toUpperCase();
-    const matchesYear = yearFilter === 'all' || job.academic_year === Number(yearFilter);
-    const matchesTerm = termFilter === 'all' || job.academic_term === Number(termFilter);
-    return matchesSearch && matchesStatus && matchesType && matchesYear && matchesTerm;
-  });
+  // Filtered List
+  const filteredJobs = useMemo(() => {
+    return jobs.filter((job) => {
+      const q = search.toLowerCase();
+      const matchesSearch =
+        !search ||
+        (job.title && job.title.toLowerCase().includes(q)) ||
+        (job.organization_name && job.organization_name.toLowerCase().includes(q));
+
+      const matchesStatus = statusFilter === 'all' || job.status === statusFilter.toUpperCase();
+      const matchesType = typeFilter === 'all' || job.job_type === typeFilter.toUpperCase();
+      const matchesYear = yearFilter === 'all' || String(job.academic_year) === yearFilter;
+      const matchesTerm = termFilter === 'all' || String(job.academic_term) === termFilter;
+
+      return matchesSearch && matchesStatus && matchesType && matchesYear && matchesTerm;
+    });
+  }, [jobs, search, statusFilter, typeFilter, yearFilter, termFilter]);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, statusFilter, typeFilter, yearFilter, termFilter, pageSize]);
+
+  // Paginated List
+  const paginatedJobs = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return filteredJobs.slice(start, start + pageSize);
+  }, [filteredJobs, currentPage, pageSize]);
+
+  const isFiltered =
+    Boolean(search) ||
+    statusFilter !== 'all' ||
+    typeFilter !== 'all' ||
+    yearFilter !== 'all' ||
+    termFilter !== 'all';
+
+  const resetFilters = () => {
+    setSearch('');
+    setStatusFilter('all');
+    setTypeFilter('all');
+    setYearFilter('all');
+    setTermFilter('all');
+  };
+
+  const selectedJobToDelete = jobs.find((j) => j.id === deleteConfirmId);
 
   return (
-    <div className="relative min-h-screen">
-      <div className="relative z-20">
-        <div className="max-w-6xl mx-auto space-y-6">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800">Job Management</h1>
-              <p className="text-sm text-gray-500 font-medium">Create, edit, and organize job postings</p>
-            </div>
-            <Button variant="primary" onClick={() => navigate('/admin/jobs/new')}>
-              + New Job Listing
-            </Button>
-          </div>
+    <div className="space-y-6">
+      {/* 1. Page Header */}
+      <JobManagementHeader />
 
-          {/* Filters Bar */}
-          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-wrap gap-3 items-center">
-            <input
-              type="text"
-              placeholder="Search title..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="px-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-psu-blue/50 flex-1 min-w-[200px]"
-            />
+      {/* 2. Search & Filters Bar */}
+      <JobManagementFilters
+        search={search}
+        setSearch={setSearch}
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}
+        typeFilter={typeFilter}
+        setTypeFilter={setTypeFilter}
+        yearFilter={yearFilter}
+        setYearFilter={setYearFilter}
+        termFilter={termFilter}
+        setTermFilter={setTermFilter}
+        uniqueYears={uniqueYears}
+        onReset={resetFilters}
+        isFiltered={isFiltered}
+      />
 
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white font-medium"
-            >
-              <option value="all">All Statuses</option>
-              <option value="open">Open</option>
-              <option value="closed">Closed</option>
-              <option value="in_progress">In Progress</option>
-              <option value="completed">Completed</option>
-            </select>
-
-            <select
-              value={typeFilter}
-              onChange={(e) => setTypeFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white font-medium"
-            >
-              <option value="all">All Types</option>
-              <option value="internal">Internal</option>
-              <option value="external">External</option>
-            </select>
-
-            <select
-              value={yearFilter}
-              onChange={(e) => setYearFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white font-medium"
-            >
-              <option value="all">All Years</option>
-              {uniqueYears.map((yr) => (
-                <option key={yr} value={yr}>
-                  Year {yr}
-                </option>
-              ))}
-            </select>
-
-            <select
-              value={termFilter}
-              onChange={(e) => setTermFilter(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white font-medium"
-            >
-              <option value="all">All Terms</option>
-              <option value="1">Term 1</option>
-              <option value="2">Term 2</option>
-              <option value="3">Term 3</option>
-            </select>
-          </div>
-
-          {/* Table */}
-          {loading ? (
-            <div className="text-center py-12 text-gray-500 font-medium">Loading job listings...</div>
-          ) : filteredJobs.length === 0 ? (
-            <div className="text-center py-12 text-gray-500 font-medium bg-white/70 rounded-2xl border">
-              No matching job listings found.
-            </div>
-          ) : (
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <table className="w-full text-left text-sm text-gray-600">
-                <thead className="bg-gray-50 text-xs font-bold uppercase text-gray-500 tracking-wider">
-                  <tr>
-                    <th className="px-5 py-4">Title</th>
-                    <th className="px-5 py-4">Organization</th>
-                    <th className="px-5 py-4">Term/Year</th>
-                    <th className="px-5 py-4">Type</th>
-                    <th className="px-5 py-4">Applicants</th>
-                    <th className="px-5 py-4">Status</th>
-                    <th className="px-5 py-4 text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {filteredJobs.map((job) => (
-                    <tr key={job.id} className="hover:bg-gray-50/50 transition-colors">
-                      <td className="px-5 py-4 font-bold text-gray-800">{job.title}</td>
-                      <td className="px-5 py-4 text-gray-600">{job.organization_name}</td>
-                      <td className="px-5 py-4 font-medium text-gray-600">
-                        Term {job.academic_term}/{job.academic_year}
-                      </td>
-                      <td className="px-5 py-4 font-semibold text-psu-blue">{job.job_type}</td>
-                      <td className="px-5 py-4 font-bold text-gray-700">
-                        {job.applicants_count || 0}/{job.required_amount}
-                      </td>
-                      <td className="px-5 py-4">
-                        <Badge status={job.status} />
-                      </td>
-                      <td className="px-5 py-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => navigate(`/admin/jobs/${job.id}/applicants`)}
-                          >
-                            👥 Applicants
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => navigate(`/admin/jobs/${job.id}/edit`)}
-                          >
-                            ✏️ Edit
-                          </Button>
-                          <Button
-                            variant="danger"
-                            size="sm"
-                            onClick={() => setDeleteConfirm(job.id)}
-                          >
-                            🗑️ Delete
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+      {/* 3. Job Listings Display */}
+      {loading ? (
+        <div className="bg-white/90 dark:bg-slate-900/90 rounded-3xl p-16 text-center text-slate-500 font-bold animate-pulse">
+          Fetching job postings...
         </div>
-      </div>
-
-      {/* Delete Modal */}
-      <Modal
-        isOpen={deleteConfirm !== null}
-        onClose={() => setDeleteConfirm(null)}
-        title="Confirm Soft Delete"
-      >
-        <p className="text-sm text-gray-600 mb-6">
-          Are you sure you want to deactivate this job listing? It will be hidden from the active list.
-        </p>
-        <div className="flex justify-end gap-3">
-          <Button variant="outline" onClick={() => setDeleteConfirm(null)}>
-            Cancel
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => deleteConfirm && handleDelete(deleteConfirm)}
-          >
-            Confirm Delete
-          </Button>
+      ) : filteredJobs.length === 0 ? (
+        <div className="bg-white/90 dark:bg-slate-900/90 rounded-3xl p-16 text-center border border-white/60 dark:border-slate-800 shadow-md">
+          <p className="text-base font-bold text-slate-700 dark:text-slate-300">
+            No matching job listings found
+          </p>
+          <p className="text-xs text-slate-400 mt-1 font-medium">
+            Try adjusting your search query or filters
+          </p>
         </div>
-      </Modal>
+      ) : (
+        <>
+          {/* Desktop Table View */}
+          <JobsTable
+            jobs={paginatedJobs}
+            onViewApplicants={(id) => navigate(`/admin/jobs/${id}/applicants`)}
+            onEdit={(id) => navigate(`/admin/jobs/${id}/edit`)}
+            onDelete={(id) => setDeleteConfirmId(id)}
+          />
+
+          {/* Mobile Card List View */}
+          <JobCardList
+            jobs={paginatedJobs}
+            onViewApplicants={(id) => navigate(`/admin/jobs/${id}/applicants`)}
+            onEdit={(id) => navigate(`/admin/jobs/${id}/edit`)}
+            onDelete={(id) => setDeleteConfirmId(id)}
+          />
+
+          {/* 4. Pagination */}
+          <JobsPagination
+            currentPage={currentPage}
+            totalItems={filteredJobs.length}
+            pageSize={pageSize}
+            onPageChange={setCurrentPage}
+            onPageSizeChange={setPageSize}
+          />
+        </>
+      )}
+
+      {/* 5. Soft Delete Confirmation Modal */}
+      <JobDeleteModal
+        jobId={deleteConfirmId}
+        jobTitle={selectedJobToDelete?.title}
+        onClose={() => setDeleteConfirmId(null)}
+        onConfirm={handleDelete}
+        isDeleting={isDeleting}
+      />
     </div>
   );
 }

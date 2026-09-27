@@ -16,6 +16,7 @@ export interface SelectProps {
   className?: string;
   disabled?: boolean;
   ariaLabel?: string;
+  placement?: 'bottom' | 'top';
 }
 
 export function Select({
@@ -26,6 +27,7 @@ export function Select({
   className = '',
   disabled = false,
   ariaLabel,
+  placement = 'bottom',
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -80,7 +82,7 @@ export function Select({
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={ariaLabel || selectedOption?.label || placeholder}
-        className={`w-full flex items-center justify-between gap-2.5 px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer shadow-2xs select-none ${
+        className={`w-full h-[42px] flex items-center justify-between gap-1.5 px-2.5 sm:px-3 py-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer shadow-2xs select-none ${
           disabled
             ? 'bg-slate-100 dark:bg-slate-800 text-slate-400 border-slate-200 dark:border-slate-700 cursor-not-allowed'
             : isOpen
@@ -103,12 +105,14 @@ export function Select({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -3, scale: 0.98 }}
+            initial={{ opacity: 0, y: placement === 'top' ? 3 : -3, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -3, scale: 0.98 }}
+            exit={{ opacity: 0, y: placement === 'top' ? 3 : -3, scale: 0.98 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
             role="listbox"
-            className="absolute left-0 right-0 top-full mt-1 z-50 min-w-[200px] max-h-60 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl p-1.5 space-y-0.5 focus:outline-none"
+            className={`absolute left-0 ${
+              placement === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'
+            } z-50 min-w-full w-max max-w-xs max-h-60 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl p-1.5 space-y-0.5 focus:outline-none`}
           >
             {options.map((opt) => {
               const isSelected = opt.value === value;
@@ -119,13 +123,13 @@ export function Select({
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(opt.value)}
-                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 cursor-pointer whitespace-nowrap ${
                     isSelected
                       ? 'bg-psu-navy/10 text-psu-navy dark:bg-psu-blue/25 dark:text-blue-200 font-bold'
                       : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
-                  <span className="truncate flex items-center gap-2">
+                  <span className="flex items-center gap-2 whitespace-nowrap">
                     {opt.icon}
                     <span>{opt.label}</span>
                   </span>
