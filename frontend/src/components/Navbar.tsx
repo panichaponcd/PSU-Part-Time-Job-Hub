@@ -76,8 +76,9 @@ function Navbar() {
     'U';
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 dark:bg-[#0b132b]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
-      <div className="max-w-7xl mx-auto h-[72px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <>
+      <header className="fixed top-0 inset-x-0 z-50 w-full bg-white/95 dark:bg-[#0b132b]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
+        <div className="max-w-7xl mx-auto h-[72px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Left: Brand Logo & Title */}
         <Link
@@ -274,7 +275,7 @@ function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 top-[72px] bg-slate-950/40 dark:bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 top-[72px] bg-slate-950/50 dark:bg-black/70 backdrop-blur-sm z-40 md:hidden"
               aria-hidden="true"
             />
 
@@ -284,11 +285,11 @@ function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="fixed inset-x-0 top-[72px] z-50 md:hidden overflow-y-auto max-h-[calc(100vh-72px)] border-b border-slate-200 dark:border-slate-800 bg-white/98 dark:bg-[#0b132b]/98 backdrop-blur-md shadow-2xl px-4 py-4"
+              className="fixed inset-x-0 top-[72px] z-50 md:hidden overflow-y-auto max-h-[calc(100vh-72px)] bg-white dark:bg-[#0b132b] rounded-b-3xl border-b border-slate-200 dark:border-slate-800 shadow-2xl px-5 py-5"
             >
-              <div className="flex flex-col gap-1.5 pb-6">
+              <div className="flex flex-col gap-1.5 pb-4">
                 {isLoggedIn() && (
-                  <div className="px-4 py-3 bg-slate-50 dark:bg-slate-850 rounded-xl border border-slate-100 dark:border-slate-800 mb-2">
+                  <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-100 dark:border-slate-700/60 mb-2">
                     <p className="text-[10px] font-bold text-psu-blue dark:text-psu-light uppercase tracking-wider">
                       {isAdmin() ? 'Staff Account' : 'Student Account'}
                     </p>
@@ -407,6 +408,9 @@ function Navbar() {
         )}
       </AnimatePresence>
     </header>
+    {/* Height Spacer to prevent page content from being obscured by fixed header */}
+    <div className="h-[72px] w-full shrink-0" aria-hidden="true" />
+  </>
   );
 }
 
