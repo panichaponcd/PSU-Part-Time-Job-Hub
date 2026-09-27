@@ -211,25 +211,27 @@ export function JobDetail() {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-[calc(100vh-72px)] w-full overflow-hidden flex flex-col justify-start">
       {/* Authentic PSU Campus Backdrop with Blur */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 -z-10 scale-105 filter blur-[6px] brightness-90 dark:brightness-50"
+        transition={{ duration: 0.5 }}
+        className="fixed inset-0 z-0 blur-[3px] scale-105 pointer-events-none"
         style={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `radial-gradient(ellipse at 50% 30%, rgba(20, 35, 60, 0.4) 0%, rgba(10, 24, 45, 0.75) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.7) 100%), url(${bgImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center 40%',
         }}
       />
-      <div className="fixed inset-0 -z-10 bg-slate-950/35 pointer-events-none" />
+      {/* Ambient Dark Overlay */}
+      <div className="fixed inset-0 bg-slate-950/45 dark:bg-slate-950/75 z-0 pointer-events-none" />
 
       <PageTransition>
-        <main className="relative z-10 pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <main className="relative z-10 pt-4 sm:pt-6 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
           {/* Back Navigation Breadcrumb Link */}
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-4 sm:mb-5 flex items-center justify-between">
             <button
               onClick={() => navigate('/jobs')}
               className="inline-flex items-center text-white/90 hover:text-white font-semibold text-sm transition-all group bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 shadow-sm"
