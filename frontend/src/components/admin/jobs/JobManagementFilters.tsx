@@ -62,26 +62,26 @@ export function JobManagementFilters({
   ];
 
   return (
-    <div className="relative z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 sm:p-5 shadow-lg border border-white/60 dark:border-slate-800 flex flex-col xl:flex-row items-stretch xl:items-center gap-3.5">
-      {/* Search Bar */}
-      <div className="relative flex-1 min-w-[240px]">
+    <div className="relative z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-3.5 sm:p-4 shadow-lg border border-white/60 dark:border-slate-800 flex flex-col xl:flex-row items-stretch xl:items-center gap-2.5 sm:gap-3">
+      {/* Search Bar - Extended by half the gap */}
+      <div className="relative w-full xl:w-72 2xl:w-80 xl:shrink-0">
         <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
           placeholder="Search title, keywords or organizer..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 focus:bg-white dark:focus:bg-slate-800 rounded-xl text-xs sm:text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 border border-slate-200 dark:border-slate-700 focus:border-psu-blue focus:ring-2 focus:ring-psu-blue/20 focus:outline-none transition-all"
+          className="w-full h-[42px] pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 focus:bg-white dark:focus:bg-slate-800 rounded-xl text-xs sm:text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 border border-slate-200 dark:border-slate-700 focus:border-psu-blue focus:ring-2 focus:ring-psu-blue/20 focus:outline-none transition-all"
         />
       </div>
 
-      {/* Filter Selects */}
-      <div className="flex flex-wrap items-center gap-2.5">
-        <div className="flex items-center gap-1 text-xs font-bold text-slate-400 mr-0.5 select-none hidden sm:flex">
+      {/* Filter Selects - Flexed next to search bar */}
+      <div className="flex flex-wrap xl:flex-nowrap items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1 text-xs font-bold text-slate-400 mr-0.5 select-none hidden sm:flex h-[42px] shrink-0">
           <Filter className="w-3.5 h-3.5" />
         </div>
 
-        <div className="flex-1 sm:flex-initial min-w-[140px]">
+        <div className="flex-1 sm:flex-initial sm:w-[132px] shrink-0">
           <Select
             value={statusFilter}
             onChange={setStatusFilter}
@@ -90,7 +90,7 @@ export function JobManagementFilters({
           />
         </div>
 
-        <div className="flex-1 sm:flex-initial min-w-[130px]">
+        <div className="flex-1 sm:flex-initial sm:w-[116px] shrink-0">
           <Select
             value={typeFilter}
             onChange={setTypeFilter}
@@ -99,7 +99,7 @@ export function JobManagementFilters({
           />
         </div>
 
-        <div className="flex-1 sm:flex-initial min-w-[130px]">
+        <div className="flex-1 sm:flex-initial sm:w-[114px] shrink-0">
           <Select
             value={yearFilter}
             onChange={setYearFilter}
@@ -108,7 +108,7 @@ export function JobManagementFilters({
           />
         </div>
 
-        <div className="flex-1 sm:flex-initial min-w-[130px]">
+        <div className="flex-1 sm:flex-initial sm:w-[114px] shrink-0">
           <Select
             value={termFilter}
             onChange={setTermFilter}
@@ -122,7 +122,7 @@ export function JobManagementFilters({
           <button
             type="button"
             onClick={onReset}
-            className="px-3.5 py-2.5 text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 bg-slate-100 hover:bg-rose-50 dark:bg-slate-800 dark:hover:bg-rose-950/40 border border-slate-200 dark:border-slate-700 rounded-xl transition-colors flex items-center justify-center gap-1.5 text-xs font-bold cursor-pointer"
+            className="h-[42px] px-3 text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 bg-slate-100 hover:bg-rose-50 dark:bg-slate-800 dark:hover:bg-rose-950/40 border border-slate-200 dark:border-slate-700 rounded-xl transition-colors flex items-center justify-center gap-1.5 text-xs font-bold cursor-pointer shrink-0"
             title="Reset Filters"
           >
             <RotateCcw className="w-3.5 h-3.5" />
