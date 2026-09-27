@@ -1,10 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import bgImage from '../assets/home-bg-1.jpg';
 import logo from '../assets/psu-logo.svg';
 import { api } from '../utils/api';
-import { Button, Input } from '../components/ui';
+import { Button, Input, AppBackground, GlassCard } from '../components/ui';
 
 const FACULTIES = [
   'Faculty of Hospitality and Tourism',
@@ -68,33 +67,23 @@ function Register() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden py-24">
-      <motion.div
-        initial={{ scale: 1.15, opacity: 0 }}
-        animate={{ scale: 1.1, opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="absolute inset-0 blur-lg"
-        style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-      <div className="absolute inset-0 bg-black/40" />
+    <div className="relative min-h-[calc(100vh-72px)] flex items-center justify-center overflow-hidden py-12 px-4">
+      <AppBackground />
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="relative z-10 w-full max-w-lg mx-4"
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className="relative z-10 w-full max-w-lg mx-auto"
       >
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 border border-white/30">
+        <GlassCard variant="container" className="p-8 sm:p-10">
           <div className="flex flex-col items-center mb-8">
             <img src={logo} alt="PSU Logo" className="h-14 w-auto mb-3" />
-            <h1 className="text-2xl font-bold text-gray-800 tracking-tight">Create Account</h1>
-            <p className="text-sm text-gray-500 mt-1 font-medium text-center px-4">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Create Account
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium text-center px-4">
               PSU Phuket students only
             </p>
           </div>
@@ -103,7 +92,7 @@ function Register() {
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-red-50 border border-red-100 text-red-600 text-xs font-bold px-4 py-3 rounded-xl mb-6 text-center"
+              className="bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-rose-600 dark:text-rose-300 text-xs font-bold px-4 py-3 rounded-xl mb-6 text-center"
             >
               {error}
             </motion.div>
@@ -119,7 +108,7 @@ function Register() {
               required
             />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input
                 label="First Name"
                 name="first_name"
@@ -146,9 +135,9 @@ function Register() {
               required
             />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1 w-full">
-                <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                   Faculty
                 </label>
                 <select
@@ -156,7 +145,7 @@ function Register() {
                   value={form.faculty}
                   onChange={handleChange}
                   required
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-white/70 backdrop-blur-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-psu-blue/50"
+                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-psu-blue"
                 >
                   <option value="">Select faculty</option>
                   {FACULTIES.map((f) => (
@@ -176,7 +165,7 @@ function Register() {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input
                 label="Password"
                 type="password"
@@ -199,19 +188,19 @@ function Register() {
               type="submit"
               isLoading={loading}
               variant="primary"
-              className="w-full py-4 uppercase text-xs tracking-widest mt-2"
+              className="w-full py-4 uppercase text-xs tracking-widest mt-2 cursor-pointer"
             >
               Create Account
             </Button>
 
-            <p className="text-center text-sm text-gray-500 font-medium">
+            <p className="text-center text-sm text-slate-500 dark:text-slate-400 font-medium">
               Already have an account?{' '}
-              <Link to="/signin" className="text-psu-accent hover:text-blue-700 transition-colors font-bold">
+              <Link to="/signin" className="text-psu-blue dark:text-psu-light hover:underline transition-colors font-bold">
                 Sign In
               </Link>
             </p>
           </form>
-        </div>
+        </GlassCard>
       </motion.div>
     </div>
   );

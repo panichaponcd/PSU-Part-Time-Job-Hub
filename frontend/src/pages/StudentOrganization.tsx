@@ -1,76 +1,57 @@
-import { motion } from 'framer-motion';
-import PageTransition from '../components/PageTransition';
-import bgImage from '../assets/home-bg-1.jpg';
-import { Button } from '../components/ui';
+import { InfoPageContainer, Button } from '../components/ui';
 
 function StudentOrganization() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-psu-blue">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-0 blur-lg scale-105"
-        style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-
-      <div className="fixed inset-0 bg-black/40 z-10" />
-
-      <PageTransition>
-        <div className="relative z-20 pt-28 pb-16 px-4 max-w-4xl mx-auto flex flex-col gap-6 font-sans">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-white/40"
-          >
-            <h1 className="text-3xl font-bold text-psu-blue mb-1 tracking-tight">
-              Student Organization
-            </h1>
-            <p className="text-slate-500 text-xs font-semibold tracking-widest opacity-80 uppercase">
-              Student Development and Alumni Relations Office
-            </p>
-          </motion.div>
-
-          <div className="bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg p-10 border border-white/30">
-            <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <span className="text-psu-blue">●</span> About the Office
-            </h2>
-            <div className="space-y-4 text-slate-700 leading-relaxed font-medium text-sm">
-              <p>
-                The Student Development and Alumni Relations Office at PSU Phuket Campus is
-                responsible for supporting student activities, part-time employment,
-                extracurricular development, and alumni engagement.
-              </p>
-              <p>
-                The office manages the PSU Activity Transcript system, coordinates part-time job
-                placements for students, issues work certificates, and organizes activities that
-                contribute to student development both academically and professionally.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg p-10 border border-white/30">
-            <h2 className="text-xl font-bold text-slate-900 mb-4">PSU Activity Transcript</h2>
-            <p className="text-slate-700 leading-relaxed font-medium text-sm mb-8">
-              The PSU Activity Transcript system records student participation in extracurricular
-              activities throughout their studies. Students are required to accumulate a minimum of
-              100 activity hours, consisting of at least 50 hours of student development activities
-              and 50 hours of elective activities.
-            </p>
-
-            <a href="https://student.psu.ac.th/transcript/" target="_blank" rel="noreferrer">
-              <Button variant="primary" className="inline-flex items-center gap-2 px-6 py-3">
-                Visit PSU Transcript System <span className="text-lg">→</span>
-              </Button>
-            </a>
-          </div>
+    <InfoPageContainer
+      title="Student Organization"
+      subtitle="Student Development and Alumni Relations Office"
+      categoryTag="University Unit"
+      maxWidth="max-w-4xl"
+    >
+      <section className="space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span className="text-psu-blue dark:text-psu-light">●</span> About the Office
+        </h2>
+        <div className="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed font-medium text-sm">
+          <p>
+            The Student Development and Alumni Relations Office at PSU Phuket Campus is
+            responsible for supporting student activities, part-time employment,
+            extracurricular development, and alumni engagement.
+          </p>
+          <p>
+            The office manages the PSU Activity Transcript system, coordinates part-time job
+            placements for students, issues work certificates, and organizes activities that
+            contribute to student development both academically and professionally.
+          </p>
         </div>
-      </PageTransition>
-    </div>
+      </section>
+
+      <section className="pt-6 border-t border-slate-200/80 dark:border-slate-800 space-y-4">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+          PSU Activity Transcript
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-medium text-sm">
+          The PSU Activity Transcript system records student participation in extracurricular
+          activities throughout their studies. Students are required to accumulate a minimum of
+          100 activity hours, consisting of at least 50 hours of student development activities
+          and 50 hours of elective activities.
+        </p>
+
+        <div className="pt-2">
+          <a
+            href="https://student.psu.ac.th/transcript/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block"
+          >
+            <Button variant="primary" className="inline-flex items-center gap-2 px-6 py-3 cursor-pointer">
+              <span>Visit PSU Transcript System</span>
+              <span className="text-lg">→</span>
+            </Button>
+          </a>
+        </div>
+      </section>
+    </InfoPageContainer>
   );
 }
 
