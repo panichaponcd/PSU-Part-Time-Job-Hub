@@ -8,6 +8,7 @@ import JobDetail from './pages/JobDetail';
 import Profile from './pages/Profile';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import { BackToTop } from './components/ui';
 
 import AboutUs from './pages/AboutUs';
 import Personnel from './pages/Personnel';
@@ -104,6 +105,7 @@ function App() {
           <AnimatedRoutes />
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </Router>
   );
