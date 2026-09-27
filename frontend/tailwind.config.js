@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -12,6 +14,17 @@ module.exports = {
         sans: ['Sarabun', 'system-ui', '-apple-system', 'sans-serif'],
       },
       colors: {
+        // Elevated de-saturated cool slate palette for dark mode panel depth and contrast
+        slate: {
+          ...colors.slate,
+          950: '#0b0f17',
+          900: '#20293a', // Elevated lighter surface for dark mode panels (crisp cool slate, no purple cast)
+          850: '#263145',
+          800: '#2d3a52', // Elevated sub-panels, table headers, and form inputs
+          750: '#364560',
+          700: '#415170', // Crisp contrast dividers & borders
+        },
+
         // Legacy compatibility
         'psu-blue': {
           light: '#0a5bc4',

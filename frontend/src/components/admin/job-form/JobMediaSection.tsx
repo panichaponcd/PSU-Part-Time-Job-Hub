@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { Image as ImageIcon, MessageCircle, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 
 export interface JobMediaSectionProps {

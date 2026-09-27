@@ -12,7 +12,7 @@ export function JobsTable({ jobs, onViewApplicants, onEdit, onDelete }: JobsTabl
   return (
     <div className="hidden md:block bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-3xl shadow-xl border border-white/60 dark:border-slate-800 overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="w-full table-fixed text-left text-sm">
+        <table className="w-full min-w-[720px] table-fixed text-left text-sm">
           <thead>
             <tr className="bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs font-bold tracking-wider uppercase select-none">
               <th className="w-[24%] py-4 px-6 font-bold text-left">Title</th>

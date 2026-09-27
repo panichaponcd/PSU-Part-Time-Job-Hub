@@ -1,40 +1,20 @@
-import { motion } from 'framer-motion';
-import PageTransition from '../components/PageTransition';
-import bgImage from '../assets/home-bg-1.jpg';
+import { Newspaper } from 'lucide-react';
+import { InfoPageContainer, EmptyState } from '../components/ui';
 
 function Articles() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="fixed inset-0 z-0 scale-110 blur-[6px]"
-        style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+    <InfoPageContainer
+      title="Articles & Announcements"
+      subtitle="News, university directives, and student career announcements"
+      categoryTag="Campus News"
+      maxWidth="max-w-4xl"
+    >
+      <EmptyState
+        icon={Newspaper}
+        title="No Articles Yet"
+        description="Articles and announcements will appear here when published by the Student Development office."
       />
-      <div className="fixed inset-0 bg-black/30 z-10" />
-
-      <PageTransition>
-        <div className="relative z-20 pt-24 pb-16 px-4 max-w-4xl mx-auto flex flex-col gap-6">
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl p-8">
-            <h1 className="text-3xl font-bold text-psu-blue mb-2">Articles</h1>
-            <p className="text-gray-500 text-sm">News and announcements</p>
-          </div>
-
-          <div className="bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg p-16 flex flex-col items-center justify-center text-center">
-            <div className="text-6xl mb-4">📰</div>
-            <h2 className="text-xl font-bold text-gray-800 mb-2">No Articles Yet</h2>
-            <p className="text-gray-500 text-sm max-w-md">
-              Articles and announcements will appear here when published by the Student
-              Development office.
-            </p>
-          </div>
-        </div>
-      </PageTransition>
-    </div>
+    </InfoPageContainer>
   );
 }
 

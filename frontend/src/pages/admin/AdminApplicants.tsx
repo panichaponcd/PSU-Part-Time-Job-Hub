@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, AlertTriangle, Users, RotateCcw } from 'lucide-react';
 import apiRequest from '../../utils/api';
@@ -14,7 +14,6 @@ import {
 
 export function AdminApplicants() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
 
   const [job, setJob] = useState<any>(null);
   const [applications, setApplications] = useState<any[]>([]);
@@ -47,6 +46,7 @@ export function AdminApplicants() {
   // Fetch job details and applicants
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const fetchData = async () => {

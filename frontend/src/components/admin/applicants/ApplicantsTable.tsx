@@ -41,7 +41,7 @@ export function ApplicantsTable({ applications, job, onOpenKickModal }: Applican
   return (
     <div className="hidden md:block bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/60 dark:border-slate-800 rounded-3xl shadow-xl overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full min-w-[640px] text-left border-collapse">
           <thead>
             <tr className="bg-slate-50/80 dark:bg-slate-800/80 text-slate-400 dark:text-slate-400 text-[11px] uppercase font-black tracking-wider border-b border-slate-200 dark:border-slate-800">
               <th className="py-4 px-6">Student Info</th>

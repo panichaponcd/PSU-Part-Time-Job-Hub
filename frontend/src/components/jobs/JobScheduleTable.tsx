@@ -6,7 +6,7 @@ export interface JobScheduleTableProps {
   jobStatus?: string;
 }
 
-export function JobScheduleTable({ schedules, jobStatus }: JobScheduleTableProps) {
+export function JobScheduleTable({ schedules }: JobScheduleTableProps) {
   if (!schedules || schedules.length === 0) {
     return (
       <div className="p-4 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-700/60 text-center">
