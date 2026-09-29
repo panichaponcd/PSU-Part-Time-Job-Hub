@@ -136,7 +136,18 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://budget-dorm-server:3000",
+    "https://budget-dorm-server.tail6de02b.ts.net",
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://budget-dorm-server.tail6de02b.ts.net",
+    "http://budget-dorm-server.tail6de02b.ts.net",
+    "http://budget-dorm-server:3000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

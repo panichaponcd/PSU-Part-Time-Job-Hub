@@ -5,9 +5,12 @@ const getApiBaseUrl = () => {
     return process.env.REACT_APP_API_URL;
   }
   if (typeof window !== 'undefined' && window.location.hostname) {
+    // Over HTTPS (e.g. Tailscale Funnel), use same origin /api to avoid Mixed Content & closed non-443 ports
+    if (window.location.protocol === 'https:') {
+      return `${window.location.origin}/api`;
+    }
     return `http://${window.location.hostname}:8000/api`;
   }
-  // return 'http://127.0.0.1:8000/api';
   return 'http://budget-dorm-server:8000/api';
 };
 export const API_BASE_URL = getApiBaseUrl();
