@@ -26,8 +26,12 @@ SECRET_KEY = 'django-insecure-@gc8#q)l$%f*=(wnree32)@zpntdt$xc=4r!0127!!wkkh-(b4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() in ('true', '1', 't')
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'budget-dorm-server',
+    'budget-dorm-server.tail6de02b.ts.net',  # Your exact Tailscale Funnel domain
+]
 
 # Application definition
 
