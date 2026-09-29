@@ -1,0 +1,971 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$TQgA7Dtcq2EzKY4of3Nf2a$XrY4zuvB7TYwwou7efcpdxFZsm7VPqeE902q2yOFuIU=",
+    "last_login": "2026-08-19T04:57:03.108Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-13T18:53:14.036Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$koJRx31CXLxIcYXWZ4xXei$La0AW43WfRWHGLMNrMvEc1s09NbsCQIpPRYmscDWfVM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "6630613009",
+    "first_name": "Panichapon",
+    "last_name": "Chatdaeng",
+    "email": "s6630613009@phuket.psu.ac.th",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-27T07:20:45Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$ZRjsLPNwnhVwhOz5QQfvfY$mzkyTETfO+qIMLbHiuS7XGclaxd72M7IcJyKZXLKMoc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "panichapon.cd",
+    "first_name": "Panichapon",
+    "last_name": "Chatdaeng",
+    "email": "6630613009@psu.ac.th",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-27T08:05:13Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ud53fa90wne3m005cnimmbvwa02kxmgz",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pAWmBJcuvcMZIYZpGogKe3KeHdt0oVu_3vvv1TEbS1x67LEmdVZjer0uxGmh9Qd8B3rrenU6rrMpHdFH7Tra2N5Xg7376BgL986CDmGnKcA3lEGFsTsrQ0IzEPiIOgJLCZryLsxgYAzBANOCdiAU-8PFSk4wg:1wwYPc:WkwAY7Thd6cDOr7eRIE_KB8r1hi9KkK8Ud9XWxZ1ZJw",
+    "expire_date": "2026-09-02T05:00:28.514Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wvzm32q4npxev3ln72gb5lcs3pw38il4",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCZAi0u3fcMzQwzSNVAUtqV8e7apAvd_vfef6kJtzVPW5NlmlldlFGn340wPqTsgO9YblXHWtZlJr0r-qBNj5XleT3cv4OMLX9riwwpQX_ukidD7EwI1oPlAaKVGJwQGXAeeuy8RDaA7CXggInQkVXvD-ulOIg:1wI2jv:jV0hdvb2oi90T7mG70QngedG_Z8tHHZTiD8A36K5eUc",
+    "expire_date": "2026-05-13T11:05:59.797Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xdsa1e73lfg5i1039kmhidb0t3ibe1sm",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCZAi0u3fcMzQwzSNVAUtqV8e7apAvd_vfef6kJtzVPW5NlmlldlFGn340wPqTsgO9YblXHWtZlJr0r-qBNj5XleT3cv4OMLX9riwwpQX_ukidD7EwI1oPlAaKVGJwQGXAeeuy8RDaA7CXggInQkVXvD-ulOIg:1wHFk6:3FdYECzWp3IyvuMxRsofVJyFbvhHXaFNB8X0nKOWRYM",
+    "expire_date": "2026-05-11T06:46:54.725Z"
+  }
+},
+{
+  "model": "jobs.student",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "6630613009"
+    ],
+    "first_name": "Panichapon",
+    "last_name": "Chatdaeng",
+    "student_id": "6630613009",
+    "faculty": "College of Computing",
+    "major": "Digital Engineering",
+    "religion": "Buddhism",
+    "allergies": "",
+    "student_card_image": ""
+  }
+},
+{
+  "model": "jobs.student",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "panichapon.cd"
+    ],
+    "first_name": "Panichapon",
+    "last_name": "Chatdaeng",
+    "student_id": "panichapon.cd",
+    "faculty": "College of Computing",
+    "major": "Digital Engineering",
+    "religion": "Buddhism",
+    "allergies": "",
+    "student_card_image": ""
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 11,
+  "fields": {
+    "title": "PSU Open House 2026",
+    "organization_name": "Student Development",
+    "description": "Help setup the upcoming open house event.",
+    "location_type": "CoC Building",
+    "job_type": "INTERNAL",
+    "compensation_amount": "180.00",
+    "required_amount": 2,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://tcaster.net/wp-content/uploads/2025/07/OpenHouse-PSU-2025-1-1.jpg",
+    "line_group_url": "https://i0.wp.com/tutorial.eyehunts.com/wp-content/uploads/2022/09/img_1_16878503615631.jpg?w=1083&ssl=1",
+    "is_active": false,
+    "created_at": "2026-04-25T08:55:57.589Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 13,
+  "fields": {
+    "title": "Day Songkran Festival 2026",
+    "organization_name": "Andamanda Phuket",
+    "description": "Staff needed for Songkran festival at Andamanda Phuket.",
+    "location_type": "Andamanda Phuket",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "500.00",
+    "required_amount": 20,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://www.andamandaphuket.com/sites/andamanda/files/styles/width_1920/public/blog/2026Songkran_ticketmelon-02.jpg.webp?itok=gJjUNYHC",
+    "line_group_url": "https://i0.wp.com/tutorial.eyehunts.com/wp-content/uploads/2022/09/img_1_16878503615631.jpg?w=1083&ssl=1",
+    "is_active": true,
+    "created_at": "2026-04-29T10:50:51.346Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 14,
+  "fields": {
+    "title": "Library Student Assistant",
+    "organization_name": "PSU Phuket Library",
+    "description": "Assist with book shelving, organizing library resources, and helping students find study materials.",
+    "location_type": "Building 7 (Learning Resources Center)",
+    "job_type": "INTERNAL",
+    "compensation_amount": "300.00",
+    "required_amount": 5,
+    "status": "OPEN",
+    "academic_term": 1,
+    "academic_year": 2569,
+    "poster_image_url": "https://www.psu.ac.th/img/faculty/2024/PSU_Phuket-1315.jpg",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:30:47.766Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 15,
+  "fields": {
+    "title": "Language Experience Activity Support",
+    "organization_name": "Student Development & Alumni Relations",
+    "description": "Support activities for English and Chinese language immersion sessions for freshman students.",
+    "location_type": "Academic Building 1",
+    "job_type": "INTERNAL",
+    "compensation_amount": "300.00",
+    "required_amount": 10,
+    "status": "CLOSED",
+    "academic_term": 2,
+    "academic_year": 2568,
+    "poster_image_url": "",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:31:04.839Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 16,
+  "fields": {
+    "title": "Student IT Helpdesk",
+    "organization_name": "College of Computing",
+    "description": "Provide software installation support and basic troubleshooting for computer lab users.",
+    "location_type": "Building 6 (CoC Building)",
+    "job_type": "INTERNAL",
+    "compensation_amount": "350.00",
+    "required_amount": 2,
+    "status": "COMPLETED",
+    "academic_term": 1,
+    "academic_year": 2569,
+    "poster_image_url": "",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:31:11.541Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 17,
+  "fields": {
+    "title": "PSU Open House Guide",
+    "organization_name": "Division of Student Development",
+    "description": "Act as a campus tour guide and booth assistant for visiting high school students and parents.",
+    "location_type": "PSU Phuket Campus",
+    "job_type": "INTERNAL",
+    "compensation_amount": "400.00",
+    "required_amount": 100,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2568,
+    "poster_image_url": "https://tcaster.net/wp-content/uploads/2025/07/OpenHouse-PSU-2025-1-1.jpg",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:31:19.126Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 18,
+  "fields": {
+    "title": "EDC Thailand 2026 Event Staff",
+    "organization_name": "Insomniac / Be",
+    "description": "Multi-day event staff for an international music festival. English communication skills are required.",
+    "location_type": "Rhythm Park, Cherngtalay, Phuket",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "800.00",
+    "required_amount": 300,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2568,
+    "poster_image_url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/124/2026/03/08190921/edth_2026_mk_an_fest_site_mh_1534x1428_r01.jpg",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:31:27.324Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 19,
+  "fields": {
+    "title": "Songkran Festival Assistant",
+    "organization_name": "Andamanda Phuket",
+    "description": "Assist with guest flow, water activity monitoring, and event support during the Songkran holidays.",
+    "location_type": "Andamanda Water Park",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "500.00",
+    "required_amount": 50,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://scontent-bkk1-2.xx.fbcdn.net/v/t39.30808-6/670465218_1396483959164960_3659527850449797746_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_ohc=NUuz5Np9frkQ7kNvwGIbldV&_nc_oc=Ado8Scm-tKrTMEiruMzkpFqVqta7LZGyHZXQ1Vfh0-iFDVOoCheo9sBhpguoiiTfHNE&_nc_zt=23&_nc_ht=scontent-bkk1-2.xx&_nc_gid=F9r1RF6tLefrUwXb8-CV9Q&_nc_ss=7a2a8&oh=00_Af68EM2nELScDsIx094y958ADy4XcmOcFmfqUKC5z6MYDA&oe=6A07AB93",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:31:33.828Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 20,
+  "fields": {
+    "title": "Election Unit Committee",
+    "organization_name": "Municipality of Ratsada",
+    "description": "Manage voter registration and ballot distribution for the local municipality elections.",
+    "location_type": "Local Election Units within Ratsada Municipality",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "1200.00",
+    "required_amount": 20,
+    "status": "COMPLETED",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://www.psu.ac.th/phuket/wp-content/uploads/2026/04/96844.jpg",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:31:40.549Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 21,
+  "fields": {
+    "title": "Audio Visual Sound Crew",
+    "organization_name": "Professional Sound Co.",
+    "description": "Physical labor required to assist with setting up speakers, wiring, and stage lighting for concerts.",
+    "location_type": "Phuket Andaman Place",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "1000.00",
+    "required_amount": 10,
+    "status": "CLOSED",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://aztecsound.com/wp-content/uploads/2020/04/different-types-of-audio-visual-equipment.jpg",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-04-30T08:31:46.146Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 22,
+  "fields": {
+    "title": "Job 1",
+    "organization_name": "Student Development",
+    "description": "Hiring more staff.",
+    "location_type": "Building 1",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "300.00",
+    "required_amount": 5,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://t3.ftcdn.net/jpg/02/82/67/22/360_F_282672294_g0LwMrnRpYS3jHcMqxQIYkpSOERoXzp3.jpg",
+    "line_group_url": "",
+    "is_active": true,
+    "created_at": "2026-05-11T18:02:51.107Z"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 38,
+  "fields": {
+    "job": 13,
+    "date": "2026-05-13",
+    "start_time": "15:00:00",
+    "end_time": "20:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 42,
+  "fields": {
+    "job": 11,
+    "date": "2026-05-05",
+    "start_time": "09:00:00",
+    "end_time": "16:30:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 81,
+  "fields": {
+    "job": 18,
+    "date": "2026-01-15",
+    "start_time": "08:00:00",
+    "end_time": "18:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 82,
+  "fields": {
+    "job": 18,
+    "date": "2026-01-16",
+    "start_time": "12:00:00",
+    "end_time": "01:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 83,
+  "fields": {
+    "job": 18,
+    "date": "2026-01-17",
+    "start_time": "12:00:00",
+    "end_time": "01:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 84,
+  "fields": {
+    "job": 17,
+    "date": "2025-11-20",
+    "start_time": "08:30:00",
+    "end_time": "16:30:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 86,
+  "fields": {
+    "job": 14,
+    "date": "2026-06-01",
+    "start_time": "08:00:00",
+    "end_time": "12:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 87,
+  "fields": {
+    "job": 14,
+    "date": "2026-06-02",
+    "start_time": "08:00:00",
+    "end_time": "12:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 88,
+  "fields": {
+    "job": 15,
+    "date": "2025-12-13",
+    "start_time": "09:00:00",
+    "end_time": "16:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 89,
+  "fields": {
+    "job": 15,
+    "date": "2025-12-27",
+    "start_time": "09:00:00",
+    "end_time": "16:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 103,
+  "fields": {
+    "job": 16,
+    "date": "2026-06-15",
+    "start_time": "13:00:00",
+    "end_time": "17:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 108,
+  "fields": {
+    "job": 21,
+    "date": "2025-12-28",
+    "start_time": "08:00:00",
+    "end_time": "17:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 109,
+  "fields": {
+    "job": 21,
+    "date": "2025-12-31",
+    "start_time": "08:00:00",
+    "end_time": "17:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 112,
+  "fields": {
+    "job": 19,
+    "date": "2026-04-13",
+    "start_time": "10:00:00",
+    "end_time": "18:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 113,
+  "fields": {
+    "job": 19,
+    "date": "2026-04-14",
+    "start_time": "10:00:00",
+    "end_time": "18:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 116,
+  "fields": {
+    "job": 20,
+    "date": "2026-02-07",
+    "start_time": "07:00:00",
+    "end_time": "18:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 117,
+  "fields": {
+    "job": 20,
+    "date": "2026-02-08",
+    "start_time": "07:00:00",
+    "end_time": "18:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 124,
+  "fields": {
+    "job": 22,
+    "date": "2026-05-12",
+    "start_time": "09:00:00",
+    "end_time": "12:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 125,
+  "fields": {
+    "job": 22,
+    "date": "2026-05-12",
+    "start_time": "13:00:00",
+    "end_time": "16:00:00"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 5,
+  "fields": {
+    "student": 1,
+    "job": 11,
+    "application_date": "2026-04-29T11:24:29.059Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 15,
+  "fields": {
+    "student": 1,
+    "job": 16,
+    "application_date": "2026-04-30T10:00:12.997Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 16,
+  "fields": {
+    "student": 1,
+    "job": 20,
+    "application_date": "2026-05-09T08:30:31.939Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 6,
+  "fields": {
+    "application": 5,
+    "punctuality_rating": 4,
+    "responsibility_rating": 4,
+    "grooming_rating": 3,
+    "quality_rating": 4,
+    "comment": "Nice work!",
+    "result_status": "PASS",
+    "evaluation_date": "2026-04-29T11:25:21.579Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 8,
+  "fields": {
+    "application": 15,
+    "punctuality_rating": 4,
+    "responsibility_rating": 4,
+    "grooming_rating": 3,
+    "quality_rating": 4,
+    "comment": "",
+    "result_status": "PASS",
+    "evaluation_date": "2026-04-30T18:52:23.178Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 9,
+  "fields": {
+    "application": 16,
+    "punctuality_rating": 4,
+    "responsibility_rating": 3,
+    "grooming_rating": 4,
+    "quality_rating": 5,
+    "comment": "Ok",
+    "result_status": "PASS",
+    "evaluation_date": "2026-05-09T08:31:30.234Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-04-13T19:17:32.027Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Student Helper for EDC Thailand 2026 Concert",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-04-13T19:54:01.861Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "job"
+    ],
+    "object_id": "2",
+    "object_repr": "English and Chinese Language Experience Activity",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-04-16T02:41:05.969Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "job"
+    ],
+    "object_id": "3",
+    "object_repr": "Andamanda Songkran Festival",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-04-16T02:41:19.656Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "job"
+    ],
+    "object_id": "3",
+    "object_repr": "Andamanda Songkran Festival",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-04-27T08:07:18.566Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "Frank",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-04-27T08:07:32.112Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "panichapon.cd",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Staff status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-04-27T08:07:59.594Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "panichapon.cd",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-04-27T08:08:21.246Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "panichapon.cd",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-04-27T08:26:09.321Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "6630613009",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-04-28T11:16:30.244Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "evaluation"
+    ],
+    "object_id": "1",
+    "object_repr": "Evaluation object (1)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-04-28T11:26:12.305Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "evaluation"
+    ],
+    "object_id": "2",
+    "object_repr": "Evaluation object (2)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-04-28T11:28:38.327Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "evaluation"
+    ],
+    "object_id": "2",
+    "object_repr": "Evaluation object (2)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Application\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-04-28T11:31:24.820Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "evaluation"
+    ],
+    "object_id": "2",
+    "object_repr": "Evaluation object (2)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2026-04-29T11:06:20.973Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "application"
+    ],
+    "object_id": "1",
+    "object_repr": "Application object (1)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-04-29T11:06:25.167Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "application"
+    ],
+    "object_id": "2",
+    "object_repr": "Application object (2)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-04-29T11:06:46.246Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "evaluation"
+    ],
+    "object_id": "4",
+    "object_repr": "Evaluation object (4)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-04-29T11:07:23.306Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "application"
+    ],
+    "object_id": "3",
+    "object_repr": "Application object (3)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-04-29T11:22:52.729Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "application"
+    ],
+    "object_id": "4",
+    "object_repr": "Application object (4)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2026-04-30T08:00:26.412Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "jobs",
+      "job"
+    ],
+    "object_id": "11",
+    "object_repr": "PSU Open House 2026",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is active\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2026-05-09T08:37:02.457Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "4",
+    "object_repr": "566661546",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2026-08-19T05:00:28.509Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "panichapon.cd",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+}
+]
