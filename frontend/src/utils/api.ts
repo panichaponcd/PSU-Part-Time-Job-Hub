@@ -5,8 +5,8 @@ const getApiBaseUrl = () => {
     return process.env.REACT_APP_API_URL;
   }
   if (typeof window !== 'undefined' && window.location.hostname) {
-    // Over HTTPS (e.g. Tailscale Funnel), use same origin /api to avoid Mixed Content & closed non-443 ports
-    if (window.location.protocol === 'https:') {
+    // Tailscale Funnel (.ts.net) or HTTPS: route through /api (port 443 / same origin)
+    if (window.location.hostname.endsWith('.ts.net') || window.location.protocol === 'https:') {
       return `${window.location.origin}/api`;
     }
     return `http://${window.location.hostname}:8000/api`;
