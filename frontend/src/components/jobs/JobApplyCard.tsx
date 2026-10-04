@@ -118,8 +118,8 @@ export const JobApplyCard: FC<JobApplyCardProps> = ({
 
       {/* Dynamic Action Buttons Block (Lifecycle States) */}
       <div className="space-y-3 pt-2">
-        {/* STATE 1: Before Applying (Open) */}
-        {!applied && isOpen && (
+        {/* STATE 1: Before Applying (Open & Seats Available) */}
+        {!applied && isOpen && remainingSeats > 0 && (
           <div className="space-y-3">
             <button
               type="button"
@@ -142,6 +142,23 @@ export const JobApplyCard: FC<JobApplyCardProps> = ({
             <p className="text-center text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />
               <span>Authenticated via PSU Passport student credentials</span>
+            </p>
+          </div>
+        )}
+
+        {/* STATE 1B: Before Applying & Position Full (Capacity Reached) */}
+        {!applied && isOpen && remainingSeats <= 0 && (
+          <div className="space-y-2">
+            <button
+              type="button"
+              disabled
+              className="w-full py-3.5 px-4 bg-slate-400 dark:bg-slate-700 text-white font-bold text-base rounded-xl cursor-not-allowed shadow-none flex items-center justify-center gap-2 opacity-80 select-none"
+            >
+              <Lock className="w-5 h-5 text-slate-200 dark:text-slate-400" />
+              <span>Position Full (Capacity Reached)</span>
+            </button>
+            <p className="text-center text-xs text-slate-500 dark:text-slate-400">
+              All {required} seats for this position have been filled.
             </p>
           </div>
         )}
