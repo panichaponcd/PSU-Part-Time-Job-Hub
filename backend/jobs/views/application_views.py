@@ -1,6 +1,7 @@
 from rest_framework import viewsets
+from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from jobs.models import Application, Student
+from jobs.models import Application, Student, Job, JobStatus, ApplicationStatus
 from jobs.serializers import ApplicationSerializer
 
 class ApplicationViewSet(viewsets.ModelViewSet):
@@ -29,4 +30,27 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         return queryset
     
     def perform_create(self, serializer):
-        serializer.save(student=self.request.user.student_profile)
+        try:
+            student = self.request.user.student_profile
+        except Student.DoesNotExist:
+            raise ValidationError({'detail': 'Only registered students can apply for jobs.'})
+
+        job = serializer.validated_data.get('job')
+        if not job or not job.is_active or job.status != JobStatus.OPEN:
+            raise ValidationError({'detail': 'This job is not currently open for applications.'})
+
+        # Prevent duplicate applications by the same student
+        if Application.objects.filter(student=student, job=job).exists():
+            raise ValidationError({'detail': 'You have already applied for this position.'})
+
+        # Prevent applying to jobs that have reached full capacity
+        active_apps_count = Application.objects.filter(
+            job=job,
+            status__in=[ApplicationStatus.APPROVED, ApplicationStatus.PENDING]
+        ).count()
+
+        if job.required_amount > 0 and active_apps_count >= job.required_amount:
+            raise ValidationError({'detail': 'This position has reached full capacity.'})
+
+        serializer.save(student=student)
+
