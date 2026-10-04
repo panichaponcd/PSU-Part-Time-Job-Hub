@@ -26,17 +26,18 @@ export function KickApplicantModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
           onClick={!isKicking ? onClose : undefined}
           className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm cursor-pointer"
         />
 
         {/* Modal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="relative w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-2xl border border-white/60 dark:border-slate-800 z-10 space-y-4"
+          className="relative w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-2xl border border-white/60 dark:border-slate-800 z-10 space-y-4 transform-gpu will-change-[transform,opacity]"
         >
           {/* Header */}
           <div className="flex items-start gap-4">

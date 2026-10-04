@@ -1,19 +1,36 @@
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/psu-logo.svg';
 import { Button, Input, AppBackground, GlassCard } from '../components/ui';
 
 function SignIn() {
   const location = useLocation();
-  const successMessage = (location.state as any)?.message;
+  const [successMessage, setSuccessMessage] = useState<string | null>(
+    (location.state as any)?.message || null
+  );
   const navigate = useNavigate();
   const { login } = useAuth();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Clear location.state from browser history so it does not persist on page refresh
+    if ((location.state as any)?.message) {
+      window.history.replaceState({}, document.title);
+    }
+
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [location.state, successMessage]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -56,15 +73,20 @@ function SignIn() {
             </p>
           </div>
 
-          {successMessage && (
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-4 py-3 rounded-xl mb-4 text-center uppercase tracking-wider"
-            >
-              {successMessage}
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {successMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-4 py-3 rounded-xl mb-4 text-center tracking-wide transform-gpu flex items-center justify-center gap-2"
+              >
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                <span>{successMessage}</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {error && (
             <motion.div

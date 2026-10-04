@@ -29,9 +29,9 @@ function AdminLayout() {
       <AppBackground image={bgImage} />
 
       {/* Main Admin Content Container */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
-        {/* Left Sidebar for Desktop (1024px+) */}
-        <aside className="w-64 shrink-0 hidden lg:block">
+      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col xl:flex-row gap-6 xl:gap-8">
+        {/* Left Sidebar for Desktop (1280px+) */}
+        <aside className="w-64 shrink-0 hidden xl:block">
           <GlassCard variant="card" className="sticky top-24 overflow-hidden p-3.5 space-y-2">
             <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
               <span className="font-bold text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -60,8 +60,8 @@ function AdminLayout() {
           </GlassCard>
         </aside>
 
-        {/* Mobile & Tablet Sub-Navigation Header (<1024px) */}
-        <div className="lg:hidden w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-1.5 border border-white/60 dark:border-slate-800 shadow-md flex items-center gap-1.5">
+        {/* Mobile & Tablet Sub-Navigation Header (<1280px) */}
+        <div className="xl:hidden w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-1.5 border border-white/60 dark:border-slate-800 shadow-md flex items-center gap-1.5">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (

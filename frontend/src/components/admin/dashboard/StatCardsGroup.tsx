@@ -42,7 +42,7 @@ function StatCard({ icon, label, value, sub, badgeText, variant }: StatCardProps
         </div>
         {badgeText && (
           <span
-            className={`text-[10px] font-bold tracking-wider px-2.5 py-0.5 rounded-full uppercase ${currentVariant.badge}`}
+            className={`text-[10px] font-bold tracking-wider px-2.5 py-0.5 rounded-full uppercase whitespace-nowrap shrink-0 ${currentVariant.badge}`}
           >
             {badgeText}
           </span>
@@ -82,7 +82,7 @@ export function StatCardsGroup({
     applicantsCount > 0 ? `${Math.round((approvedCount / applicantsCount) * 100)}% rate` : undefined;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
       <StatCard
         icon={<Briefcase className="w-6 h-6" />}
         label="Active Listings"
