@@ -7,21 +7,15 @@ export default function BackToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY =
-        window.scrollY ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-      setIsVisible(scrollY > 40);
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      setIsVisible(scrollY > 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    document.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
