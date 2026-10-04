@@ -1,10 +1,9 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/psu-logo.svg';
-import { Button, Input, AppBackground, GlassCard } from '../components/ui';
+import { Button, Input, AppBackground, GlassCard, Toast } from '../components/ui';
 
 function SignIn() {
   const location = useLocation();
@@ -32,14 +31,7 @@ function SignIn() {
     if ((location.state as any)?.message) {
       window.history.replaceState({}, document.title);
     }
-
-    if (successMessage) {
-      const timer = setTimeout(() => {
-        setSuccessMessage(null);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [location.state, successMessage]);
+  }, [location.state]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -64,25 +56,8 @@ function SignIn() {
     <div className="relative min-h-[calc(100vh-72px)] flex items-center justify-center overflow-hidden py-12 px-4">
       <AppBackground />
 
-      {/* Floating Toast Notification (Zero Layout Shift on Form) */}
-      <AnimatePresence>
-        {successMessage && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -16, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed top-24 left-1/2 -translate-x-1/2 z-50 max-w-sm sm:max-w-md w-full px-4 pointer-events-none"
-          >
-            <div className="mx-auto w-fit px-5 py-3 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-emerald-500/30 dark:border-emerald-500/40 shadow-2xl flex items-center gap-3 text-sm font-semibold text-slate-800 dark:text-slate-100 pointer-events-auto">
-              <div className="w-7 h-7 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4" />
-              </div>
-              <span>{successMessage}</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Reusable Toast Notification */}
+      <Toast message={successMessage} onClose={() => setSuccessMessage(null)} />
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
