@@ -2,12 +2,11 @@ import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import logo from '../assets/psu-logo.svg';
-import { Button, Input, AppBackground, GlassCard, Toast } from '../components/ui';
+import { Button, Input, AppBackground, GlassCard, Toast, PsuLogo, ToastVariant } from '../components/ui';
 
 function SignIn() {
   const location = useLocation();
-  const [successMessage, setSuccessMessage] = useState<string | null>(() => {
+  const [toastMessage, setToastMessage] = useState<string | null>(() => {
     try {
       const toast = sessionStorage.getItem('auth_toast');
       if (toast) {
@@ -18,6 +17,19 @@ function SignIn() {
       // ignore
     }
     return (location.state as any)?.message || null;
+  });
+
+  const [toastVariant] = useState<ToastVariant>(() => {
+    try {
+      const variant = sessionStorage.getItem('auth_toast_variant') as ToastVariant | null;
+      if (variant) {
+        sessionStorage.removeItem('auth_toast_variant');
+        return variant;
+      }
+    } catch {
+      // ignore
+    }
+    return (location.state as any)?.variant || 'success';
   });
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -57,7 +69,11 @@ function SignIn() {
       <AppBackground />
 
       {/* Reusable Toast Notification */}
-      <Toast message={successMessage} onClose={() => setSuccessMessage(null)} />
+      <Toast
+        message={toastMessage}
+        variant={toastVariant}
+        onClose={() => setToastMessage(null)}
+      />
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
@@ -68,7 +84,7 @@ function SignIn() {
       >
         <GlassCard variant="container" className="p-8 sm:p-10">
           <div className="flex flex-col items-center mb-8">
-            <img src={logo} alt="PSU Logo" className="h-16 w-auto mb-3 drop-shadow-sm" />
+            <PsuLogo className="h-16 w-auto mb-3 drop-shadow-sm" />
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
               Part-time Job Hub
             </h1>

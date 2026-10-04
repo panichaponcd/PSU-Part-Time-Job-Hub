@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, StudentProfile, UserRole } from '../types/user';
-
-import { api } from '../utils/api';
+import { api, isJwtExpired } from '../utils/api';
 
 interface AuthContextType {
   user: User | null;
@@ -25,24 +24,124 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [student, setStudent] = useState<StudentProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    // Check if user is already logged in on page load
-    const token = localStorage.getItem('access_token');
-    const savedUser = localStorage.getItem('user');
-    const savedRole = localStorage.getItem('role') as UserRole | null;
-    const savedStudent = localStorage.getItem('student');
+  const logout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('role');
+    localStorage.removeItem('student');
+    setUser(null);
+    setRole(null);
+    setStudent(null);
+  };
 
-    if (token && savedUser) {
+  const triggerSessionExpired = () => {
+    try {
+      sessionStorage.setItem('auth_toast', 'Your session has expired. Please sign in again.');
+      sessionStorage.setItem('auth_toast_variant', 'warning');
+    } catch {
+      // ignore
+    }
+    logout();
+    if (
+      typeof window !== 'undefined' &&
+      !window.location.pathname.startsWith('/signin') &&
+      !window.location.pathname.startsWith('/register')
+    ) {
+      window.location.href = '/signin';
+    }
+  };
+
+  const refreshAccessToken = async (): Promise<string | null> => {
+    const refreshToken = localStorage.getItem('refresh_token');
+    if (!refreshToken) return null;
+
+    try {
+      const response = await api.post('/auth/refresh/', { refresh: refreshToken });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('access_token', data.access);
+        return data.access;
+      } else if (response.status === 401) {
+        triggerSessionExpired();
+      }
+    } catch (err) {
+      console.error('Token refresh failed', err);
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    const handleExpiredEvent = () => {
+      setUser(null);
+      setRole(null);
+      setStudent(null);
+    };
+    window.addEventListener('auth:session_expired', handleExpiredEvent);
+
+    const checkSession = async () => {
+      const token = localStorage.getItem('access_token');
+      const savedUser = localStorage.getItem('user');
+      const savedRole = localStorage.getItem('role') as UserRole | null;
+      const savedStudent = localStorage.getItem('student');
+
+      if (!token || !savedUser) {
+        setLoading(false);
+        return;
+      }
+
+      if (isJwtExpired(token)) {
+        const refreshToken = localStorage.getItem('refresh_token');
+        if (!refreshToken || isJwtExpired(refreshToken)) {
+          triggerSessionExpired();
+          setLoading(false);
+          return;
+        }
+
+        const newAccess = await refreshAccessToken();
+        if (!newAccess) {
+          triggerSessionExpired();
+          setLoading(false);
+          return;
+        }
+      }
+
       try {
         setUser(JSON.parse(savedUser));
         setRole(savedRole);
         setStudent(savedStudent && savedStudent !== 'undefined' ? JSON.parse(savedStudent) : null);
       } catch (e) {
         console.error('Failed to parse auth data', e);
-        logout(); // Clear corrupted data
+        logout();
       }
-    }
-    setLoading(false);
+      setLoading(false);
+    };
+
+    checkSession();
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const token = localStorage.getItem('access_token');
+        if (token && isJwtExpired(token)) {
+          const refreshToken = localStorage.getItem('refresh_token');
+          if (!refreshToken || isJwtExpired(refreshToken)) {
+            triggerSessionExpired();
+          } else {
+            refreshAccessToken().then((newAccess) => {
+              if (!newAccess) triggerSessionExpired();
+            });
+          }
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('auth:session_expired', handleExpiredEvent);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const login = async (identifier: string, password: string): Promise<UserRole> => {
@@ -70,36 +169,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return data.role;
   };
 
-  const logout = () => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('role');
-    localStorage.removeItem('student');
-    setUser(null);
-    setRole(null);
-    setStudent(null);
-  };
-
-  const refreshAccessToken = async (): Promise<string | null> => {
-    const refreshToken = localStorage.getItem('refresh_token');
-    if (!refreshToken) return null;
-
-    try {
-      const response = await api.post('/auth/refresh/', { refresh: refreshToken });
-
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('access_token', data.access);
-        return data.access;
-      } else if (response.status === 401) {
-        logout(); // Refresh token expired, force re-login
-      }
-    } catch (err) {
-      console.error('Token refresh failed', err);
-    }
-    return null;
-  };
 
   const getToken = () => localStorage.getItem('access_token');
 

@@ -1,9 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import logo from '../assets/psu-logo.svg';
 import { api } from '../utils/api';
-import { Button, Input, AppBackground, GlassCard } from '../components/ui';
+import { Button, Input, AppBackground, GlassCard, PsuLogo } from '../components/ui';
 
 const FACULTIES = [
   'Faculty of Hospitality and Tourism',
@@ -79,7 +78,7 @@ function Register() {
       >
         <GlassCard variant="container" className="p-8 sm:p-10">
           <div className="flex flex-col items-center mb-8">
-            <img src={logo} alt="PSU Logo" className="h-14 w-auto mb-3" />
+            <PsuLogo className="h-14 w-auto mb-3 drop-shadow-sm" />
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
               Create Account
             </h1>

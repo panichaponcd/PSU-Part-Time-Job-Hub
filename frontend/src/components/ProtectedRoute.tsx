@@ -19,7 +19,7 @@ export function RequireAdmin({ children }: ProtectedRouteProps) {
   const { isLoggedIn, isAdmin } = useAuth();
   const location = useLocation();
   if (!isLoggedIn()) return <Navigate to="/signin" state={location.state} replace />;
-  if (!isAdmin()) return <Navigate to="/" replace />;
+  if (!isAdmin()) return <Navigate to="/jobs" replace />;
   return children;
 }
 
