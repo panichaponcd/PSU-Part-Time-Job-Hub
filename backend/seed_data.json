@@ -39,7 +39,7 @@
   "model": "auth.user",
   "pk": 5,
   "fields": {
-    "password": "pbkdf2_sha256$600000$RC0w54FPpBZacaqqEt1GHl$+PDgFVotjn+s2KdH2skeEkuHPJfxdZDs4gBDl1B5iTY=",
+    "password": "pbkdf2_sha256$600000$5XFKONbAXZhHHpB2Dg7Wld$9nVsoCrgi+UjhIy69BvCq54vEkj2iT+LEJ7mlHgc9pE=",
     "last_login": null,
     "is_superuser": false,
     "username": "staff",
@@ -55,9 +55,9 @@
 },
 {
   "model": "auth.user",
-  "pk": 19,
+  "pk": 33,
   "fields": {
-    "password": "pbkdf2_sha256$600000$Q4k8nS9fWgppx9NMbMJQrW$K/07NQ2OFvm1GKGqSKRakXEqnDjfa/0kMqoxEsU7VOI=",
+    "password": "pbkdf2_sha256$600000$HY5kiwquDCAQQb2J4lHPJ9$KkHGJ8hH/GrqUAxgbalUgX/41BvCM+1NYQSV9sJx3is=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613009",
@@ -66,16 +66,16 @@
     "email": "s6630613009@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:51.947Z",
+    "date_joined": "2026-10-04T14:05:28.849Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 20,
+  "pk": 34,
   "fields": {
-    "password": "pbkdf2_sha256$600000$vdcs1mOFKnVDjIhqXGUg7v$nZv/2mlNpPHHMHMBBRakKgZok3gfP2/By+7aTGhFOPE=",
+    "password": "pbkdf2_sha256$600000$wpEJnI6wbZYwPJ5nzjlwtx$QrPZb5t2MW1beTtFAmudXdgAOL+jUu9JIkO7oM/9llk=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613001",
@@ -84,16 +84,16 @@
     "email": "s6630613001@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:52.098Z",
+    "date_joined": "2026-10-04T14:05:28.999Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 21,
+  "pk": 35,
   "fields": {
-    "password": "pbkdf2_sha256$600000$Abf85hyAlFGXOnoZ6EeCTD$kn+yw5km3ZIxETbnoDEEhGdGskgpFmvSltrmQGWLOuc=",
+    "password": "pbkdf2_sha256$600000$i0MrTiABtEcmr53ozURFDU$N1ubEwVmcPrD58b75ZRX1ED8LHMiyFeQ6fbTOzOQfFQ=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613002",
@@ -102,16 +102,16 @@
     "email": "s6630613002@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:52.252Z",
+    "date_joined": "2026-10-04T14:05:29.155Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 22,
+  "pk": 36,
   "fields": {
-    "password": "pbkdf2_sha256$600000$KkYKgv7oTS01Sde581QuJW$sVaGQDYvAtC02vAl/A8pWniJbaOQ8zjQ8UU9+cUJrSk=",
+    "password": "pbkdf2_sha256$600000$p35GRNrfVM2O3A7PosaXg7$pCn687VXZ+Cu8alXELLnkayM6ltb88IKXmdfVOVu2Hw=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613003",
@@ -120,16 +120,16 @@
     "email": "s6630613003@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:52.406Z",
+    "date_joined": "2026-10-04T14:05:29.309Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 23,
+  "pk": 37,
   "fields": {
-    "password": "pbkdf2_sha256$600000$O52j9lv4G4roA7QqBbye4v$+5U9bxn5s4JjtkqDlednRD0NqabBxOhw688Apq1tJjQ=",
+    "password": "pbkdf2_sha256$600000$aBazavbDbZZb35PnvlRVRt$Rba+ciwtncwYbeDYLFtsV5fnB9N7mw3Zp209n7yxFhc=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613004",
@@ -138,16 +138,16 @@
     "email": "s6630613004@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:52.559Z",
+    "date_joined": "2026-10-04T14:05:29.465Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 24,
+  "pk": 38,
   "fields": {
-    "password": "pbkdf2_sha256$600000$dpe4pdjGfRZtGiJrzLVv0s$1KAiTsoM+wIelb9t/Gj3VkjiWoWThToJCfMulj0dH2E=",
+    "password": "pbkdf2_sha256$600000$HyPRAx9DWAqPx3Hl6w4OGH$u9hfTDmgIHldXNW8m483BcXdlWEFQB/nm/k303MDJqA=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613005",
@@ -156,16 +156,16 @@
     "email": "s6630613005@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:52.711Z",
+    "date_joined": "2026-10-04T14:05:29.619Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 25,
+  "pk": 39,
   "fields": {
-    "password": "pbkdf2_sha256$600000$i0r5tomtTImcNXbRvAQDq0$/34MZpzyhAnJ8WojwTbO+2vDTMBLtn6JK0jQHQfHOoQ=",
+    "password": "pbkdf2_sha256$600000$ROdz93o7a0NR09eGqbuzF9$+EXod9UW3vl2uv12BP+/Qh7gphrza2l15rOEf64qdKE=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613006",
@@ -174,16 +174,16 @@
     "email": "s6630613006@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:52.861Z",
+    "date_joined": "2026-10-04T14:05:29.773Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 26,
+  "pk": 40,
   "fields": {
-    "password": "pbkdf2_sha256$600000$ZpcyzHm366RGPSNQUZWNLr$G6R0g07G10ZT0NywHIVES6Fy3uH+2n38fIcwAq8cMwc=",
+    "password": "pbkdf2_sha256$600000$NPOQ4ITWGGZSm7soIP1Ikt$xOA3osVOgD8LOSXQMWsb4icJ8zFSB4ip15wc3aV+mCI=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613007",
@@ -192,16 +192,16 @@
     "email": "s6630613007@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:53.015Z",
+    "date_joined": "2026-10-04T14:05:29.927Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 27,
+  "pk": 41,
   "fields": {
-    "password": "pbkdf2_sha256$600000$LLZlllG2n1oBcr26IL3yv4$JITZVtqZQhtuLZWgsmpzBUpqNi3XwlEv6g7aD6bjQps=",
+    "password": "pbkdf2_sha256$600000$uzwk1ndPZfTTg8WDDxzTyf$+udz3RbqT+ii7jwgOiWGLUCsqmstaIyq9G43fMEtVfw=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613008",
@@ -210,16 +210,16 @@
     "email": "s6630613008@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:53.167Z",
+    "date_joined": "2026-10-04T14:05:30.078Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 28,
+  "pk": 42,
   "fields": {
-    "password": "pbkdf2_sha256$600000$wKpJH3zrfXOTXZCWq8JgJj$Xf//v4/IDD4cSgZ51XqaHRRE4pjOLeGouV9BNepu8xM=",
+    "password": "pbkdf2_sha256$600000$gsfPvftQg1qcMFz4IXwpbT$XOpXvSwuizf+0OwvIsa1KC+hOVTGO1WtjRXsxSCFwlU=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613010",
@@ -228,16 +228,16 @@
     "email": "s6630613010@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:53.319Z",
+    "date_joined": "2026-10-04T14:05:30.231Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 29,
+  "pk": 43,
   "fields": {
-    "password": "pbkdf2_sha256$600000$3tVfVcSJMLOD0ciJvl8YGK$pacdbkW1FApeKJ+62iUqh5/69gRCr31lPEFCCXqECgY=",
+    "password": "pbkdf2_sha256$600000$l5IpKofwUsl347fwxOHblz$eg+CHBJ8WszfukIif5ukQTUT0mN4KGi0Lcmozwqf4fQ=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613014",
@@ -246,16 +246,16 @@
     "email": "s6630613014@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:53.473Z",
+    "date_joined": "2026-10-04T14:05:30.384Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 30,
+  "pk": 44,
   "fields": {
-    "password": "pbkdf2_sha256$600000$TfGH911nEyjfKRqW0fNLrl$gsYSuMJnqhSqvJ4eFu4SDwBtETiGOCdyanjv3Czqrnk=",
+    "password": "pbkdf2_sha256$600000$UJ5anIM1WXm9YbnGrl5PDV$BpRlPqOXWXvAWjf2e349s6O+Z1iCu/6RiFec+4CrBmQ=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613011",
@@ -264,16 +264,16 @@
     "email": "s6630613011@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:53.647Z",
+    "date_joined": "2026-10-04T14:05:30.536Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 31,
+  "pk": 45,
   "fields": {
-    "password": "pbkdf2_sha256$600000$GYil3dUTbXGsqvy0gwA0Q1$MBwnUmInH3SDc+9nUmHyiLAoyeGqSrXLljA9sJoRiCw=",
+    "password": "pbkdf2_sha256$600000$73g9d8187z1rUi6nDhyHxx$KmZnGrQUl3b2zl83nwM3XPOmaOSZmG5rDFeaE1weAEw=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613012",
@@ -282,16 +282,16 @@
     "email": "s6630613012@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:53.801Z",
+    "date_joined": "2026-10-04T14:05:30.688Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "auth.user",
-  "pk": 32,
+  "pk": 46,
   "fields": {
-    "password": "pbkdf2_sha256$600000$vl14R9eIfYbsEJdJPbTtNZ$t7uHIe2u7LXgivsJfcE4dpR98M3nVeFEfZxlZB9EHSk=",
+    "password": "pbkdf2_sha256$600000$iyieSDed3tC0W1rAL0g0k9$uCQrIdbVNWt/YI07rzTt5DigFR2vLIKfKBivQntXkLM=",
     "last_login": null,
     "is_superuser": false,
     "username": "6630613013",
@@ -300,16 +300,16 @@
     "email": "s6630613013@phuket.psu.ac.th",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2026-10-04T13:57:53.956Z",
+    "date_joined": "2026-10-04T14:05:30.839Z",
     "groups": [],
     "user_permissions": []
   }
 },
 {
   "model": "jobs.student",
-  "pk": 17,
+  "pk": 31,
   "fields": {
-    "user": 19,
+    "user": 33,
     "first_name": "Panichapon",
     "last_name": "Chatdaeng",
     "student_id": "6630613009",
@@ -322,9 +322,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 18,
+  "pk": 32,
   "fields": {
-    "user": 20,
+    "user": 34,
     "first_name": "Somchai",
     "last_name": "Prasert",
     "student_id": "6630613001",
@@ -337,9 +337,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 19,
+  "pk": 33,
   "fields": {
-    "user": 21,
+    "user": 35,
     "first_name": "Nattapong",
     "last_name": "Sukchai",
     "student_id": "6630613002",
@@ -352,9 +352,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 20,
+  "pk": 34,
   "fields": {
-    "user": 22,
+    "user": 36,
     "first_name": "Kanya",
     "last_name": "Wongsuwan",
     "student_id": "6630613003",
@@ -367,9 +367,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 21,
+  "pk": 35,
   "fields": {
-    "user": 23,
+    "user": 37,
     "first_name": "Lin",
     "last_name": "Wei",
     "student_id": "6630613004",
@@ -382,9 +382,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 22,
+  "pk": 36,
   "fields": {
-    "user": 24,
+    "user": 38,
     "first_name": "Emily",
     "last_name": "Watson",
     "student_id": "6630613005",
@@ -397,9 +397,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 23,
+  "pk": 37,
   "fields": {
-    "user": 25,
+    "user": 39,
     "first_name": "Pimchanok",
     "last_name": "Boonmee",
     "student_id": "6630613006",
@@ -412,9 +412,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 24,
+  "pk": 38,
   "fields": {
-    "user": 26,
+    "user": 40,
     "first_name": "Siriporn",
     "last_name": "Saetang",
     "student_id": "6630613007",
@@ -427,9 +427,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 25,
+  "pk": 39,
   "fields": {
-    "user": 27,
+    "user": 41,
     "first_name": "Thanakorn",
     "last_name": "Jaidee",
     "student_id": "6630613008",
@@ -442,9 +442,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 26,
+  "pk": 40,
   "fields": {
-    "user": 28,
+    "user": 42,
     "first_name": "Muhammad",
     "last_name": "Ibrahim",
     "student_id": "6630613010",
@@ -457,9 +457,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 27,
+  "pk": 41,
   "fields": {
-    "user": 29,
+    "user": 43,
     "first_name": "Sornsawan",
     "last_name": "Meesuk",
     "student_id": "6630613014",
@@ -472,9 +472,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 28,
+  "pk": 42,
   "fields": {
-    "user": 30,
+    "user": 44,
     "first_name": "Ananya",
     "last_name": "Charoenrat",
     "student_id": "6630613011",
@@ -487,9 +487,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 29,
+  "pk": 43,
   "fields": {
-    "user": 31,
+    "user": 45,
     "first_name": "Chaiwat",
     "last_name": "Rattanasiri",
     "student_id": "6630613012",
@@ -502,9 +502,9 @@
 },
 {
   "model": "jobs.student",
-  "pk": 30,
+  "pk": 44,
   "fields": {
-    "user": 32,
+    "user": 46,
     "first_name": "Farida",
     "last_name": "Yusof",
     "student_id": "6630613013",
@@ -517,7 +517,7 @@
 },
 {
   "model": "jobs.job",
-  "pk": 37,
+  "pk": 51,
   "fields": {
     "title": "Library Student Assistant",
     "organization_name": "PSU Phuket Central Library",
@@ -529,15 +529,15 @@
     "status": "OPEN",
     "academic_term": 2,
     "academic_year": 2569,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-library",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.111Z"
+    "created_at": "2026-10-04T14:05:30.994Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 38,
+  "pk": 52,
   "fields": {
     "title": "Student IT Helpdesk & Lab Attendant",
     "organization_name": "College of Computing",
@@ -549,15 +549,15 @@
     "status": "OPEN",
     "academic_term": 2,
     "academic_year": 2569,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-it",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.113Z"
+    "created_at": "2026-10-04T14:05:30.997Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 39,
+  "pk": 53,
   "fields": {
     "title": "PSU Open House Campus Ambassador",
     "organization_name": "Division of Student Development",
@@ -572,12 +572,12 @@
     "poster_image_url": null,
     "line_group_url": "https://line.me/ti/g/example-openhouse",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.115Z"
+    "created_at": "2026-10-04T14:05:30.999Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 40,
+  "pk": 54,
   "fields": {
     "title": "Sports Complex & Gym Attendant",
     "organization_name": "Student Affairs & Sports Center",
@@ -589,15 +589,15 @@
     "status": "OPEN",
     "academic_term": 2,
     "academic_year": 2569,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-gym",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.117Z"
+    "created_at": "2026-10-04T14:05:31.001Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 41,
+  "pk": 55,
   "fields": {
     "title": "International Conference Registration Staff",
     "organization_name": "Faculty of International Studies",
@@ -612,12 +612,12 @@
     "poster_image_url": null,
     "line_group_url": "https://line.me/ti/g/example-conf",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.120Z"
+    "created_at": "2026-10-04T14:05:31.003Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 42,
+  "pk": 56,
   "fields": {
     "title": "Eco-Campus Greenery & Waste Audit Assistant",
     "organization_name": "Faculty of Technology & Environment",
@@ -629,15 +629,15 @@
     "status": "OPEN",
     "academic_term": 1,
     "academic_year": 2569,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-eco",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.121Z"
+    "created_at": "2026-10-04T14:05:31.005Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 43,
+  "pk": 57,
   "fields": {
     "title": "Language Experience Workshop Support",
     "organization_name": "Student Development & Alumni Relations",
@@ -649,15 +649,15 @@
     "status": "COMPLETED",
     "academic_term": 2,
     "academic_year": 2568,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-lang",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.122Z"
+    "created_at": "2026-10-04T14:05:31.006Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 44,
+  "pk": 58,
   "fields": {
     "title": "Audio-Visual Sound & Stage Technician",
     "organization_name": "Professional Sound Co. / PSU Events",
@@ -669,15 +669,175 @@
     "status": "CLOSED",
     "academic_term": 2,
     "academic_year": 2568,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-av",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.124Z"
+    "created_at": "2026-10-04T14:05:31.008Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 45,
+  "pk": 59,
+  "fields": {
+    "title": "Campus Coffee Corner Barista & Cashier",
+    "organization_name": "Faculty of Hospitality & Tourism (FHT)",
+    "description": "Prepare espresso beverages, operate POS register, sanitize cafe counter tables, and manage beverage stock inventory.",
+    "location_type": "Building 5 Ground Floor Cafe",
+    "job_type": "INTERNAL",
+    "compensation_amount": "360.00",
+    "required_amount": 3,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80",
+    "line_group_url": "https://line.me/ti/g/example-cafe",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.009Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 60,
+  "fields": {
+    "title": "Student Affairs Graphic Design & Poster Creator",
+    "organization_name": "Division of Student Affairs",
+    "description": "Design promotional event posters, social media banners, and infographics for upcoming campus extracurricular activities.",
+    "location_type": "Student Union Office / Remote",
+    "job_type": "INTERNAL",
+    "compensation_amount": "500.00",
+    "required_amount": 2,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80",
+    "line_group_url": "https://line.me/ti/g/example-graphic",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.011Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 61,
+  "fields": {
+    "title": "PSU Swimming Pool Lifeguard & Safety Monitor",
+    "organization_name": "Campus Physical Education & Recreation",
+    "description": "Supervise lap swimming sessions, verify water quality parameters, test life rings, and enforce pool safety regulations.",
+    "location_type": "PSU Phuket Olympic Swimming Pool",
+    "job_type": "INTERNAL",
+    "compensation_amount": "450.00",
+    "required_amount": 3,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-pool",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.012Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 62,
+  "fields": {
+    "title": "Registrar Office Document Scanning Clerk",
+    "organization_name": "Academic Services & Registrar Office",
+    "description": "Scan and index historical student graduation records, digitize paper transcripts, and perform optical character recognition checks.",
+    "location_type": "President Building 1st Floor",
+    "job_type": "INTERNAL",
+    "compensation_amount": "320.00",
+    "required_amount": 2,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-reg",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.013Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 63,
+  "fields": {
+    "title": "Botanical Greenhouse Flora Research Assistant",
+    "organization_name": "Faculty of Technology & Environment (FTE)",
+    "description": "Monitor soil moisture sensors, water native mangrove flora specimens, and catalog weekly biological plant growth measurements.",
+    "location_type": "FTE Botanical Research Nursery",
+    "job_type": "INTERNAL",
+    "compensation_amount": "350.00",
+    "required_amount": 2,
+    "status": "OPEN",
+    "academic_term": 1,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-flora",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.015Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 64,
+  "fields": {
+    "title": "Student Dormitory Night Study Hall Proctor",
+    "organization_name": "Student Housing Management Office",
+    "description": "Maintain quiet study atmosphere, inspect air-conditioning timers, and verify resident sign-ins during final exam week.",
+    "location_type": "Dormitory Building 2 Common Room",
+    "job_type": "INTERNAL",
+    "compensation_amount": "300.00",
+    "required_amount": 2,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2568,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-dorm",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.016Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 65,
+  "fields": {
+    "title": "International Campus Tour Guide for ASEAN Delegates",
+    "organization_name": "International Affairs Center (IAC)",
+    "description": "Escort visiting ASEAN university delegates, present campus landmark histories in English, and coordinate protocol lunch seating.",
+    "location_type": "International Affairs Center Building 3",
+    "job_type": "INTERNAL",
+    "compensation_amount": "550.00",
+    "required_amount": 3,
+    "status": "IN_PROGRESS",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-tour",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.017Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 66,
+  "fields": {
+    "title": "University Bookstore Textbook Stock Clerk",
+    "organization_name": "PSU Cooperative Bookstore",
+    "description": "Unbox incoming semester textbooks, affix barcode labels, organize academic stationery aisles, and assist customer inquiries.",
+    "location_type": "Student Union 1st Floor Bookstore",
+    "job_type": "INTERNAL",
+    "compensation_amount": "320.00",
+    "required_amount": 2,
+    "status": "CLOSED",
+    "academic_term": 1,
+    "academic_year": 2568,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-books",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.019Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 67,
   "fields": {
     "title": "Andamanda Phuket Songkran Festival Crew",
     "organization_name": "Andamanda Water Park Phuket",
@@ -692,12 +852,12 @@
     "poster_image_url": null,
     "line_group_url": "https://line.me/ti/g/example-andamanda",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.125Z"
+    "created_at": "2026-10-04T14:05:31.020Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 46,
+  "pk": 68,
   "fields": {
     "title": "Central Phuket International Food Fair Staff",
     "organization_name": "Central Phuket Floresta",
@@ -712,12 +872,12 @@
     "poster_image_url": null,
     "line_group_url": "https://line.me/ti/g/example-central",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.127Z"
+    "created_at": "2026-10-04T14:05:31.022Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 47,
+  "pk": 69,
   "fields": {
     "title": "Phuket Marathon Route & Hydration Marshal",
     "organization_name": "Laguna Phuket Triathlon Org",
@@ -729,15 +889,15 @@
     "status": "OPEN",
     "academic_term": 1,
     "academic_year": 2569,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-marathon",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.129Z"
+    "created_at": "2026-10-04T14:05:31.024Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 48,
+  "pk": 70,
   "fields": {
     "title": "Old Phuket Town Cultural Street Fair Coordinator",
     "organization_name": "Phuket Heritage & Tourism Board",
@@ -752,12 +912,12 @@
     "poster_image_url": null,
     "line_group_url": "https://line.me/ti/g/example-heritage",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.130Z"
+    "created_at": "2026-10-04T14:05:31.025Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 49,
+  "pk": 71,
   "fields": {
     "title": "Municipal Election Unit Volunteer",
     "organization_name": "Municipality of Ratsada",
@@ -772,12 +932,12 @@
     "poster_image_url": null,
     "line_group_url": "https://line.me/ti/g/example-election",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.132Z"
+    "created_at": "2026-10-04T14:05:31.027Z"
   }
 },
 {
   "model": "jobs.job",
-  "pk": 50,
+  "pk": 72,
   "fields": {
     "title": "EDC Electronic Music Festival Event Crew",
     "organization_name": "Insomniac Asia Entertainment",
@@ -789,17 +949,177 @@
     "status": "COMPLETED",
     "academic_term": 1,
     "academic_year": 2568,
-    "poster_image_url": null,
+    "poster_image_url": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
     "line_group_url": "https://line.me/ti/g/example-edc",
     "is_active": true,
-    "created_at": "2026-10-04T13:57:54.133Z"
+    "created_at": "2026-10-04T14:05:31.028Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 73,
+  "fields": {
+    "title": "Laguna Phuket Golf Championship Scorekeeper",
+    "organization_name": "Laguna Golf Club Phuket",
+    "description": "Accompany professional golf flights, input real-time hole strokes onto tablet scoring system, and post leaderboard updates.",
+    "location_type": "Laguna Golf Course, Cherngtalay",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "850.00",
+    "required_amount": 4,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-golf",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.029Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 74,
+  "fields": {
+    "title": "Phuket International Boat Show Marina Expo Usher",
+    "organization_name": "Royal Phuket Marina Exhibition",
+    "description": "Greet high-net-worth yacht visitors, manage pier pontoon access passes, and assist VIP lounge champagne service.",
+    "location_type": "Royal Phuket Marina, Koh Kaew",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "750.00",
+    "required_amount": 4,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-yacht",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.031Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 75,
+  "fields": {
+    "title": "Patong Beach Marine Conservation Volunteer",
+    "organization_name": "Phuket Marine Biological Center (PMBC)",
+    "description": "Lead beach microplastic screening with community volunteers, document coral debris, and distribute educational leaflets.",
+    "location_type": "Patong Beachfront Promenade",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "400.00",
+    "required_amount": 5,
+    "status": "OPEN",
+    "academic_term": 1,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-patong",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.032Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 76,
+  "fields": {
+    "title": "Kata Rocks Luxury Culinary Showcase Assistant",
+    "organization_name": "Kata Rocks Resort & Residences",
+    "description": "Support Michelin-star guest chef prep stations, polish wine glasses, distribute canapé trays, and verify guest wristbands.",
+    "location_type": "Kata Rocks Oceanfront Terrace",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "800.00",
+    "required_amount": 3,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-katarocks",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.033Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 77,
+  "fields": {
+    "title": "Bang Tao Night Market Parking & Traffic Marshal",
+    "organization_name": "Cherngtalay Subdistrict Organization",
+    "description": "Direct tourist motorbikes and taxis into parking bays, manage crosswalk pedestrian safety, and assist traffic police.",
+    "location_type": "Bang Tao Night Market Grounds",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "450.00",
+    "required_amount": 3,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-traffic",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.034Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 78,
+  "fields": {
+    "title": "Phuket International Airport Tourist Hospitality Greeter",
+    "organization_name": "Airports of Thailand (AOT) Phuket",
+    "description": "Assist international arrivals with customs queue direction, answer transit bus queries, and distribute Phuket safety guides.",
+    "location_type": "HKT Airport International Terminal",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "650.00",
+    "required_amount": 4,
+    "status": "IN_PROGRESS",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-airport",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.036Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 79,
+  "fields": {
+    "title": "Old Town Heritage Walk English & Chinese Interpreter",
+    "organization_name": "Phuket Baba Heritage Association",
+    "description": "Lead 45-minute walking history tours through Soi Rommanee, explaining Sino-Portuguese architecture to foreign tourists.",
+    "location_type": "Soi Rommanee & Krabi Road, Old Town",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "600.00",
+    "required_amount": 3,
+    "status": "OPEN",
+    "academic_term": 2,
+    "academic_year": 2569,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-babawalk",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.037Z"
+  }
+},
+{
+  "model": "jobs.job",
+  "pk": 80,
+  "fields": {
+    "title": "Phuket Aquarium Marine Habitat Volunteer",
+    "organization_name": "Department of Marine and Coastal Resources",
+    "description": "Assist marine biologists with food preparation for sea turtles, clean filtration screens, and guide school field trip groups.",
+    "location_type": "Cape Panwa Phuket Aquarium",
+    "job_type": "EXTERNAL",
+    "compensation_amount": "500.00",
+    "required_amount": 3,
+    "status": "COMPLETED",
+    "academic_term": 1,
+    "academic_year": 2568,
+    "poster_image_url": null,
+    "line_group_url": "https://line.me/ti/g/example-aquarium",
+    "is_active": true,
+    "created_at": "2026-10-04T14:05:31.038Z"
   }
 },
 {
   "model": "jobs.workschedule",
-  "pk": 146,
+  "pk": 166,
   "fields": {
-    "job": 37,
+    "job": 51,
     "date": "2026-10-12",
     "start_time": "09:00:00",
     "end_time": "16:00:00"
@@ -807,9 +1127,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 147,
+  "pk": 167,
   "fields": {
-    "job": 37,
+    "job": 51,
     "date": "2026-10-13",
     "start_time": "09:00:00",
     "end_time": "16:00:00"
@@ -817,9 +1137,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 148,
+  "pk": 168,
   "fields": {
-    "job": 38,
+    "job": 52,
     "date": "2026-10-15",
     "start_time": "08:30:00",
     "end_time": "16:30:00"
@@ -827,9 +1147,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 149,
+  "pk": 169,
   "fields": {
-    "job": 38,
+    "job": 52,
     "date": "2026-10-16",
     "start_time": "08:30:00",
     "end_time": "16:30:00"
@@ -837,9 +1157,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 150,
+  "pk": 170,
   "fields": {
-    "job": 39,
+    "job": 53,
     "date": "2026-11-05",
     "start_time": "08:00:00",
     "end_time": "17:00:00"
@@ -847,9 +1167,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 151,
+  "pk": 171,
   "fields": {
-    "job": 39,
+    "job": 53,
     "date": "2026-11-06",
     "start_time": "08:00:00",
     "end_time": "17:00:00"
@@ -857,9 +1177,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 152,
+  "pk": 172,
   "fields": {
-    "job": 40,
+    "job": 54,
     "date": "2026-10-20",
     "start_time": "16:00:00",
     "end_time": "20:00:00"
@@ -867,9 +1187,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 153,
+  "pk": 173,
   "fields": {
-    "job": 40,
+    "job": 54,
     "date": "2026-10-21",
     "start_time": "16:00:00",
     "end_time": "20:00:00"
@@ -877,9 +1197,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 154,
+  "pk": 174,
   "fields": {
-    "job": 41,
+    "job": 55,
     "date": "2026-09-28",
     "start_time": "08:00:00",
     "end_time": "16:30:00"
@@ -887,9 +1207,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 155,
+  "pk": 175,
   "fields": {
-    "job": 42,
+    "job": 56,
     "date": "2026-07-10",
     "start_time": "09:00:00",
     "end_time": "15:00:00"
@@ -897,9 +1217,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 156,
+  "pk": 176,
   "fields": {
-    "job": 43,
+    "job": 57,
     "date": "2025-11-14",
     "start_time": "13:00:00",
     "end_time": "17:00:00"
@@ -907,9 +1227,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 157,
+  "pk": 177,
   "fields": {
-    "job": 44,
+    "job": 58,
     "date": "2025-12-10",
     "start_time": "10:00:00",
     "end_time": "19:00:00"
@@ -917,9 +1237,99 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 158,
+  "pk": 178,
   "fields": {
-    "job": 45,
+    "job": 59,
+    "date": "2026-10-18",
+    "start_time": "08:00:00",
+    "end_time": "13:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 179,
+  "fields": {
+    "job": 59,
+    "date": "2026-10-19",
+    "start_time": "12:00:00",
+    "end_time": "17:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 180,
+  "fields": {
+    "job": 60,
+    "date": "2026-10-22",
+    "start_time": "10:00:00",
+    "end_time": "16:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 181,
+  "fields": {
+    "job": 61,
+    "date": "2026-10-28",
+    "start_time": "15:30:00",
+    "end_time": "19:30:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 182,
+  "fields": {
+    "job": 62,
+    "date": "2026-11-02",
+    "start_time": "09:00:00",
+    "end_time": "16:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 183,
+  "fields": {
+    "job": 63,
+    "date": "2026-07-18",
+    "start_time": "08:30:00",
+    "end_time": "12:30:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 184,
+  "fields": {
+    "job": 64,
+    "date": "2026-03-02",
+    "start_time": "19:00:00",
+    "end_time": "23:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 185,
+  "fields": {
+    "job": 65,
+    "date": "2026-10-08",
+    "start_time": "09:00:00",
+    "end_time": "15:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 186,
+  "fields": {
+    "job": 66,
+    "date": "2025-06-20",
+    "start_time": "10:00:00",
+    "end_time": "17:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 187,
+  "fields": {
+    "job": 67,
     "date": "2026-04-13",
     "start_time": "10:00:00",
     "end_time": "18:00:00"
@@ -927,9 +1337,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 159,
+  "pk": 188,
   "fields": {
-    "job": 45,
+    "job": 67,
     "date": "2026-04-14",
     "start_time": "10:00:00",
     "end_time": "18:00:00"
@@ -937,9 +1347,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 160,
+  "pk": 189,
   "fields": {
-    "job": 46,
+    "job": 68,
     "date": "2026-10-24",
     "start_time": "11:00:00",
     "end_time": "19:00:00"
@@ -947,9 +1357,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 161,
+  "pk": 190,
   "fields": {
-    "job": 46,
+    "job": 68,
     "date": "2026-10-25",
     "start_time": "11:00:00",
     "end_time": "19:00:00"
@@ -957,9 +1367,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 162,
+  "pk": 191,
   "fields": {
-    "job": 47,
+    "job": 69,
     "date": "2026-06-07",
     "start_time": "04:00:00",
     "end_time": "11:00:00"
@@ -967,9 +1377,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 163,
+  "pk": 192,
   "fields": {
-    "job": 48,
+    "job": 70,
     "date": "2026-10-04",
     "start_time": "15:00:00",
     "end_time": "22:00:00"
@@ -977,9 +1387,9 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 164,
+  "pk": 193,
   "fields": {
-    "job": 49,
+    "job": 71,
     "date": "2025-12-21",
     "start_time": "07:30:00",
     "end_time": "17:30:00"
@@ -987,474 +1397,742 @@
 },
 {
   "model": "jobs.workschedule",
-  "pk": 165,
+  "pk": 194,
   "fields": {
-    "job": 50,
+    "job": 72,
     "date": "2025-08-16",
     "start_time": "14:00:00",
     "end_time": "23:00:00"
   }
 },
 {
-  "model": "jobs.application",
-  "pk": 88,
+  "model": "jobs.workschedule",
+  "pk": 195,
   "fields": {
-    "student": 17,
-    "job": 37,
-    "application_date": "2026-10-04T13:57:54.134Z",
+    "job": 73,
+    "date": "2026-11-12",
+    "start_time": "06:30:00",
+    "end_time": "14:30:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 196,
+  "fields": {
+    "job": 74,
+    "date": "2026-11-20",
+    "start_time": "10:00:00",
+    "end_time": "18:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 197,
+  "fields": {
+    "job": 75,
+    "date": "2026-06-21",
+    "start_time": "08:00:00",
+    "end_time": "14:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 198,
+  "fields": {
+    "job": 76,
+    "date": "2026-12-05",
+    "start_time": "16:00:00",
+    "end_time": "22:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 199,
+  "fields": {
+    "job": 77,
+    "date": "2026-10-30",
+    "start_time": "17:00:00",
+    "end_time": "22:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 200,
+  "fields": {
+    "job": 78,
+    "date": "2026-10-01",
+    "start_time": "08:00:00",
+    "end_time": "16:00:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 201,
+  "fields": {
+    "job": 79,
+    "date": "2026-11-08",
+    "start_time": "09:30:00",
+    "end_time": "15:30:00"
+  }
+},
+{
+  "model": "jobs.workschedule",
+  "pk": 202,
+  "fields": {
+    "job": 80,
+    "date": "2025-07-26",
+    "start_time": "09:00:00",
+    "end_time": "16:00:00"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 123,
+  "fields": {
+    "student": 31,
+    "job": 51,
+    "application_date": "2026-10-04T14:05:31.040Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 89,
+  "pk": 124,
   "fields": {
-    "student": 21,
-    "job": 37,
-    "application_date": "2026-10-04T13:57:54.135Z",
+    "student": 36,
+    "job": 51,
+    "application_date": "2026-10-04T14:05:31.040Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 90,
+  "pk": 125,
   "fields": {
-    "student": 24,
-    "job": 37,
-    "application_date": "2026-10-04T13:57:54.135Z",
+    "student": 39,
+    "job": 51,
+    "application_date": "2026-10-04T14:05:31.041Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 91,
+  "pk": 126,
   "fields": {
-    "student": 27,
-    "job": 37,
-    "application_date": "2026-10-04T13:57:54.136Z",
+    "student": 42,
+    "job": 51,
+    "application_date": "2026-10-04T14:05:31.042Z",
     "status": "PENDING"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 92,
+  "pk": 127,
   "fields": {
-    "student": 18,
-    "job": 38,
-    "application_date": "2026-10-04T13:57:54.137Z",
+    "student": 32,
+    "job": 52,
+    "application_date": "2026-10-04T14:05:31.042Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 93,
+  "pk": 128,
   "fields": {
-    "student": 19,
-    "job": 38,
-    "application_date": "2026-10-04T13:57:54.138Z",
+    "student": 33,
+    "job": 52,
+    "application_date": "2026-10-04T14:05:31.043Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 94,
+  "pk": 129,
   "fields": {
-    "student": 28,
-    "job": 38,
-    "application_date": "2026-10-04T13:57:54.138Z",
+    "student": 43,
+    "job": 52,
+    "application_date": "2026-10-04T14:05:31.044Z",
     "status": "REJECTED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 95,
+  "pk": 130,
   "fields": {
-    "student": 22,
-    "job": 39,
-    "application_date": "2026-10-04T13:57:54.139Z",
+    "student": 37,
+    "job": 53,
+    "application_date": "2026-10-04T14:05:31.045Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 96,
+  "pk": 131,
   "fields": {
-    "student": 25,
-    "job": 39,
-    "application_date": "2026-10-04T13:57:54.139Z",
+    "student": 40,
+    "job": 53,
+    "application_date": "2026-10-04T14:05:31.045Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 97,
+  "pk": 132,
   "fields": {
-    "student": 20,
-    "job": 39,
-    "application_date": "2026-10-04T13:57:54.140Z",
+    "student": 34,
+    "job": 53,
+    "application_date": "2026-10-04T14:05:31.046Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 98,
+  "pk": 133,
   "fields": {
-    "student": 29,
-    "job": 39,
-    "application_date": "2026-10-04T13:57:54.141Z",
+    "student": 44,
+    "job": 53,
+    "application_date": "2026-10-04T14:05:31.047Z",
     "status": "PENDING"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 99,
+  "pk": 134,
   "fields": {
-    "student": 24,
-    "job": 41,
-    "application_date": "2026-10-04T13:57:54.141Z",
+    "student": 35,
+    "job": 54,
+    "application_date": "2026-10-04T14:05:31.047Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 100,
+  "pk": 135,
   "fields": {
-    "student": 26,
-    "job": 41,
-    "application_date": "2026-10-04T13:57:54.142Z",
+    "student": 38,
+    "job": 54,
+    "application_date": "2026-10-04T14:05:31.048Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 101,
+  "pk": 136,
   "fields": {
-    "student": 23,
-    "job": 41,
-    "application_date": "2026-10-04T13:57:54.142Z",
+    "student": 39,
+    "job": 55,
+    "application_date": "2026-10-04T14:05:31.049Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 102,
+  "pk": 137,
   "fields": {
-    "student": 27,
-    "job": 42,
-    "application_date": "2026-10-04T13:57:54.143Z",
+    "student": 41,
+    "job": 55,
+    "application_date": "2026-10-04T14:05:31.049Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 103,
+  "pk": 138,
   "fields": {
-    "student": 28,
-    "job": 42,
-    "application_date": "2026-10-04T13:57:54.144Z",
+    "student": 38,
+    "job": 55,
+    "application_date": "2026-10-04T14:05:31.050Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 104,
+  "pk": 139,
   "fields": {
-    "student": 17,
-    "job": 42,
-    "application_date": "2026-10-04T13:57:54.145Z",
+    "student": 42,
+    "job": 56,
+    "application_date": "2026-10-04T14:05:31.051Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 140,
+  "fields": {
+    "student": 43,
+    "job": 56,
+    "application_date": "2026-10-04T14:05:31.051Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 141,
+  "fields": {
+    "student": 31,
+    "job": 56,
+    "application_date": "2026-10-04T14:05:31.052Z",
     "status": "PENDING"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 105,
+  "pk": 142,
   "fields": {
-    "student": 21,
-    "job": 43,
-    "application_date": "2026-10-04T13:57:54.146Z",
+    "student": 36,
+    "job": 57,
+    "application_date": "2026-10-04T14:05:31.053Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 106,
+  "pk": 143,
   "fields": {
-    "student": 25,
-    "job": 43,
-    "application_date": "2026-10-04T13:57:54.147Z",
+    "student": 40,
+    "job": 57,
+    "application_date": "2026-10-04T14:05:31.054Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 107,
+  "pk": 144,
   "fields": {
-    "student": 22,
-    "job": 45,
-    "application_date": "2026-10-04T13:57:54.148Z",
+    "student": 37,
+    "job": 59,
+    "application_date": "2026-10-04T14:05:31.055Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 108,
+  "pk": 145,
   "fields": {
-    "student": 23,
-    "job": 45,
-    "application_date": "2026-10-04T13:57:54.149Z",
+    "student": 33,
+    "job": 59,
+    "application_date": "2026-10-04T14:05:31.056Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 109,
+  "pk": 146,
   "fields": {
-    "student": 18,
-    "job": 45,
-    "application_date": "2026-10-04T13:57:54.149Z",
-    "status": "APPROVED"
-  }
-},
-{
-  "model": "jobs.application",
-  "pk": 110,
-  "fields": {
-    "student": 26,
-    "job": 45,
-    "application_date": "2026-10-04T13:57:54.150Z",
+    "student": 41,
+    "job": 59,
+    "application_date": "2026-10-04T14:05:31.057Z",
     "status": "PENDING"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 111,
+  "pk": 147,
   "fields": {
-    "student": 21,
-    "job": 46,
-    "application_date": "2026-10-04T13:57:54.150Z",
+    "student": 34,
+    "job": 60,
+    "application_date": "2026-10-04T14:05:31.057Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 112,
+  "pk": 148,
   "fields": {
-    "student": 24,
-    "job": 46,
-    "application_date": "2026-10-04T13:57:54.151Z",
+    "student": 39,
+    "job": 60,
+    "application_date": "2026-10-04T14:05:31.058Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 113,
+  "pk": 149,
   "fields": {
-    "student": 29,
-    "job": 46,
-    "application_date": "2026-10-04T13:57:54.152Z",
+    "student": 42,
+    "job": 63,
+    "application_date": "2026-10-04T14:05:31.058Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 114,
+  "pk": 150,
   "fields": {
-    "student": 27,
-    "job": 47,
-    "application_date": "2026-10-04T13:57:54.152Z",
+    "student": 44,
+    "job": 63,
+    "application_date": "2026-10-04T14:05:31.059Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 115,
+  "pk": 151,
   "fields": {
-    "student": 19,
-    "job": 47,
-    "application_date": "2026-10-04T13:57:54.153Z",
+    "student": 36,
+    "job": 67,
+    "application_date": "2026-10-04T14:05:31.060Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 116,
+  "pk": 152,
   "fields": {
-    "student": 22,
-    "job": 47,
-    "application_date": "2026-10-04T13:57:54.154Z",
+    "student": 38,
+    "job": 67,
+    "application_date": "2026-10-04T14:05:31.060Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 117,
+  "pk": 153,
   "fields": {
-    "student": 17,
-    "job": 49,
-    "application_date": "2026-10-04T13:57:54.154Z",
+    "student": 32,
+    "job": 67,
+    "application_date": "2026-10-04T14:05:31.061Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 118,
+  "pk": 154,
   "fields": {
-    "student": 25,
-    "job": 49,
-    "application_date": "2026-10-04T13:57:54.156Z",
+    "student": 40,
+    "job": 67,
+    "application_date": "2026-10-04T14:05:31.062Z",
+    "status": "PENDING"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 155,
+  "fields": {
+    "student": 37,
+    "job": 68,
+    "application_date": "2026-10-04T14:05:31.062Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 119,
+  "pk": 156,
   "fields": {
-    "student": 28,
-    "job": 49,
-    "application_date": "2026-10-04T13:57:54.157Z",
+    "student": 39,
+    "job": 68,
+    "application_date": "2026-10-04T14:05:31.063Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 120,
+  "pk": 157,
   "fields": {
-    "student": 20,
-    "job": 50,
-    "application_date": "2026-10-04T13:57:54.158Z",
+    "student": 43,
+    "job": 68,
+    "application_date": "2026-10-04T14:05:31.064Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 121,
+  "pk": 158,
   "fields": {
-    "student": 23,
-    "job": 50,
-    "application_date": "2026-10-04T13:57:54.159Z",
+    "student": 42,
+    "job": 69,
+    "application_date": "2026-10-04T14:05:31.064Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.application",
-  "pk": 122,
+  "pk": 159,
   "fields": {
-    "student": 26,
-    "job": 50,
-    "application_date": "2026-10-04T13:57:54.160Z",
+    "student": 33,
+    "job": 69,
+    "application_date": "2026-10-04T14:05:31.065Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 160,
+  "fields": {
+    "student": 38,
+    "job": 69,
+    "application_date": "2026-10-04T14:05:31.065Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 161,
+  "fields": {
+    "student": 31,
+    "job": 71,
+    "application_date": "2026-10-04T14:05:31.066Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 162,
+  "fields": {
+    "student": 40,
+    "job": 71,
+    "application_date": "2026-10-04T14:05:31.067Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 163,
+  "fields": {
+    "student": 43,
+    "job": 71,
+    "application_date": "2026-10-04T14:05:31.069Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 164,
+  "fields": {
+    "student": 35,
+    "job": 72,
+    "application_date": "2026-10-04T14:05:31.070Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 165,
+  "fields": {
+    "student": 37,
+    "job": 72,
+    "application_date": "2026-10-04T14:05:31.071Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 166,
+  "fields": {
+    "student": 41,
+    "job": 72,
+    "application_date": "2026-10-04T14:05:31.074Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 167,
+  "fields": {
+    "student": 44,
+    "job": 75,
+    "application_date": "2026-10-04T14:05:31.075Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 168,
+  "fields": {
+    "student": 32,
+    "job": 75,
+    "application_date": "2026-10-04T14:05:31.076Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 169,
+  "fields": {
+    "student": 36,
+    "job": 75,
+    "application_date": "2026-10-04T14:05:31.076Z",
+    "status": "PENDING"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 170,
+  "fields": {
+    "student": 39,
+    "job": 78,
+    "application_date": "2026-10-04T14:05:31.077Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 171,
+  "fields": {
+    "student": 41,
+    "job": 78,
+    "application_date": "2026-10-04T14:05:31.077Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 172,
+  "fields": {
+    "student": 42,
+    "job": 80,
+    "application_date": "2026-10-04T14:05:31.078Z",
+    "status": "APPROVED"
+  }
+},
+{
+  "model": "jobs.application",
+  "pk": 173,
+  "fields": {
+    "student": 38,
+    "job": 80,
+    "application_date": "2026-10-04T14:05:31.079Z",
     "status": "APPROVED"
   }
 },
 {
   "model": "jobs.evaluation",
-  "pk": 24,
+  "pk": 32,
   "fields": {
-    "application": 105,
-    "punctuality_rating": 5,
-    "responsibility_rating": 5,
-    "grooming_rating": 5,
-    "quality_rating": 5,
-    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
-    "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.146Z"
-  }
-},
-{
-  "model": "jobs.evaluation",
-  "pk": 25,
-  "fields": {
-    "application": 106,
-    "punctuality_rating": 5,
-    "responsibility_rating": 5,
-    "grooming_rating": 5,
-    "quality_rating": 5,
-    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
-    "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.147Z"
-  }
-},
-{
-  "model": "jobs.evaluation",
-  "pk": 26,
-  "fields": {
-    "application": 117,
-    "punctuality_rating": 5,
-    "responsibility_rating": 5,
-    "grooming_rating": 5,
-    "quality_rating": 4,
-    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
-    "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.155Z"
-  }
-},
-{
-  "model": "jobs.evaluation",
-  "pk": 27,
-  "fields": {
-    "application": 118,
-    "punctuality_rating": 5,
-    "responsibility_rating": 5,
-    "grooming_rating": 5,
-    "quality_rating": 5,
-    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
-    "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.156Z"
-  }
-},
-{
-  "model": "jobs.evaluation",
-  "pk": 28,
-  "fields": {
-    "application": 119,
+    "application": 142,
     "punctuality_rating": 4,
     "responsibility_rating": 5,
     "grooming_rating": 5,
     "quality_rating": 5,
     "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
     "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.158Z"
+    "evaluation_date": "2026-10-04T14:05:31.054Z"
   }
 },
 {
   "model": "jobs.evaluation",
-  "pk": 29,
+  "pk": 33,
   "fields": {
-    "application": 120,
+    "application": 143,
     "punctuality_rating": 4,
     "responsibility_rating": 5,
     "grooming_rating": 5,
     "quality_rating": 4,
     "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
     "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.159Z"
+    "evaluation_date": "2026-10-04T14:05:31.055Z"
   }
 },
 {
   "model": "jobs.evaluation",
-  "pk": 30,
+  "pk": 34,
   "fields": {
-    "application": 121,
+    "application": 161,
     "punctuality_rating": 5,
     "responsibility_rating": 5,
     "grooming_rating": 5,
     "quality_rating": 4,
     "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
     "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.160Z"
+    "evaluation_date": "2026-10-04T14:05:31.067Z"
   }
 },
 {
   "model": "jobs.evaluation",
-  "pk": 31,
+  "pk": 35,
   "fields": {
-    "application": 122,
+    "application": 162,
     "punctuality_rating": 4,
     "responsibility_rating": 5,
     "grooming_rating": 5,
     "quality_rating": 4,
     "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
     "result_status": "PASS",
-    "evaluation_date": "2026-10-04T13:57:54.161Z"
+    "evaluation_date": "2026-10-04T14:05:31.068Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 36,
+  "fields": {
+    "application": 163,
+    "punctuality_rating": 5,
+    "responsibility_rating": 5,
+    "grooming_rating": 5,
+    "quality_rating": 4,
+    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
+    "result_status": "PASS",
+    "evaluation_date": "2026-10-04T14:05:31.069Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 37,
+  "fields": {
+    "application": 164,
+    "punctuality_rating": 5,
+    "responsibility_rating": 5,
+    "grooming_rating": 5,
+    "quality_rating": 5,
+    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
+    "result_status": "PASS",
+    "evaluation_date": "2026-10-04T14:05:31.071Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 38,
+  "fields": {
+    "application": 165,
+    "punctuality_rating": 5,
+    "responsibility_rating": 5,
+    "grooming_rating": 5,
+    "quality_rating": 4,
+    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
+    "result_status": "PASS",
+    "evaluation_date": "2026-10-04T14:05:31.073Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 39,
+  "fields": {
+    "application": 166,
+    "punctuality_rating": 5,
+    "responsibility_rating": 5,
+    "grooming_rating": 5,
+    "quality_rating": 5,
+    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
+    "result_status": "PASS",
+    "evaluation_date": "2026-10-04T14:05:31.074Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 40,
+  "fields": {
+    "application": 172,
+    "punctuality_rating": 4,
+    "responsibility_rating": 5,
+    "grooming_rating": 5,
+    "quality_rating": 5,
+    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
+    "result_status": "PASS",
+    "evaluation_date": "2026-10-04T14:05:31.079Z"
+  }
+},
+{
+  "model": "jobs.evaluation",
+  "pk": 41,
+  "fields": {
+    "application": 173,
+    "punctuality_rating": 4,
+    "responsibility_rating": 5,
+    "grooming_rating": 5,
+    "quality_rating": 5,
+    "comment": "Demonstrated excellent diligence, punctuality, and teamwork throughout the assignment.",
+    "result_status": "PASS",
+    "evaluation_date": "2026-10-04T14:05:31.080Z"
   }
 }
 ]
