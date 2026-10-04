@@ -27,12 +27,12 @@ function Navbar() {
   const location = useLocation();
 
   const handleLogout = () => {
-    logout();
-    setDropdownOpen(false);
-    setIsOpen(false);
     navigate('/signin', {
       state: { message: 'You have been signed out successfully.' },
     });
+    logout();
+    setDropdownOpen(false);
+    setIsOpen(false);
   };
 
   useEffect(() => {

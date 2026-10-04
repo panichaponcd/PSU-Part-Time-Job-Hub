@@ -42,7 +42,7 @@ function SignIn() {
       if (role === 'ADMIN') {
         navigate('/admin/dashboard');
       } else {
-        navigate('/');
+        navigate('/jobs');
       }
     } catch (err: any) {
       setError(err.message);
@@ -54,6 +54,26 @@ function SignIn() {
   return (
     <div className="relative min-h-[calc(100vh-72px)] flex items-center justify-center overflow-hidden py-12 px-4">
       <AppBackground />
+
+      {/* Floating Toast Notification (Zero Layout Shift on Form) */}
+      <AnimatePresence>
+        {successMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="fixed top-24 left-1/2 -translate-x-1/2 z-50 max-w-sm sm:max-w-md w-full px-4 pointer-events-none"
+          >
+            <div className="mx-auto w-fit px-5 py-3 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-emerald-500/30 dark:border-emerald-500/40 shadow-2xl flex items-center gap-3 text-sm font-semibold text-slate-800 dark:text-slate-100 pointer-events-auto">
+              <div className="w-7 h-7 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4" />
+              </div>
+              <span>{successMessage}</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
@@ -72,21 +92,6 @@ function SignIn() {
               Sign in to continue
             </p>
           </div>
-
-          <AnimatePresence>
-            {successMessage && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2 }}
-                className="bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-4 py-3 rounded-xl mb-4 text-center tracking-wide transform-gpu flex items-center justify-center gap-2"
-              >
-                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                <span>{successMessage}</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {error && (
             <motion.div
