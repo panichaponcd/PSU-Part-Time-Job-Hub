@@ -8,9 +8,18 @@ import { Button, Input, AppBackground, GlassCard } from '../components/ui';
 
 function SignIn() {
   const location = useLocation();
-  const [successMessage, setSuccessMessage] = useState<string | null>(
-    (location.state as any)?.message || null
-  );
+  const [successMessage, setSuccessMessage] = useState<string | null>(() => {
+    try {
+      const toast = sessionStorage.getItem('auth_toast');
+      if (toast) {
+        sessionStorage.removeItem('auth_toast');
+        return toast;
+      }
+    } catch {
+      // ignore
+    }
+    return (location.state as any)?.message || null;
+  });
   const navigate = useNavigate();
   const { login } = useAuth();
   const [identifier, setIdentifier] = useState('');

@@ -27,12 +27,17 @@ function Navbar() {
   const location = useLocation();
 
   const handleLogout = () => {
-    navigate('/signin', {
-      state: { message: 'You have been signed out successfully.' },
-    });
+    try {
+      sessionStorage.setItem('auth_toast', 'You have been signed out successfully.');
+    } catch {
+      // ignore
+    }
     logout();
     setDropdownOpen(false);
     setIsOpen(false);
+    navigate('/signin', {
+      state: { message: 'You have been signed out successfully.' },
+    });
   };
 
   useEffect(() => {
