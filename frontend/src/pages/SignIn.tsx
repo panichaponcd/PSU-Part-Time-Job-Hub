@@ -2,34 +2,32 @@ import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { Button, Input, AppBackground, GlassCard, Toast, PsuLogo, ToastVariant } from '../components/ui';
+import {
+  Button,
+  Input,
+  AppBackground,
+  GlassCard,
+  Toast,
+  PsuLogo,
+  ToastVariant,
+  AlertBanner,
+} from '../components/ui';
+import { popAuthToast } from '../utils/authToast';
 
 function SignIn() {
   const location = useLocation();
-  const [toastMessage, setToastMessage] = useState<string | null>(() => {
-    try {
-      const toast = sessionStorage.getItem('auth_toast');
-      if (toast) {
-        sessionStorage.removeItem('auth_toast');
-        return toast;
-      }
-    } catch {
-      // ignore
+  const [{ toastMessage, toastVariant }, setToastState] = useState<{
+    toastMessage: string | null;
+    toastVariant: ToastVariant;
+  }>(() => {
+    const popped = popAuthToast();
+    if (popped) {
+      return { toastMessage: popped.message, toastVariant: popped.variant };
     }
-    return (location.state as any)?.message || null;
-  });
-
-  const [toastVariant] = useState<ToastVariant>(() => {
-    try {
-      const variant = sessionStorage.getItem('auth_toast_variant') as ToastVariant | null;
-      if (variant) {
-        sessionStorage.removeItem('auth_toast_variant');
-        return variant;
-      }
-    } catch {
-      // ignore
-    }
-    return (location.state as any)?.variant || 'success';
+    return {
+      toastMessage: (location.state as any)?.message || null,
+      toastVariant: (location.state as any)?.variant || 'success',
+    };
   });
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -72,7 +70,7 @@ function SignIn() {
       <Toast
         message={toastMessage}
         variant={toastVariant}
-        onClose={() => setToastMessage(null)}
+        onClose={() => setToastState((prev) => ({ ...prev, toastMessage: null }))}
       />
 
       <motion.div
@@ -86,22 +84,14 @@ function SignIn() {
           <div className="flex flex-col items-center mb-8">
             <PsuLogo className="h-16 w-auto mb-3 drop-shadow-sm" />
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              Part-time Job Hub
+               Part-time Job Hub
             </h1>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">
               Sign in to continue
             </p>
           </div>
 
-          {error && (
-            <motion.div
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              className="bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-rose-600 dark:text-rose-300 text-xs font-bold px-4 py-3 rounded-xl mb-4 text-center"
-            >
-              {error}
-            </motion.div>
-          )}
+          <AlertBanner message={error} variant="error" className="mb-4" />
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <Input

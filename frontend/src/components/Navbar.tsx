@@ -17,6 +17,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ui/ThemeToggle';
 import PsuLogo from './ui/PsuLogo';
+import { setAuthToast } from '../utils/authToast';
 
 function Navbar() {
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
@@ -27,11 +28,7 @@ function Navbar() {
   const location = useLocation();
 
   const handleLogout = () => {
-    try {
-      sessionStorage.setItem('auth_toast', 'You have been signed out successfully.');
-    } catch {
-      // ignore
-    }
+    setAuthToast('You have been signed out successfully.', 'success');
     logout();
     setDropdownOpen(false);
     setIsOpen(false);

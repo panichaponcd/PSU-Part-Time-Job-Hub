@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, StudentProfile, UserRole } from '../types/user';
 import { api, isJwtExpired } from '../utils/api';
+import { setAuthToast } from '../utils/authToast';
 
 interface AuthContextType {
   user: User | null;
@@ -36,12 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const triggerSessionExpired = () => {
-    try {
-      sessionStorage.setItem('auth_toast', 'Your session has expired. Please sign in again.');
-      sessionStorage.setItem('auth_toast_variant', 'warning');
-    } catch {
-      // ignore
-    }
+    setAuthToast('Your session has expired. Please sign in again.', 'warning');
     logout();
     if (
       typeof window !== 'undefined' &&

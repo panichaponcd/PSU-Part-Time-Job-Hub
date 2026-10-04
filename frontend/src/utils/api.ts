@@ -1,4 +1,5 @@
 // src/utils/api.ts
+import { setAuthToast } from './authToast';
 
 const getApiBaseUrl = () => {
   if (process.env.REACT_APP_API_URL) {
@@ -92,13 +93,7 @@ export const apiRequest = async (
     localStorage.removeItem('student');
 
     if (hadToken) {
-      try {
-        sessionStorage.setItem('auth_toast', 'Your session has expired. Please sign in again.');
-        sessionStorage.setItem('auth_toast_variant', 'warning');
-      } catch {
-        // ignore
-      }
-
+      setAuthToast('Your session has expired. Please sign in again.', 'warning');
       window.dispatchEvent(new CustomEvent('auth:session_expired'));
 
       if (

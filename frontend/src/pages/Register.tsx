@@ -2,14 +2,8 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { api } from '../utils/api';
-import { Button, Input, AppBackground, GlassCard, PsuLogo } from '../components/ui';
-
-const FACULTIES = [
-  'Faculty of Hospitality and Tourism',
-  'Faculty of International Studies',
-  'Faculty of Technology and Environment',
-  'College of Computing',
-];
+import { Button, Input, AppBackground, GlassCard, PsuLogo, AlertBanner } from '../components/ui';
+import { PSU_FACULTIES } from '../constants/faculties';
 
 function Register() {
   const navigate = useNavigate();
@@ -87,15 +81,7 @@ function Register() {
             </p>
           </div>
 
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-rose-600 dark:text-rose-300 text-xs font-bold px-4 py-3 rounded-xl mb-6 text-center"
-            >
-              {error}
-            </motion.div>
-          )}
+          <AlertBanner message={error} variant="error" className="mb-6" />
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <Input
@@ -147,7 +133,7 @@ function Register() {
                   className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-psu-blue"
                 >
                   <option value="">Select faculty</option>
-                  {FACULTIES.map((f) => (
+                  {PSU_FACULTIES.map((f) => (
                     <option key={f} value={f}>
                       {f}
                     </option>
