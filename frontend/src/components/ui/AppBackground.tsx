@@ -11,19 +11,19 @@ interface AppBackgroundProps {
 
 export const AppBackground: FC<AppBackgroundProps> = ({
   image = defaultBg,
-  blurClass = 'blur-[3px] scale-105',
+  blurClass = '',
   overlayClass = 'bg-slate-950/45 dark:bg-slate-950/75',
   children,
 }) => {
   return (
     <>
-      {/* Background Campus Scenery with Blur */}
+      {/* Background Campus Scenery */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed inset-0 z-0 ${blurClass} pointer-events-none`}
+        transition={{ duration: 0.3 }}
+        className={`fixed inset-0 z-0 transform-gpu pointer-events-none ${blurClass}`}
         style={{
           backgroundImage: `radial-gradient(ellipse at 50% 30%, rgba(20, 35, 60, 0.4) 0%, rgba(10, 24, 45, 0.75) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.7) 100%), url(${image})`,
           backgroundSize: 'cover',

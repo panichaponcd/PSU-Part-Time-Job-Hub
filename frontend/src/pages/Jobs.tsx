@@ -135,26 +135,22 @@ function Jobs() {
               </div>
             ) : filteredJobs.length > 0 ? (
               /* Job Directory Grid */
-              <motion.div
-                layout
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
-              >
-                <AnimatePresence mode="popLayout">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+                <AnimatePresence>
                   {filteredJobs.map((job) => (
                     <motion.div
-                      layout
                       key={job.id}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15 }}
                       className="h-full"
                     >
                       <JobCard job={job} />
                     </motion.div>
                   ))}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             ) : (
               /* Empty Search Results State */
               <EmptyState

@@ -57,13 +57,13 @@ function Home() {
         {/* HERO SECTION                                                              */}
         {/* ========================================================================= */}
         <section className="relative w-full min-h-[calc(100vh-72px)] flex flex-col justify-center items-center overflow-hidden bg-psu-navy py-16 px-4 sm:px-6 lg:px-8">
-          {/* Hero Background Image with Blur */}
+          {/* Hero Background Image */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 z-0 blur-[3px] scale-105 pointer-events-none"
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 z-0 transform-gpu pointer-events-none"
             style={{
               backgroundImage: `radial-gradient(ellipse at 50% 30%, rgba(20, 35, 60, 0.4) 0%, rgba(10, 24, 45, 0.75) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.6) 80%), url(${bgImage})`,
               backgroundSize: 'cover',
