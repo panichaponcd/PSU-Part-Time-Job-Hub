@@ -275,17 +275,17 @@ function Navbar() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 top-[72px] bg-slate-950/50 dark:bg-black/70 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 top-[72px] bg-slate-950/60 dark:bg-black/75 backdrop-blur-sm z-40 md:hidden touch-none"
               aria-hidden="true"
             />
 
             {/* Floating Menu Panel */}
             <motion.div
-              initial={{ opacity: 0, y: -8 }}
+              initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
+              exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="fixed inset-x-0 top-[72px] z-50 md:hidden overflow-y-auto max-h-[calc(100vh-72px)] bg-white dark:bg-[#0b132b] rounded-b-3xl border-b border-slate-200 dark:border-slate-800 shadow-2xl px-5 py-5"
+              className="fixed inset-x-0 top-[72px] z-50 md:hidden overflow-y-auto overscroll-contain max-h-[calc(100vh-72px)] bg-white dark:bg-[#0b132b] rounded-b-3xl border-b border-slate-200 dark:border-slate-800 shadow-xl px-5 py-5 transform-gpu will-change-[transform,opacity]"
             >
               <div className="flex flex-col gap-1.5 pb-4">
                 {isLoggedIn() && (
