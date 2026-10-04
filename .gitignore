@@ -7,3 +7,4 @@ __pycache__/
 backend/venv/
 *.sqlite3
 psu-part-time-rules.md
+test
