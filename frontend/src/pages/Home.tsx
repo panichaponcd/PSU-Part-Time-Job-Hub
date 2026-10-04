@@ -58,21 +58,25 @@ function Home() {
         {/* ========================================================================= */}
         <section className="relative w-full min-h-[calc(100vh-72px)] flex flex-col justify-center items-center overflow-hidden bg-psu-navy py-16 px-4 sm:px-6 lg:px-8">
           {/* Hero Background Image */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 z-0 transform-gpu pointer-events-none"
-            style={{
-              backgroundImage: `radial-gradient(ellipse at 50% 30%, rgba(20, 35, 60, 0.4) 0%, rgba(10, 24, 45, 0.75) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.6) 80%), url(${bgImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center 45%',
-            }}
-          />
-
-          {/* Ambient Dark Overlay */}
-          <div className="absolute inset-0 bg-slate-950/50 dark:bg-slate-950/75 z-10 pointer-events-none" />
+          <div className="absolute inset-0 z-0 bg-[#0b132b] overflow-hidden pointer-events-none select-none">
+            <img
+              src={bgImage}
+              alt=""
+              aria-hidden="true"
+              loading="eager"
+              decoding="async"
+              className="w-full h-full object-cover object-[center_45%] pointer-events-none select-none transform-gpu"
+            />
+            {/* Ambient Radial & Linear Contrast Gradients */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(ellipse at 50% 30%, rgba(20, 35, 60, 0.4) 0%, rgba(10, 24, 45, 0.75) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.6) 80%)',
+              }}
+            />
+            <div className="absolute inset-0 bg-slate-950/50 dark:bg-slate-950/75 pointer-events-none" />
+          </div>
 
           {/* Hero Content */}
           <div className="relative z-20 max-w-4xl mx-auto flex flex-col items-center justify-center text-center text-white pt-4 pb-8">
@@ -170,17 +174,25 @@ function Home() {
         {/* CALL TO ACTION (CTA) BANNER                                               */}
         {/* ========================================================================= */}
         <section className="relative w-full overflow-hidden text-white px-4 sm:px-6 lg:px-8 py-20 sm:py-24 border-t border-slate-700/40">
-          {/* Aerial Campus Backdrop Image with matching blur */}
-          <div
-            className="absolute inset-0 z-0 blur-[3px] scale-110 pointer-events-none"
-            style={{
-              backgroundImage: `radial-gradient(ellipse at 50% 50%, rgba(20, 35, 60, 0.45) 0%, rgba(10, 24, 45, 0.8) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.7) 100%), url(${bgImage2})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center 40%',
-            }}
-          />
-          {/* Ambient Dark Overlay */}
-          <div className="absolute inset-0 bg-slate-950/50 dark:bg-slate-950/75 z-0 pointer-events-none" />
+          {/* Aerial Campus Backdrop Image */}
+          <div className="absolute inset-0 z-0 bg-slate-950 overflow-hidden pointer-events-none select-none">
+            <img
+              src={bgImage2}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover object-[center_40%] pointer-events-none select-none transform-gpu"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(ellipse at 50% 50%, rgba(20, 35, 60, 0.45) 0%, rgba(10, 24, 45, 0.8) 100%), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(10, 24, 45, 0.7) 100%)',
+              }}
+            />
+            <div className="absolute inset-0 bg-slate-950/50 dark:bg-slate-950/75 pointer-events-none" />
+          </div>
 
           {/* Content */}
           <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
