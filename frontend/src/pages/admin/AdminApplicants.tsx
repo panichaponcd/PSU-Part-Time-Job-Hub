@@ -11,6 +11,7 @@ import {
   ApplicantsPagination,
   KickApplicantModal,
 } from '../../components/admin/applicants';
+import { PSU_FACULTIES } from '../../constants/faculties';
 
 export function AdminApplicants() {
   const { id } = useParams<{ id: string }>();
@@ -75,16 +76,10 @@ export function AdminApplicants() {
 
   // Dynamically extract faculties from current applications, with fallback PSU faculties
   const availableFaculties = useMemo(() => {
-    const defaultFaculties = [
-      'College of Computing',
-      'Faculty of Hospitality and Tourism',
-      'Faculty of International Studies',
-      'Faculty of Technology & Environment',
-    ];
     const fromApps = applications
       .map((a) => a.faculty?.trim())
       .filter((f) => Boolean(f));
-    return Array.from(new Set([...fromApps, ...defaultFaculties])).sort();
+    return Array.from(new Set([...fromApps, ...PSU_FACULTIES])).sort();
   }, [applications]);
 
   // Filter applications

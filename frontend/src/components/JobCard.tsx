@@ -15,6 +15,9 @@ export interface JobCardProps {
     date?: string;
     location?: string;
     location_type?: string;
+    required_amount?: number;
+    applicants_count?: number;
+    applicants?: number;
     isOpen?: boolean;
     status?: string;
     type?: string;
@@ -37,6 +40,9 @@ function JobCard({ job }: JobCardProps) {
   const isOpen = job.isOpen !== undefined ? job.isOpen : job.status === 'OPEN';
   const jobType = job.type || job.job_type || 'internal';
   const orgName = job.postedBy || job.organization_name || 'PSU Phuket Campus';
+  const applicantsCount = job.applicants_count || job.applicants || 0;
+  const requiredAmount = job.required_amount || 0;
+  const isFull = requiredAmount > 0 && applicantsCount >= requiredAmount;
 
   return (
     <motion.article
@@ -114,10 +120,16 @@ function JobCard({ job }: JobCardProps) {
           {jobType} role
         </span>
         {isOpen ? (
-          <span className="inline-flex items-center gap-1 text-xs font-bold text-psu-blue dark:text-psu-light group-hover:translate-x-0.5 transition-transform">
-            <span>Apply Now</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
+          isFull ? (
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-rose-500 dark:text-rose-400">
+              <span>Full</span>
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-psu-blue dark:text-psu-light group-hover:translate-x-0.5 transition-transform">
+              <span>Apply Now</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          )
         ) : (
           <span className="text-xs font-semibold text-slate-400 dark:text-slate-500">
             Closed

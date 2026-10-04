@@ -1,16 +1,34 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import logo from '../assets/psu-logo.svg';
-import { Button, Input, AppBackground, GlassCard } from '../components/ui';
+import {
+  Button,
+  Input,
+  AppBackground,
+  GlassCard,
+  Toast,
+  PsuLogo,
+  ToastVariant,
+  AlertBanner,
+} from '../components/ui';
+import { popAuthToast } from '../utils/authToast';
 
 function SignIn() {
   const location = useLocation();
-  const [successMessage, setSuccessMessage] = useState<string | null>(
-    (location.state as any)?.message || null
-  );
+  const [{ toastMessage, toastVariant }, setToastState] = useState<{
+    toastMessage: string | null;
+    toastVariant: ToastVariant;
+  }>(() => {
+    const popped = popAuthToast();
+    if (popped) {
+      return { toastMessage: popped.message, toastVariant: popped.variant };
+    }
+    return {
+      toastMessage: (location.state as any)?.message || null,
+      toastVariant: (location.state as any)?.variant || 'success',
+    };
+  });
   const navigate = useNavigate();
   const { login } = useAuth();
   const [identifier, setIdentifier] = useState('');
@@ -23,14 +41,7 @@ function SignIn() {
     if ((location.state as any)?.message) {
       window.history.replaceState({}, document.title);
     }
-
-    if (successMessage) {
-      const timer = setTimeout(() => {
-        setSuccessMessage(null);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [location.state, successMessage]);
+  }, [location.state]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -42,7 +53,7 @@ function SignIn() {
       if (role === 'ADMIN') {
         navigate('/admin/dashboard');
       } else {
-        navigate('/');
+        navigate('/jobs');
       }
     } catch (err: any) {
       setError(err.message);
@@ -55,6 +66,13 @@ function SignIn() {
     <div className="relative min-h-[calc(100vh-72px)] flex items-center justify-center overflow-hidden py-12 px-4">
       <AppBackground />
 
+      {/* Reusable Toast Notification */}
+      <Toast
+        message={toastMessage}
+        variant={toastVariant}
+        onClose={() => setToastState((prev) => ({ ...prev, toastMessage: null }))}
+      />
+
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -64,39 +82,16 @@ function SignIn() {
       >
         <GlassCard variant="container" className="p-8 sm:p-10">
           <div className="flex flex-col items-center mb-8">
-            <img src={logo} alt="PSU Logo" className="h-16 w-auto mb-3 drop-shadow-sm" />
+            <PsuLogo className="h-16 w-auto mb-3 drop-shadow-sm" />
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              Part-time Job Hub
+               Part-time Job Hub
             </h1>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">
               Sign in to continue
             </p>
           </div>
 
-          <AnimatePresence>
-            {successMessage && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2 }}
-                className="bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-4 py-3 rounded-xl mb-4 text-center tracking-wide transform-gpu flex items-center justify-center gap-2"
-              >
-                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                <span>{successMessage}</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {error && (
-            <motion.div
-              initial={{ x: -10, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              className="bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-rose-600 dark:text-rose-300 text-xs font-bold px-4 py-3 rounded-xl mb-4 text-center"
-            >
-              {error}
-            </motion.div>
-          )}
+          <AlertBanner message={error} variant="error" className="mb-4" />
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <Input

@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 interface ProtectedRouteProps {
@@ -9,15 +9,17 @@ interface ProtectedRouteProps {
 // Requires login
 export function RequireAuth({ children }: ProtectedRouteProps) {
   const { isLoggedIn } = useAuth();
-  if (!isLoggedIn()) return <Navigate to="/signin" replace />;
+  const location = useLocation();
+  if (!isLoggedIn()) return <Navigate to="/signin" state={location.state} replace />;
   return children;
 }
 
 // Requires admin role
 export function RequireAdmin({ children }: ProtectedRouteProps) {
   const { isLoggedIn, isAdmin } = useAuth();
-  if (!isLoggedIn()) return <Navigate to="/signin" replace />;
-  if (!isAdmin()) return <Navigate to="/" replace />;
+  const location = useLocation();
+  if (!isLoggedIn()) return <Navigate to="/signin" state={location.state} replace />;
+  if (!isAdmin()) return <Navigate to="/jobs" replace />;
   return children;
 }
 
@@ -25,7 +27,7 @@ export function RequireAdmin({ children }: ProtectedRouteProps) {
 export function RedirectIfLoggedIn({ children }: ProtectedRouteProps) {
   const { isLoggedIn, isAdmin } = useAuth();
   if (isLoggedIn()) {
-    return <Navigate to={isAdmin() ? '/admin/dashboard' : '/'} replace />;
+    return <Navigate to={isAdmin() ? '/admin/dashboard' : '/jobs'} replace />;
   }
   return children;
 }
