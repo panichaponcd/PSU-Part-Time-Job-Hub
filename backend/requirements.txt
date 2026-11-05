@@ -3,3 +3,9 @@ djangorestframework
 djangorestframework-simplejwt
 django-cors-headers
 Pillow
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+sqlalchemy>=2.0.0
+passlib[bcrypt]>=1.7.4
+python-multipart>=0.0.6
