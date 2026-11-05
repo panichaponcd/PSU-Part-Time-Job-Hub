@@ -1,9 +1,31 @@
 services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: psu_user
+      POSTGRES_PASSWORD: psu_password
+      POSTGRES_DB: psu_job_hub
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U psu_user -d psu_job_hub"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   backend:
     build: ./backend
     restart: unless-stopped
     ports:
       - "127.0.0.1:8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://psu_user:psu_password@db:5432/psu_job_hub
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - ./backend:/app
       - backend_media:/app/media
@@ -20,3 +42,4 @@ services:
 
 volumes:
   backend_media:
+  postgres_data:

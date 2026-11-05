@@ -164,6 +164,26 @@ def load_seed_fixture(json_path: str = "seed_data.json", clear: bool = True):
             ))
         db.commit()
 
+        # Synchronize PostgreSQL primary key sequences
+        if engine.dialect.name == "postgresql":
+            from sqlalchemy import text
+            print("Synchronizing PostgreSQL primary key sequences...")
+            table_sequence_pairs = [
+                ("auth_user", "id"),
+                ("jobs_student", "id"),
+                ("jobs_job", "id"),
+                ("jobs_workschedule", "id"),
+                ("jobs_application", "id"),
+                ("jobs_evaluation", "id")
+            ]
+            for table, pk_col in table_sequence_pairs:
+                seq_query = text(
+                    f"SELECT setval(pg_get_serial_sequence('{table}', '{pk_col}'), coalesce(max({pk_col}), 1)) FROM {table};"
+                )
+                db.execute(seq_query)
+            db.commit()
+            print("PostgreSQL sequences synchronized successfully.")
+
         print("Seeding completed successfully with zero errors!")
         return True
     except Exception as e:
