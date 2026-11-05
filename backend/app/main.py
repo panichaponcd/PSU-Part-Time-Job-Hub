@@ -1,8 +1,10 @@
 import os
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.config import MEDIA_DIR, CORS_ORIGINS
+from app.database import Base, engine
 from app.routers import (
     auth_router,
     jobs_router,
@@ -11,12 +13,19 @@ from app.routers import (
     evaluations_router
 )
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Ensure all database tables exist on startup
+    Base.metadata.create_all(bind=engine)
+    yield
+
 app = FastAPI(
     title="PSU Part-Time Job Hub API",
     description="High-performance FastAPI Backend for Prince of Songkla University, Phuket Campus",
     version="2.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan
 )
 
 # CORS Configuration
