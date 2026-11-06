@@ -13,6 +13,7 @@ import {
   Building2,
   User as UserIcon,
   LogOut,
+  BookOpen,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ui/ThemeToggle';
@@ -104,6 +105,9 @@ function Navbar() {
             <Link to="/jobs" className={getLinkClasses('/jobs')}>
               Jobs
             </Link>
+            <Link to="/guide" className={getLinkClasses('/guide')}>
+              User Guide
+            </Link>
             {isLoggedIn() && isAdmin() && (
               <Link to="/admin/dashboard" className={getLinkClasses('/admin')}>
                 Dashboard
@@ -171,6 +175,16 @@ function Navbar() {
 
           {/* Vertical Divider */}
           <div className="h-5 w-px bg-slate-200 dark:bg-slate-800"></div>
+
+          {/* Prototype Demo Badge */}
+          <Link
+            to="/guide"
+            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors"
+            title="Demonstration Prototype - Click to view testing guide"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+            Demo Mode
+          </Link>
 
           {/* Theme Toggle Button */}
           <ThemeToggle />
@@ -327,6 +341,17 @@ function Navbar() {
                 >
                   <Briefcase className="w-4 h-4 text-psu-blue dark:text-psu-light" />
                   <span>Browse Jobs</span>
+                </Link>
+                <Link
+                  to="/guide"
+                  className={`flex items-center gap-2.5 px-4 py-3 rounded-xl font-medium transition-colors ${
+                    location.pathname.startsWith('/guide')
+                      ? 'bg-psu-blue/10 text-psu-blue dark:text-psu-light font-bold'
+                      : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4 text-psu-blue dark:text-psu-light" />
+                  <span>User Guide & Demo Accounts</span>
                 </Link>
 
                 {isLoggedIn() && isAdmin() && (
