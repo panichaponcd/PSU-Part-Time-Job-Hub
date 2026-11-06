@@ -16,6 +16,7 @@ import Personnel from './pages/Personnel';
 import StudentOrganization from './pages/StudentOrganization';
 import HallOfFame from './pages/HallOfFame';
 import Articles from './pages/Articles';
+import { UserGuide } from './pages/UserGuide';
 
 import AdminLayout from './components/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -57,6 +58,10 @@ function AnimatedRoutes() {
 
         {/* Documentation Redirect */}
         <Route path="/docs" element={<DocsRedirect />} />
+
+        {/* User Guide & Testing Manual */}
+        <Route path="/guide" element={<UserGuide />} />
+        <Route path="/manual" element={<UserGuide />} />
 
         {/* Auth routes */}
         <Route
