@@ -3,6 +3,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.openapi.docs import get_swagger_ui_html, get_redoc_html
+from fastapi.responses import RedirectResponse
 from app.config import MEDIA_DIR, CORS_ORIGINS
 from app.database import Base, engine
 from app.routers import (
@@ -25,6 +27,7 @@ app = FastAPI(
     version="2.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    openapi_url="/api/openapi.json",
     lifespan=lifespan
 )
 
@@ -36,6 +39,25 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Dual-endpoint documentation support (for reverse proxies routing /api/*)
+@app.get("/api/docs", include_in_schema=False)
+async def api_swagger_ui():
+    return get_swagger_ui_html(
+        openapi_url="/api/openapi.json",
+        title=app.title + " - Swagger UI"
+    )
+
+@app.get("/api/redoc", include_in_schema=False)
+async def api_redoc():
+    return get_redoc_html(
+        openapi_url="/api/openapi.json",
+        title=app.title + " - ReDoc"
+    )
+
+@app.get("/openapi.json", include_in_schema=False)
+async def openapi_redirect():
+    return RedirectResponse(url="/api/openapi.json")
 
 # Mount media static files directory (for posters, certificates, avatar images)
 if MEDIA_DIR.exists():
@@ -54,9 +76,13 @@ def root():
         "status": "online",
         "service": "PSU Part-Time Job Hub API (FastAPI)",
         "version": "2.0.0",
-        "docs": "/docs",
-        "redoc": "/redoc"
+        "docs": "/api/docs",
+        "redoc": "/api/redoc"
     }
+
+@app.get("/api")
+def api_root():
+    return root()
 
 @app.get("/api/health")
 def health():
