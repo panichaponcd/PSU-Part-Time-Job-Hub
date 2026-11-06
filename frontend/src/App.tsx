@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
@@ -26,6 +27,14 @@ import AdminEvaluate from './pages/admin/AdminEvaluate';
 import { RedirectIfLoggedIn, RequireAuth, RequireAdmin } from './components/ProtectedRoute';
 import SignIn from './pages/SignIn';
 import Register from './pages/Register';
+import { API_BASE_URL } from './utils/api';
+
+function DocsRedirect() {
+  useEffect(() => {
+    window.location.replace(`${API_BASE_URL}/docs`);
+  }, []);
+  return null;
+}
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -45,6 +54,9 @@ function AnimatedRoutes() {
         <Route path="/about/student-organization" element={<StudentOrganization />} />
         <Route path="/other/articles" element={<Articles />} />
         <Route path="/other/hall-of-fame" element={<HallOfFame />} />
+
+        {/* Documentation Redirect */}
+        <Route path="/docs" element={<DocsRedirect />} />
 
         {/* Auth routes */}
         <Route
