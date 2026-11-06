@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Search,
@@ -15,18 +14,9 @@ import bgImage from '../assets/home-bg-1.jpg';
 import bgImage2 from '../assets/home-bg-2.jpg';
 import { Button } from '../components/ui';
 import { useAuth } from '../context/AuthContext';
-import { TestingNoticeModal } from '../components/TestingNoticeModal';
 
 function Home() {
   const { isLoggedIn } = useAuth();
-  const [showNotice, setShowNotice] = useState<boolean>(false);
-
-  useEffect(() => {
-    const acknowledged = sessionStorage.getItem('psu_testing_notice_acknowledged');
-    if (!acknowledged) {
-      setShowNotice(true);
-    }
-  }, []);
 
   const metrics = [
     { value: '10+', label: 'Active Shifts & Gigs', icon: Briefcase },
@@ -62,8 +52,6 @@ function Home() {
   return (
     <PageTransition>
       <div className="w-full flex flex-col">
-        {/* Prototype Testing Disclaimer Modal */}
-        <TestingNoticeModal isOpen={showNotice} onClose={() => setShowNotice(false)} />
         {/* ========================================================================= */}
         {/* HERO SECTION                                                              */}
         {/* ========================================================================= */}

@@ -19,11 +19,13 @@ import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ui/ThemeToggle';
 import PsuLogo from './ui/PsuLogo';
 import { setAuthToast } from '../utils/authToast';
+import { TestingNoticeModal } from './TestingNoticeModal';
 
 function Navbar() {
   const [aboutOpen, setAboutOpen] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false); // Mobile Drawer
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false); // Desktop Profile Dropdown
+  const [noticeOpen, setNoticeOpen] = useState<boolean>(false); // Prototype Testing Notice Modal
   const { isLoggedIn, isAdmin, student, user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,6 +44,13 @@ function Navbar() {
     setIsOpen(false);
     setAboutOpen(false);
     setDropdownOpen(false);
+  }, [location.pathname]);
+
+  // Auto-open testing disclaimer modal on first visit to Home page
+  useEffect(() => {
+    if (location.pathname === '/' && !sessionStorage.getItem('psu_testing_notice_acknowledged')) {
+      setNoticeOpen(true);
+    }
   }, [location.pathname]);
 
   // Lock body scroll when mobile menu overlay is active
@@ -176,15 +185,16 @@ function Navbar() {
           {/* Vertical Divider */}
           <div className="h-5 w-px bg-slate-200 dark:bg-slate-800"></div>
 
-          {/* Prototype Demo Badge */}
-          <Link
-            to="/guide"
-            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors"
-            title="Demonstration Prototype - Click to view testing guide"
+          {/* Prototype Demo Badge - Click to reopen testing notice */}
+          <button
+            type="button"
+            onClick={() => setNoticeOpen(true)}
+            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors cursor-pointer"
+            title="Demonstration Prototype - Click to view notice & accounts"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
             Demo Mode
-          </Link>
+          </button>
 
           {/* Theme Toggle Button */}
           <ThemeToggle />
@@ -353,6 +363,17 @@ function Navbar() {
                   <BookOpen className="w-4 h-4 text-psu-blue dark:text-psu-light" />
                   <span>User Guide & Demo Accounts</span>
                 </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setNoticeOpen(true);
+                  }}
+                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-semibold text-amber-700 dark:text-amber-300 bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/60 dark:border-amber-800/40 text-xs w-full text-left cursor-pointer transition-colors hover:bg-amber-100 dark:hover:bg-amber-900/40"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                  <span>View Prototype Notice & Accounts</span>
+                </button>
 
                 {isLoggedIn() && isAdmin() && (
                   <Link
@@ -439,6 +460,9 @@ function Navbar() {
     </header>
     {/* Height Spacer to prevent page content from being obscured by fixed header */}
     <div className="h-[72px] w-full shrink-0" aria-hidden="true" />
+
+    {/* Prototype Testing Disclaimer Modal */}
+    <TestingNoticeModal isOpen={noticeOpen} onClose={() => setNoticeOpen(false)} />
   </>
   );
 }
