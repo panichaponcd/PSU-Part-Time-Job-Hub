@@ -38,10 +38,6 @@ export const StudentIdentityCard: FC<StudentIdentityCardProps> = ({
                 {avatarInitial}
               </div>
             )}
-            <span
-              className="absolute -bottom-1 -right-1 bg-emerald-500 border-2 border-white dark:border-slate-900 w-4 h-4 rounded-full shadow-sm"
-              title="Active Student Status"
-            />
           </div>
 
           <div>
