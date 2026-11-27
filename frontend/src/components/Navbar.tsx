@@ -209,12 +209,21 @@ function Navbar() {
                   setDropdownOpen(!dropdownOpen);
                   setAboutOpen(false);
                 }}
-                className="flex items-center gap-2 focus:outline-none rounded-full group cursor-pointer"
+                className="flex items-center gap-2 focus:outline-none rounded-full group cursor-pointer select-none"
                 aria-label="User Profile Menu"
               >
-                <div className="w-9 h-9 rounded-full bg-psu-navy dark:bg-psu-blue text-white flex items-center justify-center font-bold text-sm shadow-sm ring-2 ring-slate-100 dark:ring-slate-700 group-hover:ring-psu-blue transition-all">
-                  {userInitial}
-                </div>
+                {student?.avatar_url ? (
+                  <img
+                    src={student.avatar_url}
+                    alt="User avatar"
+                    referrerPolicy="no-referrer"
+                    className="w-9 h-9 rounded-full object-cover shadow-sm ring-2 ring-slate-100 dark:ring-slate-700 group-hover:ring-psu-blue transition-all select-none"
+                  />
+                ) : (
+                  <div className="w-9 h-9 rounded-full bg-psu-navy dark:bg-psu-blue text-white flex items-center justify-center font-bold text-sm shadow-sm ring-2 ring-slate-100 dark:ring-slate-700 group-hover:ring-psu-blue transition-all select-none">
+                    {userInitial}
+                  </div>
+                )}
               </button>
 
               <AnimatePresence>

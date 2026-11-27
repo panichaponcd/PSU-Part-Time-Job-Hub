@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Mail, GraduationCap, BookOpen, AlertCircle, Pencil, X } from 'lucide-react';
+import { FC, useState } from 'react';
+import { Mail, Phone, BookOpen, AlertCircle, Pencil, X } from 'lucide-react';
 
 interface StudentIdentityCardProps {
   profileData: any;
@@ -16,19 +16,28 @@ export const StudentIdentityCard: FC<StudentIdentityCardProps> = ({
   isEditing,
   onToggleEdit,
 }) => {
+  const [imgFailed, setImgFailed] = useState(false);
+  const avatarUrl = !imgFailed ? profileData?.avatar_url : '';
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         {/* Identity Left */}
         <div className="flex items-center gap-5">
-          <div className="relative shrink-0">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-psu-navy to-slate-900 dark:from-psu-blue dark:to-psu-navy text-white flex items-center justify-center text-3xl font-extrabold shadow-md border-2 border-white/80 dark:border-slate-700">
-              {avatarInitial}
-            </div>
-            <span
-              className="absolute -bottom-1 -right-1 bg-emerald-500 border-2 border-white dark:border-slate-900 w-4 h-4 rounded-full shadow-sm"
-              title="Active Student Status"
-            />
+          <div className="relative shrink-0 select-none">
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                alt={`${profileData?.first_name || 'Student'} avatar`}
+                referrerPolicy="no-referrer"
+                onError={() => setImgFailed(true)}
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shadow-md border-2 border-white/80 dark:border-slate-700"
+              />
+            ) : (
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-psu-navy to-slate-900 dark:from-psu-blue dark:to-psu-navy text-white flex items-center justify-center text-3xl font-extrabold shadow-md border-2 border-white/80 dark:border-slate-700 select-none">
+                {avatarInitial}
+              </div>
+            )}
           </div>
 
           <div>
@@ -84,14 +93,14 @@ export const StudentIdentityCard: FC<StudentIdentityCardProps> = ({
             </div>
           </div>
 
-          {/* Faculty & Major */}
+          {/* Mobile Phone */}
           <div className="bg-white/80 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-xs flex flex-col justify-between">
             <div className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider flex items-center gap-1.5 mb-1.5">
-              <GraduationCap className="w-3.5 h-3.5 text-psu-blue" />
-              <span>Academic Unit</span>
+              <Phone className="w-3.5 h-3.5 text-psu-blue" />
+              <span>Mobile Phone</span>
             </div>
-            <div className="font-semibold text-slate-800 dark:text-slate-100 text-xs sm:text-sm truncate" title={profileData?.faculty}>
-              {profileData?.faculty || 'PSU Phuket'}
+            <div className="font-semibold text-slate-800 dark:text-slate-100 text-xs sm:text-sm truncate" title={profileData?.phone_number}>
+              {profileData?.phone_number || 'Not specified'}
             </div>
           </div>
 

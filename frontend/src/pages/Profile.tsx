@@ -1,8 +1,16 @@
 import { useState, useEffect, FormEvent } from 'react';
+import { useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import PageTransition from '../components/PageTransition';
-import { AppBackground, GlassCard, LoadingState } from '../components/ui';
+import {
+  AppBackground,
+  GlassCard,
+  LoadingState,
+  AlertBanner,
+  Toast,
+  ToastVariant,
+} from '../components/ui';
 import {
   StudentIdentityCard,
   StudentProfileForm,
@@ -12,11 +20,27 @@ import {
 } from '../components/profile';
 import { generatePSUCertificate } from '../utils/certificate';
 import { api } from '../utils/api';
+import { popAuthToast } from '../utils/authToast';
 
 export function Profile() {
   const { student, user } = useAuth();
+  const location = useLocation();
+  const isNewUserOnboarding =
+    Boolean((location.state as any)?.isNewUser) ||
+    sessionStorage.getItem('psu_pending_onboarding') === 'true';
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(isNewUserOnboarding);
+  const [showOnboardingBanner, setShowOnboardingBanner] = useState(isNewUserOnboarding);
+  const [{ toastMessage, toastVariant }, setToastState] = useState<{
+    toastMessage: string | null;
+    toastVariant: ToastVariant;
+  }>(() => {
+    const popped = popAuthToast();
+    if (popped) {
+      return { toastMessage: popped.message, toastVariant: popped.variant };
+    }
+    return { toastMessage: null, toastVariant: 'success' };
+  });
   const [profileData, setProfileData] = useState<any>(null);
   const [activeAssignments, setActiveAssignments] = useState<any[]>([]);
   const [workHistory, setWorkHistory] = useState<any[]>([]);
@@ -29,6 +53,10 @@ export function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    if (isNewUserOnboarding) {
+      sessionStorage.removeItem('psu_pending_onboarding');
+      window.history.replaceState({}, document.title);
+    }
     fetchProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -122,6 +150,7 @@ export function Profile() {
       bodyData.append('last_name', formData.last_name || '');
       bodyData.append('faculty', formData.faculty || '');
       bodyData.append('major', formData.major || '');
+      bodyData.append('phone_number', formData.phone_number || '');
       bodyData.append('religion', formData.religion || '');
       bodyData.append('allergies', formData.allergies || '');
 
@@ -131,6 +160,8 @@ export function Profile() {
         const updated = await res.json();
         setProfileData(updated);
         setIsEditing(false);
+        setShowOnboardingBanner(false);
+        setToastState({ toastMessage: 'Student profile updated successfully.', toastVariant: 'success' });
       } else {
         const errData = await res.json();
         setError(JSON.stringify(errData) || 'Failed to update profile.');
@@ -180,8 +211,21 @@ export function Profile() {
     <div className="relative min-h-[calc(100vh-72px)] w-full overflow-hidden flex flex-col justify-start">
       <AppBackground />
 
+      <Toast
+        message={toastMessage}
+        variant={toastVariant}
+        onClose={() => setToastState((prev) => ({ ...prev, toastMessage: null }))}
+      />
+
       <PageTransition>
         <main className="relative z-10 pt-4 sm:pt-6 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full space-y-6 sm:space-y-8">
+          {showOnboardingBanner && (
+            <AlertBanner
+              variant="info"
+              message="Welcome to PSU Part-time Job Hub! Your account was created from your PSU Google profile. Please confirm your Major and optional dietary/welfare details below, then click Save Changes."
+            />
+          )}
+
           {error && (
             <div className="bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300 px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold text-center">
               {error}
@@ -189,7 +233,7 @@ export function Profile() {
           )}
 
           {/* 1. STUDENT IDENTITY CARD */}
-          <GlassCard variant="card" className="relative transition-all duration-300">
+          <GlassCard variant="card" className="relative z-20 transition-all duration-300">
             <StudentIdentityCard
               profileData={profileData}
               userEmail={user?.email}

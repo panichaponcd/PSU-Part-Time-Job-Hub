@@ -5,6 +5,9 @@ class LoginRequest(BaseModel):
     identifier: str
     password: str
 
+class GoogleLoginRequest(BaseModel):
+    credential: str
+
 class RefreshRequest(BaseModel):
     refresh: str
 
@@ -16,6 +19,7 @@ class RegisterRequest(BaseModel):
     password: str
     faculty: str
     major: str
+    avatar_url: Optional[str] = ""
     religion: Optional[str] = ""
     allergies: Optional[str] = ""
 
@@ -35,6 +39,7 @@ class StudentSummary(BaseModel):
     last_name: str
     faculty: str
     major: str
+    avatar_url: Optional[str] = ""
 
     class Config:
         from_attributes = True
@@ -45,6 +50,7 @@ class LoginResponse(BaseModel):
     role: str  # "ADMIN" | "STUDENT"
     user: UserSummary
     student: Optional[StudentSummary] = None
+    is_new_user: bool = False
 
 class RefreshResponse(BaseModel):
     access: str

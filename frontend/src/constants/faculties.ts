@@ -9,3 +9,12 @@ export const PSU_FACULTIES = [
 ] as const;
 
 export type PsuFaculty = (typeof PSU_FACULTIES)[number];
+
+export const RELIGION_OPTIONS = [
+  'Buddhism',
+  'Islam',
+  'Christianity',
+  'Hinduism',
+  'Sikhism',
+  'Other / Prefer not to say',
+] as const;

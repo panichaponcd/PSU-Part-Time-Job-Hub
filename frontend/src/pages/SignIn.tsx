@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import {
@@ -11,8 +11,9 @@ import {
   PsuLogo,
   ToastVariant,
   AlertBanner,
+  GoogleSignInButton,
 } from '../components/ui';
-import { popAuthToast } from '../utils/authToast';
+import { popAuthToast, setAuthToast } from '../utils/authToast';
 
 function SignIn() {
   const location = useLocation();
@@ -30,7 +31,7 @@ function SignIn() {
     };
   });
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -42,6 +43,30 @@ function SignIn() {
       window.history.replaceState({}, document.title);
     }
   }, [location.state]);
+
+  const handleGoogleCredential = async (credential: string) => {
+    setError(null);
+    setLoading(true);
+
+    try {
+      const { role, isNewUser } = await loginWithGoogle(credential);
+      if (role === 'ADMIN') {
+        navigate('/admin/dashboard');
+      } else if (isNewUser) {
+        setAuthToast(
+          'Welcome! Your PSU account was created automatically. Please confirm your profile details.',
+          'success'
+        );
+        navigate('/profile', { state: { isNewUser: true } });
+      } else {
+        navigate('/jobs');
+      }
+    } catch (err: any) {
+      setError(err.message || 'Google Sign-In failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -81,25 +106,50 @@ function SignIn() {
         className="relative z-10 w-full max-w-md mx-auto"
       >
         <GlassCard variant="container" className="p-8 sm:p-10">
-          <div className="flex flex-col items-center mb-8">
+          <div className="flex flex-col items-center mb-6">
             <PsuLogo className="h-16 w-auto mb-3 drop-shadow-sm" />
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-               Part-time Job Hub
+              Part-time Job Hub
             </h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">
-              Sign in to continue
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium text-center">
+              Sign in with your PSU Google account
             </p>
           </div>
 
           <AlertBanner message={error} variant="error" className="mb-4" />
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* Primary PSU Google SSO */}
+          <div className="space-y-2.5">
+            <GoogleSignInButton
+              onCredential={handleGoogleCredential}
+              onError={(msg) => setError(msg)}
+              disabled={loading}
+            />
+            <p className="text-[11px] text-center text-slate-500 dark:text-slate-400">
+              Restricted to <span className="font-semibold">@phuket.psu.ac.th</span> &amp;{' '}
+              <span className="font-semibold">@psu.ac.th</span> accounts. New student profiles are created automatically.
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-200 dark:border-slate-700/80" />
+            </div>
+            <div className="relative flex justify-center text-[11px] uppercase tracking-wider font-semibold">
+              <span className="px-3 bg-white dark:bg-slate-900 text-slate-400 dark:text-slate-500 rounded-full">
+                or staff / demo login
+              </span>
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <Input
-              label="Student ID or Email"
+              label="Username, Student ID, or Email"
               type="text"
               value={identifier}
               onChange={(e) => setIdentifier(e.target.value)}
-              placeholder="e.g. 6630613009"
+              placeholder="e.g. staff or 6630613009"
               required
             />
             <Input
@@ -120,13 +170,6 @@ function SignIn() {
               Sign In
             </Button>
           </form>
-
-          <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6 font-medium">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-psu-blue dark:text-psu-light hover:underline transition-colors font-bold">
-              Register
-            </Link>
-          </p>
         </GlassCard>
       </motion.div>
     </div>

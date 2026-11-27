@@ -20,6 +20,16 @@ REFRESH_TOKEN_EXPIRE_DAYS = 7
 MEDIA_DIR = BASE_DIR / "media"
 MEDIA_DIR.mkdir(parents=True, exist_ok=True)
 
+# Google OAuth 2.0 SSO Configuration
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "").strip()
+ALLOWED_PSU_DOMAINS = ("@phuket.psu.ac.th", "@psu.ac.th")
+ALLOW_MANUAL_REGISTRATION = os.getenv("ALLOW_MANUAL_REGISTRATION", "false").lower() == "true"
+ADMIN_EMAILS = {
+    e.strip().lower()
+    for e in os.getenv("ADMIN_EMAILS", "").split(",")
+    if e.strip()
+}
+
 # CORS Origins
 CORS_ORIGINS = [
     "http://localhost:3000",

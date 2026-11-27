@@ -1,5 +1,7 @@
 import { FC, FormEvent } from 'react';
 import { Pencil, Loader2 } from 'lucide-react';
+import { Select } from '../ui';
+import { PSU_FACULTIES, RELIGION_OPTIONS } from '../../constants/faculties';
 
 interface StudentProfileFormProps {
   formData: any;
@@ -8,6 +10,9 @@ interface StudentProfileFormProps {
   onCancel: () => void;
   saving: boolean;
 }
+
+const facultySelectOptions = PSU_FACULTIES.map((f) => ({ value: f, label: f }));
+const religionSelectOptions = RELIGION_OPTIONS.map((r) => ({ value: r, label: r }));
 
 export const StudentProfileForm: FC<StudentProfileFormProps> = ({
   formData,
@@ -57,11 +62,12 @@ export const StudentProfileForm: FC<StudentProfileFormProps> = ({
           <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1.5">
             Faculty
           </label>
-          <input
-            type="text"
+          <Select
             value={formData.faculty || ''}
-            onChange={(e) => onChange({ ...formData, faculty: e.target.value })}
-            className="w-full px-3.5 py-2.5 text-sm bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-psu-navy focus:outline-none transition-colors"
+            onChange={(val) => onChange({ ...formData, faculty: val })}
+            options={facultySelectOptions}
+            placeholder="Select Faculty"
+            ariaLabel="Faculty"
           />
         </div>
 
@@ -73,6 +79,25 @@ export const StudentProfileForm: FC<StudentProfileFormProps> = ({
             type="text"
             value={formData.major || ''}
             onChange={(e) => onChange({ ...formData, major: e.target.value })}
+            placeholder="e.g. Digital Engineering"
+            className="w-full px-3.5 py-2.5 text-sm bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-psu-navy focus:outline-none transition-colors"
+          />
+        </div>
+
+        <div>
+          <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1.5">
+            Mobile Phone Number
+          </label>
+          <input
+            type="tel"
+            inputMode="numeric"
+            maxLength={10}
+            value={formData.phone_number || ''}
+            onChange={(e) => {
+              const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
+              onChange({ ...formData, phone_number: digitsOnly });
+            }}
+            placeholder="e.g. 0921234567"
             className="w-full px-3.5 py-2.5 text-sm bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-psu-navy focus:outline-none transition-colors"
           />
         </div>
@@ -81,18 +106,18 @@ export const StudentProfileForm: FC<StudentProfileFormProps> = ({
           <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1.5">
             Religion
           </label>
-          <input
-            type="text"
+          <Select
             value={formData.religion || ''}
-            onChange={(e) => onChange({ ...formData, religion: e.target.value })}
-            placeholder="e.g. Buddhism, Islam, Christianity, etc."
-            className="w-full px-3.5 py-2.5 text-sm bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-psu-navy focus:outline-none transition-colors"
+            onChange={(val) => onChange({ ...formData, religion: val })}
+            options={religionSelectOptions}
+            placeholder="Select Religion"
+            ariaLabel="Religion"
           />
         </div>
 
-        <div>
+        <div className="sm:col-span-2">
           <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 uppercase mb-1.5">
-            Diet & Allergies / Special Conditions
+            Diet &amp; Allergies / Special Conditions
           </label>
           <input
             type="text"

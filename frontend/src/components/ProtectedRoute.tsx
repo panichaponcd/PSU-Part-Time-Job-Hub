@@ -27,6 +27,9 @@ export function RequireAdmin({ children }: ProtectedRouteProps) {
 export function RedirectIfLoggedIn({ children }: ProtectedRouteProps) {
   const { isLoggedIn, isAdmin } = useAuth();
   if (isLoggedIn()) {
+    if (!isAdmin() && sessionStorage.getItem('psu_pending_onboarding') === 'true') {
+      return <Navigate to="/profile" state={{ isNewUser: true }} replace />;
+    }
     return <Navigate to={isAdmin() ? '/admin/dashboard' : '/jobs'} replace />;
   }
   return children;

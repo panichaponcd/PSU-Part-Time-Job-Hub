@@ -18,8 +18,10 @@ export interface StudentProfile {
   student_id: string;
   faculty: string;
   major: string;
+  phone_number?: string;
   religion?: string;
   allergies?: string;
+  avatar_url?: string;
   student_card_image?: string | null;
 }
 

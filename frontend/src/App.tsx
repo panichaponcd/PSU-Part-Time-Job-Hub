@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import Navbar from './components/Navbar';
@@ -27,14 +27,24 @@ import AdminEvaluate from './pages/admin/AdminEvaluate';
 
 import { RedirectIfLoggedIn, RequireAuth, RequireAdmin } from './components/ProtectedRoute';
 import SignIn from './pages/SignIn';
-import Register from './pages/Register';
 import { API_BASE_URL } from './utils/api';
+import { setAuthToast } from './utils/authToast';
 
 function DocsRedirect() {
   useEffect(() => {
     window.location.replace(`${API_BASE_URL}/docs`);
   }, []);
   return null;
+}
+
+function RegisterRedirect() {
+  useEffect(() => {
+    setAuthToast(
+      'Manual registration is disabled. Sign in with your PSU Google Account to create your profile automatically.',
+      'warning'
+    );
+  }, []);
+  return <Navigate to="/signin" replace />;
 }
 
 function AnimatedRoutes() {
@@ -64,14 +74,7 @@ function AnimatedRoutes() {
         <Route path="/manual" element={<UserGuide />} />
 
         {/* Auth routes */}
-        <Route
-          path="/register"
-          element={
-            <RedirectIfLoggedIn>
-              <Register />
-            </RedirectIfLoggedIn>
-          }
-        />
+        <Route path="/register" element={<RegisterRedirect />} />
 
         <Route
           path="/signin"
