@@ -34,6 +34,7 @@ class Student(Base):
     student_id = Column(String(10), unique=True, index=True, nullable=False)
     faculty = Column(String(100), nullable=False)
     major = Column(String(100), nullable=False)
+    phone_number = Column(String(20), default="", nullable=False)
     religion = Column(String(50), default="", nullable=False)
     allergies = Column(Text, default="", nullable=False)
     student_card_image = Column(String(100), nullable=True)

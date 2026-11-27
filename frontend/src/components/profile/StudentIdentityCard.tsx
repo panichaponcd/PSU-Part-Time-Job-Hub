@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Mail, GraduationCap, BookOpen, AlertCircle, Pencil, X } from 'lucide-react';
+import { Mail, Phone, BookOpen, AlertCircle, Pencil, X } from 'lucide-react';
 
 interface StudentIdentityCardProps {
   profileData: any;
@@ -84,14 +84,14 @@ export const StudentIdentityCard: FC<StudentIdentityCardProps> = ({
             </div>
           </div>
 
-          {/* Faculty & Major */}
+          {/* Mobile Phone */}
           <div className="bg-white/80 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-xs flex flex-col justify-between">
             <div className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider flex items-center gap-1.5 mb-1.5">
-              <GraduationCap className="w-3.5 h-3.5 text-psu-blue" />
-              <span>Academic Unit</span>
+              <Phone className="w-3.5 h-3.5 text-psu-blue" />
+              <span>Mobile Phone</span>
             </div>
-            <div className="font-semibold text-slate-800 dark:text-slate-100 text-xs sm:text-sm truncate" title={profileData?.faculty}>
-              {profileData?.faculty || 'PSU Phuket'}
+            <div className="font-semibold text-slate-800 dark:text-slate-100 text-xs sm:text-sm truncate" title={profileData?.phone_number}>
+              {profileData?.phone_number || 'Not specified'}
             </div>
           </div>
 

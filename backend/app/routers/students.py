@@ -18,6 +18,7 @@ def _format_student(s: Student) -> StudentResponse:
         email=s.user.email if s.user else "",
         faculty=s.faculty,
         major=s.major,
+        phone_number=s.phone_number or "",
         religion=s.religion,
         allergies=s.allergies,
         student_card_image=s.student_card_image,
@@ -78,10 +79,13 @@ async def update_student_profile(
         payload = dict(form)
 
     # Strictly allow only editable fields; student_id and email are immutable
-    editable_fields = ("first_name", "last_name", "faculty", "major", "religion", "allergies")
+    editable_fields = ("first_name", "last_name", "faculty", "major", "phone_number", "religion", "allergies")
     for field in editable_fields:
         if field in payload and isinstance(payload[field], str):
-            setattr(student, field, payload[field].strip())
+            val = payload[field].strip()
+            if field == "phone_number":
+                val = "".join(ch for ch in val if ch.isdigit())[:10]
+            setattr(student, field, val)
 
     # Sync first_name / last_name onto auth_user as well
     if student.user:

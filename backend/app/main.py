@@ -19,6 +19,16 @@ from app.routers import (
 async def lifespan(app: FastAPI):
     # Ensure all database tables exist on startup
     Base.metadata.create_all(bind=engine)
+    # Idempotent schema migration for newly added columns on existing databases
+    from sqlalchemy import inspect, text
+    with engine.begin() as conn:
+        inspector = inspect(conn)
+        if "jobs_student" in inspector.get_table_names():
+            cols = [c["name"] for c in inspector.get_columns("jobs_student")]
+            if "phone_number" not in cols:
+                conn.execute(
+                    text("ALTER TABLE jobs_student ADD COLUMN phone_number VARCHAR(20) NOT NULL DEFAULT ''")
+                )
     yield
 
 app = FastAPI(

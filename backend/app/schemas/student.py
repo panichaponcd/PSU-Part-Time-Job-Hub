@@ -9,6 +9,7 @@ class StudentResponse(BaseModel):
     email: Optional[str] = ""
     faculty: str
     major: str
+    phone_number: Optional[str] = ""
     religion: Optional[str] = ""
     allergies: Optional[str] = ""
     student_card_image: Optional[str] = None

@@ -150,6 +150,7 @@ export function Profile() {
       bodyData.append('last_name', formData.last_name || '');
       bodyData.append('faculty', formData.faculty || '');
       bodyData.append('major', formData.major || '');
+      bodyData.append('phone_number', formData.phone_number || '');
       bodyData.append('religion', formData.religion || '');
       bodyData.append('allergies', formData.allergies || '');
 
@@ -232,7 +233,7 @@ export function Profile() {
           )}
 
           {/* 1. STUDENT IDENTITY CARD */}
-          <GlassCard variant="card" className="relative transition-all duration-300">
+          <GlassCard variant="card" className="relative z-20 transition-all duration-300">
             <StudentIdentityCard
               profileData={profileData}
               userEmail={user?.email}
