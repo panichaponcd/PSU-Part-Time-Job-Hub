@@ -19,6 +19,7 @@ class RegisterRequest(BaseModel):
     password: str
     faculty: str
     major: str
+    avatar_url: Optional[str] = ""
     religion: Optional[str] = ""
     allergies: Optional[str] = ""
 
@@ -38,6 +39,7 @@ class StudentSummary(BaseModel):
     last_name: str
     faculty: str
     major: str
+    avatar_url: Optional[str] = ""
 
     class Config:
         from_attributes = True

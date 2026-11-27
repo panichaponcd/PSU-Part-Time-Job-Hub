@@ -21,6 +21,7 @@ def _format_student(s: Student) -> StudentResponse:
         phone_number=s.phone_number or "",
         religion=s.religion,
         allergies=s.allergies,
+        avatar_url=s.avatar_url or "",
         student_card_image=s.student_card_image,
         user=s.user_id
     )

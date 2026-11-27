@@ -29,6 +29,10 @@ async def lifespan(app: FastAPI):
                 conn.execute(
                     text("ALTER TABLE jobs_student ADD COLUMN phone_number VARCHAR(20) NOT NULL DEFAULT ''")
                 )
+            if "avatar_url" not in cols:
+                conn.execute(
+                    text("ALTER TABLE jobs_student ADD COLUMN avatar_url VARCHAR(500) NOT NULL DEFAULT ''")
+                )
     yield
 
 app = FastAPI(

@@ -12,6 +12,7 @@ class StudentResponse(BaseModel):
     phone_number: Optional[str] = ""
     religion: Optional[str] = ""
     allergies: Optional[str] = ""
+    avatar_url: Optional[str] = ""
     student_card_image: Optional[str] = None
     user: int
 

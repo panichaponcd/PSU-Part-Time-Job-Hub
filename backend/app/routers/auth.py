@@ -43,7 +43,8 @@ def _build_login_response(user: User, is_new_user: bool = False) -> LoginRespons
             first_name=sp.first_name,
             last_name=sp.last_name,
             faculty=sp.faculty,
-            major=sp.major
+            major=sp.major,
+            avatar_url=sp.avatar_url or ""
         )
 
     return LoginResponse(
@@ -112,6 +113,7 @@ def google_login(req: GoogleLoginRequest, db: Session = Depends(get_db)):
     email = identity["email"]
     given_name = (idinfo.get("given_name") or "").strip()
     family_name = (idinfo.get("family_name") or "").strip()
+    picture_url = (idinfo.get("picture") or "").strip()
 
     is_new_user = False
 
@@ -150,6 +152,7 @@ def google_login(req: GoogleLoginRequest, db: Session = Depends(get_db)):
                 major=identity["inferred_major"] or "",
                 religion="",
                 allergies="",
+                avatar_url=picture_url,
             )
             db.add(new_student)
             db.commit()
@@ -168,10 +171,13 @@ def google_login(req: GoogleLoginRequest, db: Session = Depends(get_db)):
                     first_name=given_name or user.first_name or student_id,
                     last_name=family_name or user.last_name,
                     faculty=identity["inferred_faculty"] or "",
-                    major="",
+                    major=identity["inferred_major"] or "",
                     religion="",
                     allergies="",
+                    avatar_url=picture_url,
                 ))
+            elif user.student_profile and picture_url:
+                user.student_profile.avatar_url = picture_url
             user.last_login = datetime.utcnow()
             db.commit()
             db.refresh(user)
@@ -258,7 +264,8 @@ def me(current_user: User = Depends(get_current_user)):
             first_name=sp.first_name,
             last_name=sp.last_name,
             faculty=sp.faculty,
-            major=sp.major
+            major=sp.major,
+            avatar_url=sp.avatar_url or ""
         )
 
     return MeResponse(

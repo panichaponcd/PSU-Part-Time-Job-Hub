@@ -37,6 +37,7 @@ class Student(Base):
     phone_number = Column(String(20), default="", nullable=False)
     religion = Column(String(50), default="", nullable=False)
     allergies = Column(Text, default="", nullable=False)
+    avatar_url = Column(String(500), default="", nullable=False)
     student_card_image = Column(String(100), nullable=True)
     user_id = Column(Integer, ForeignKey("auth_user.id"), unique=True, nullable=False)
 

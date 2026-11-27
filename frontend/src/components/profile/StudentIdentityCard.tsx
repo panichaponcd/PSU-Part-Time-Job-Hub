@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Mail, Phone, BookOpen, AlertCircle, Pencil, X } from 'lucide-react';
 
 interface StudentIdentityCardProps {
@@ -16,15 +16,28 @@ export const StudentIdentityCard: FC<StudentIdentityCardProps> = ({
   isEditing,
   onToggleEdit,
 }) => {
+  const [imgFailed, setImgFailed] = useState(false);
+  const avatarUrl = !imgFailed ? profileData?.avatar_url : '';
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         {/* Identity Left */}
         <div className="flex items-center gap-5">
-          <div className="relative shrink-0">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-psu-navy to-slate-900 dark:from-psu-blue dark:to-psu-navy text-white flex items-center justify-center text-3xl font-extrabold shadow-md border-2 border-white/80 dark:border-slate-700">
-              {avatarInitial}
-            </div>
+          <div className="relative shrink-0 select-none">
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                alt={`${profileData?.first_name || 'Student'} avatar`}
+                referrerPolicy="no-referrer"
+                onError={() => setImgFailed(true)}
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shadow-md border-2 border-white/80 dark:border-slate-700"
+              />
+            ) : (
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-psu-navy to-slate-900 dark:from-psu-blue dark:to-psu-navy text-white flex items-center justify-center text-3xl font-extrabold shadow-md border-2 border-white/80 dark:border-slate-700 select-none">
+                {avatarInitial}
+              </div>
+            )}
             <span
               className="absolute -bottom-1 -right-1 bg-emerald-500 border-2 border-white dark:border-slate-900 w-4 h-4 rounded-full shadow-sm"
               title="Active Student Status"
