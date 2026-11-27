@@ -13,6 +13,14 @@ PSU_PHUKET_FACULTY_CODES: Dict[str, str] = {
     "08": "Faculty of Technology and Environment",
 }
 
+# Known PSU Phuket program/major codes encoded in digits 4-7 (0-indexed [3:7])
+PSU_PHUKET_MAJOR_CODES: Dict[str, str] = {
+    "0611": "Computing",
+    "0612": "Digital Business",
+    "0613": "Digital Engineering",
+    "0614": "Artificial Intelligence and System Engineering",
+}
+
 STUDENT_EMAIL_REGEX = re.compile(r"^s?(\d{10})@")
 
 
@@ -62,6 +70,14 @@ def infer_faculty_from_student_id(student_id: str) -> str:
     return ""
 
 
+def infer_major_from_student_id(student_id: str) -> str:
+    """Infer PSU Phuket major/program from digits 4-7 of a 10-digit PSU Student ID."""
+    if len(student_id) == 10 and student_id.isdigit():
+        program_code = student_id[3:7]
+        return PSU_PHUKET_MAJOR_CODES.get(program_code, "")
+    return ""
+
+
 def parse_psu_identity(email: str) -> Dict[str, Optional[str]]:
     """
     Validate that an email belongs to an official PSU domain and extract
@@ -82,6 +98,7 @@ def parse_psu_identity(email: str) -> Dict[str, Optional[str]]:
             "is_student_email": True,
             "student_id": student_id,
             "inferred_faculty": infer_faculty_from_student_id(student_id),
+            "inferred_major": infer_major_from_student_id(student_id),
         }
 
     return {
@@ -89,4 +106,5 @@ def parse_psu_identity(email: str) -> Dict[str, Optional[str]]:
         "is_student_email": False,
         "student_id": None,
         "inferred_faculty": "",
+        "inferred_major": "",
     }

@@ -147,7 +147,7 @@ def google_login(req: GoogleLoginRequest, db: Session = Depends(get_db)):
                 first_name=given_name or student_id,
                 last_name=family_name,
                 faculty=identity["inferred_faculty"] or "",
-                major="",
+                major=identity["inferred_major"] or "",
                 religion="",
                 allergies="",
             )

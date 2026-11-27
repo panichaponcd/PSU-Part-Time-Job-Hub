@@ -177,6 +177,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const data = await response.json();
+    if (data.is_new_user) {
+      sessionStorage.setItem('psu_pending_onboarding', 'true');
+      setAuthToast(
+        'Welcome! Your PSU account was created automatically. Please confirm your profile details.',
+        'success'
+      );
+    }
     persistSession(data);
     return {
       role: data.role,

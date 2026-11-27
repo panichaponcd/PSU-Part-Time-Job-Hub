@@ -57,7 +57,7 @@ function SignIn() {
           'Welcome! Your PSU account was created automatically. Please confirm your profile details.',
           'success'
         );
-        navigate('/profile');
+        navigate('/profile', { state: { isNewUser: true } });
       } else {
         navigate('/jobs');
       }
