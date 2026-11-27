@@ -71,7 +71,7 @@ def parse_psu_identity(email: str) -> Dict[str, Optional[str]]:
     if not any(normalized.endswith(domain) for domain in ALLOWED_PSU_DOMAINS):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Only PSU university Google accounts (@phuket.psu.ac.th, @psu.ac.th, or @email.psu.ac.th) are allowed."
+            detail="Only PSU university Google accounts (@phuket.psu.ac.th or @psu.ac.th) are allowed."
         )
 
     match = STUDENT_EMAIL_REGEX.match(normalized)
