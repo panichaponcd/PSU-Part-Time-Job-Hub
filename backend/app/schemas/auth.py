@@ -5,6 +5,9 @@ class LoginRequest(BaseModel):
     identifier: str
     password: str
 
+class GoogleLoginRequest(BaseModel):
+    credential: str
+
 class RefreshRequest(BaseModel):
     refresh: str
 
@@ -45,6 +48,7 @@ class LoginResponse(BaseModel):
     role: str  # "ADMIN" | "STUDENT"
     user: UserSummary
     student: Optional[StudentSummary] = None
+    is_new_user: bool = False
 
 class RefreshResponse(BaseModel):
     access: str

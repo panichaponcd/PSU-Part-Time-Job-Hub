@@ -13,3 +13,4 @@ export { default as PsuLogo } from './PsuLogo';
 export { default as BackToTop } from './BackToTop';
 export * from './Toast';
 export * from './AlertBanner';
+export * from './GoogleSignInButton';

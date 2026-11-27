@@ -9,6 +9,7 @@ interface AuthContextType {
   student: StudentProfile | null;
   loading: boolean;
   login: (identifier: string, password: string) => Promise<UserRole>;
+  loginWithGoogle: (credential: string) => Promise<{ role: UserRole; isNewUser: boolean }>;
   logout: () => void;
   getToken: () => string | null;
   refreshAccessToken: () => Promise<string | null>;
@@ -140,29 +141,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const login = async (identifier: string, password: string): Promise<UserRole> => {
-    const response = await api.post('/auth/login/', { identifier, password });
-
-    if (!response.ok) {
-      const data = await response.json();
-      throw new Error(data.error || 'Login failed.');
-    }
-
-    const data = await response.json();
-
-    // Save to localStorage
+  const persistSession = (data: any) => {
     localStorage.setItem('access_token', data.access);
     localStorage.setItem('refresh_token', data.refresh);
     localStorage.setItem('user', JSON.stringify(data.user));
     localStorage.setItem('role', data.role);
     localStorage.setItem('student', JSON.stringify(data.student));
 
-    // Update state
     setUser(data.user);
     setRole(data.role);
     setStudent(data.student);
+  };
 
+  const login = async (identifier: string, password: string): Promise<UserRole> => {
+    const response = await api.post('/auth/login/', { identifier, password });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.detail || data.error || 'Login failed.');
+    }
+
+    const data = await response.json();
+    persistSession(data);
     return data.role;
+  };
+
+  const loginWithGoogle = async (
+    credential: string
+  ): Promise<{ role: UserRole; isNewUser: boolean }> => {
+    const response = await api.post('/auth/google/', { credential });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.detail || data.error || 'Google Sign-In failed.');
+    }
+
+    const data = await response.json();
+    persistSession(data);
+    return {
+      role: data.role,
+      isNewUser: Boolean(data.is_new_user),
+    };
   };
 
 
@@ -180,6 +199,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         student,
         loading,
         login,
+        loginWithGoogle,
         logout,
         getToken,
         refreshAccessToken,

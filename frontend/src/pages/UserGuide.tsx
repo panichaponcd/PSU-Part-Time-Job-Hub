@@ -87,7 +87,7 @@ export const UserGuide: FC = () => {
               Pre-seeded Evaluation Accounts
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-              Use these pre-configured test credentials to sign in and test the student and administrative workflows.
+              PSU students can sign in directly with their <strong className="text-slate-700 dark:text-slate-200">PSU Google Account</strong> (<code>@phuket.psu.ac.th</code> / <code>@psu.ac.th</code>) for automatic profile creation, or evaluators can use these pre-seeded demo credentials:
             </p>
           </div>
         </div>

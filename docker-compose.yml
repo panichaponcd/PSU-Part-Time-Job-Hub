@@ -23,6 +23,9 @@ services:
       - "127.0.0.1:8000:8000"
     environment:
       - DATABASE_URL=postgresql://psu_user:psu_password@db:5432/psu_job_hub
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+      - ADMIN_EMAILS=${ADMIN_EMAILS:-}
+      - ALLOW_MANUAL_REGISTRATION=${ALLOW_MANUAL_REGISTRATION:-false}
     depends_on:
       db:
         condition: service_healthy
@@ -31,7 +34,10 @@ services:
       - backend_media:/app/media
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_GOOGLE_CLIENT_ID: ${REACT_APP_GOOGLE_CLIENT_ID:-}
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"
