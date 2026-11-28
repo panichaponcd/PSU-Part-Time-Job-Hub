@@ -1,4 +1,4 @@
-import { Users, Pencil, Trash2 } from 'lucide-react';
+import { Users, Pencil, Trash2, Send, Loader2 } from 'lucide-react';
 import { Badge } from '../../ui/Badge';
 
 export interface JobCardListProps {
@@ -6,9 +6,18 @@ export interface JobCardListProps {
   onViewApplicants: (id: number) => void;
   onEdit: (id: number) => void;
   onDelete: (id: number) => void;
+  onAnnounceLine?: (id: number) => void;
+  announcingId?: number | null;
 }
 
-export function JobCardList({ jobs, onViewApplicants, onEdit, onDelete }: JobCardListProps) {
+export function JobCardList({
+  jobs,
+  onViewApplicants,
+  onEdit,
+  onDelete,
+  onAnnounceLine,
+  announcingId = null,
+}: JobCardListProps) {
   return (
     <div className="md:hidden flex flex-col gap-4">
       {jobs.map((job) => {
@@ -74,7 +83,23 @@ export function JobCardList({ jobs, onViewApplicants, onEdit, onDelete }: JobCar
             </div>
 
             {/* Action Buttons Row */}
-            <div className="flex items-center justify-between gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
+              {onAnnounceLine && job.status === 'OPEN' && (
+                <button
+                  type="button"
+                  onClick={() => onAnnounceLine(job.id)}
+                  disabled={announcingId === job.id}
+                  className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold transition-all cursor-pointer disabled:opacity-50"
+                >
+                  {announcingId === job.id ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Send className="w-3.5 h-3.5" />
+                  )}
+                  <span>Announce on LINE</span>
+                </button>
+              )}
+
               <button
                 type="button"
                 onClick={() => onViewApplicants(job.id)}

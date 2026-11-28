@@ -1,4 +1,4 @@
-import { Users, Pencil, Trash2 } from 'lucide-react';
+import { Users, Pencil, Trash2, Send, Loader2 } from 'lucide-react';
 import { Badge } from '../../ui/Badge';
 
 export interface JobsTableProps {
@@ -6,9 +6,18 @@ export interface JobsTableProps {
   onViewApplicants: (id: number) => void;
   onEdit: (id: number) => void;
   onDelete: (id: number) => void;
+  onAnnounceLine?: (id: number) => void;
+  announcingId?: number | null;
 }
 
-export function JobsTable({ jobs, onViewApplicants, onEdit, onDelete }: JobsTableProps) {
+export function JobsTable({
+  jobs,
+  onViewApplicants,
+  onEdit,
+  onDelete,
+  onAnnounceLine,
+  announcingId = null,
+}: JobsTableProps) {
   return (
     <div className="hidden md:block bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-3xl shadow-xl border border-white/60 dark:border-slate-800 overflow-hidden">
       <div className="overflow-x-auto">
@@ -21,7 +30,7 @@ export function JobsTable({ jobs, onViewApplicants, onEdit, onDelete }: JobsTabl
               <th className="w-[10%] py-4 px-3 font-bold text-center">Type</th>
               <th className="w-[10%] py-4 px-3 font-bold text-center">Applicants</th>
               <th className="w-[13%] py-4 px-3 font-bold text-center">Status</th>
-              <th className="w-[144px] py-4 pr-8 pl-3 font-bold text-right">Actions</th>
+              <th className="w-[176px] py-4 pr-8 pl-3 font-bold text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
@@ -90,6 +99,23 @@ export function JobsTable({ jobs, onViewApplicants, onEdit, onDelete }: JobsTabl
                   {/* Actions - Right aligned, spacious buttons with right gap */}
                   <td className="py-4 pr-8 pl-3 text-right align-middle whitespace-nowrap">
                     <div className="flex items-center justify-end gap-1.5 shrink-0">
+                      {onAnnounceLine && job.status === 'OPEN' && (
+                        <button
+                          type="button"
+                          onClick={() => onAnnounceLine(job.id)}
+                          disabled={announcingId === job.id}
+                          className="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 shadow-2xs transition-all cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
+                          title="Send LINE Announcement"
+                          aria-label="Send LINE Announcement"
+                        >
+                          {announcingId === job.id ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <Send className="w-4 h-4" />
+                          )}
+                        </button>
+                      )}
+
                       <button
                         type="button"
                         onClick={() => onViewApplicants(job.id)}

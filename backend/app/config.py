@@ -30,6 +30,14 @@ ADMIN_EMAILS = {
     if e.strip()
 }
 
+# LINE Messaging API Configuration
+LINE_CHANNEL_ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", "").strip()
+LINE_CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET", "").strip()
+LINE_GROUP_ID = os.getenv("LINE_GROUP_ID", "").strip()
+PUBLIC_WEB_URL = os.getenv(
+    "PUBLIC_WEB_URL", "https://budget-dorm-server.tail6de02b.ts.net"
+).rstrip("/")
+
 # CORS Origins
 CORS_ORIGINS = [
     "http://localhost:3000",
