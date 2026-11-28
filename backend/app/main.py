@@ -12,7 +12,8 @@ from app.routers import (
     jobs_router,
     applications_router,
     students_router,
-    evaluations_router
+    evaluations_router,
+    line_router
 )
 
 @asynccontextmanager
@@ -83,6 +84,7 @@ app.include_router(jobs_router)
 app.include_router(applications_router)
 app.include_router(students_router)
 app.include_router(evaluations_router)
+app.include_router(line_router)
 
 @app.get("/")
 def root():

@@ -26,6 +26,10 @@ services:
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
       - ADMIN_EMAILS=${ADMIN_EMAILS:-}
       - ALLOW_MANUAL_REGISTRATION=${ALLOW_MANUAL_REGISTRATION:-false}
+      - LINE_CHANNEL_ACCESS_TOKEN=${LINE_CHANNEL_ACCESS_TOKEN:-}
+      - LINE_CHANNEL_SECRET=${LINE_CHANNEL_SECRET:-}
+      - LINE_GROUP_ID=${LINE_GROUP_ID:-}
+      - PUBLIC_WEB_URL=${PUBLIC_WEB_URL:-https://budget-dorm-server.tail6de02b.ts.net}
     depends_on:
       db:
         condition: service_healthy

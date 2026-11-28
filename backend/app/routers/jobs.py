@@ -8,6 +8,7 @@ from app.models.job import Job, WorkSchedule
 from app.models.user import User
 from app.schemas.job import JobCreate, JobUpdate, JobResponse, WorkScheduleSchema
 from app.dependencies import require_admin, get_optional_current_user
+from app.utils.line_messaging import push_job_announcement
 
 router = APIRouter(prefix="/api/jobs", tags=["Jobs"])
 
@@ -68,7 +69,7 @@ def create_job(
     db: Session = Depends(get_db),
     _: User = Depends(require_admin)
 ):
-    job_dict = data.model_dump(exclude={"schedules"})
+    job_dict = data.model_dump(exclude={"schedules", "announce_to_line"})
     new_job = Job(**job_dict, created_at=datetime.utcnow())
     db.add(new_job)
     db.flush()
@@ -85,6 +86,10 @@ def create_job(
 
     db.commit()
     db.refresh(new_job)
+
+    if data.announce_to_line and new_job.status == "OPEN":
+        push_job_announcement(new_job)
+
     return _format_job_response(new_job)
 
 

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiRequest from '../../utils/api';
+import { Toast, ToastVariant } from '../../components/ui';
 import {
   JobManagementHeader,
   JobManagementFilters,
@@ -29,6 +30,13 @@ function AdminJobs() {
   // Deletion Modal
   const [deleteConfirmId, setDeleteConfirmId] = useState<number | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // LINE Announcement State
+  const [announcingId, setAnnouncingId] = useState<number | null>(null);
+  const [toast, setToast] = useState<{ message: string | null; variant: ToastVariant }>({
+    message: null,
+    variant: 'success',
+  });
 
   useEffect(() => {
     fetchJobs();
@@ -74,6 +82,32 @@ function AdminJobs() {
       console.error('Error in soft-delete:', error);
     } finally {
       setIsDeleting(false);
+    }
+  };
+
+  const handleAnnounceLine = async (jobId: number) => {
+    setAnnouncingId(jobId);
+    try {
+      const response = await apiRequest(`/line/announce/${jobId}/`, { method: 'POST' });
+      const data = await response.json().catch(() => ({}));
+      if (response.ok) {
+        setToast({
+          message: data.detail || 'Job announcement sent to LINE!',
+          variant: 'success',
+        });
+      } else {
+        setToast({
+          message: data.detail || `Failed to send LINE announcement (HTTP ${response.status}).`,
+          variant: 'error',
+        });
+      }
+    } catch (err: any) {
+      setToast({
+        message: err.message || 'Could not reach server to send LINE announcement.',
+        variant: 'error',
+      });
+    } finally {
+      setAnnouncingId(null);
     }
   };
 
@@ -133,6 +167,12 @@ function AdminJobs() {
 
   return (
     <div className="space-y-6">
+      <Toast
+        message={toast.message}
+        variant={toast.variant}
+        onClose={() => setToast((prev) => ({ ...prev, message: null }))}
+      />
+
       {/* 1. Page Header */}
       <JobManagementHeader />
 
@@ -175,6 +215,8 @@ function AdminJobs() {
             onViewApplicants={(id) => navigate(`/admin/jobs/${id}/applicants`)}
             onEdit={(id) => navigate(`/admin/jobs/${id}/edit`)}
             onDelete={(id) => setDeleteConfirmId(id)}
+            onAnnounceLine={handleAnnounceLine}
+            announcingId={announcingId}
           />
 
           {/* Mobile Card List View */}
@@ -183,6 +225,8 @@ function AdminJobs() {
             onViewApplicants={(id) => navigate(`/admin/jobs/${id}/applicants`)}
             onEdit={(id) => navigate(`/admin/jobs/${id}/edit`)}
             onDelete={(id) => setDeleteConfirmId(id)}
+            onAnnounceLine={handleAnnounceLine}
+            announcingId={announcingId}
           />
 
           {/* 4. Pagination */}

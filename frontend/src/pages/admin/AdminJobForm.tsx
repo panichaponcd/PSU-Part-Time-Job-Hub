@@ -1,6 +1,6 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import apiRequest from '../../utils/api';
 import {
@@ -62,6 +62,7 @@ export function AdminJobForm() {
   const [success, setSuccess] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [announceToLine, setAnnounceToLine] = useState(true);
 
   // Fetch job details in Edit mode
   useEffect(() => {
@@ -170,11 +171,13 @@ export function AdminJobForm() {
     setError(null);
     setSuccess(false);
 
+    const finalStatus = overrideStatus || form.status;
     const payload = {
       ...form,
-      status: overrideStatus || form.status,
+      status: finalStatus,
       compensation_amount: Number(form.compensation_amount),
       required_amount: Number(form.required_amount),
+      ...(!isEditing ? { announce_to_line: announceToLine && finalStatus === 'OPEN' } : {}),
     };
 
     try {
@@ -346,6 +349,27 @@ export function AdminJobForm() {
           onRemoveSchedule={removeSchedule}
           onScheduleChange={handleScheduleChange}
         />
+
+        {/* Section 5.5: LINE Group Auto-Announcement Toggle (Create Mode) */}
+        {!isEditing && (
+          <label className="flex items-start gap-3.5 p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/50 cursor-pointer transition-colors hover:bg-emerald-50 dark:hover:bg-emerald-950/50">
+            <input
+              type="checkbox"
+              checked={announceToLine}
+              onChange={(e) => setAnnounceToLine(e.target.checked)}
+              className="mt-1 w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+            />
+            <div className="flex-1">
+              <div className="flex items-center gap-2 text-sm font-bold text-emerald-900 dark:text-emerald-200">
+                <Send className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span>Announce automatically to LINE Group</span>
+              </div>
+              <p className="text-xs text-emerald-700/80 dark:text-emerald-300/80 mt-0.5">
+                Pushes a rich PSU Job Card with a direct &ldquo;View &amp; Apply&rdquo; button to the configured campus LINE Group when published as OPEN.
+              </p>
+            </div>
+          </label>
+        )}
 
         {/* Section 6: Action Footer Bar */}
         <JobFormActions

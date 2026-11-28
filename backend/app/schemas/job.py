@@ -39,6 +39,7 @@ class JobCreate(BaseModel):
     line_group_url: Optional[str] = None
     is_active: Optional[bool] = True
     schedules: Optional[List[WorkScheduleSchema]] = []
+    announce_to_line: Optional[bool] = False
 
 class JobUpdate(BaseModel):
     title: Optional[str] = None
